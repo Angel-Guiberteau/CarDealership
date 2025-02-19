@@ -14,6 +14,6 @@
         <div class="container-custom">
             @yield('content')
         </div>
-        
+        @yield('js')
     </body>
 </html>
