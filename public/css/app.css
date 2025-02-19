@@ -94,3 +94,12 @@ hr {
     margin: auto;
     padding: 0.5%;
 }
+
+/* DATABLES */
+
+
+#infoTable tr th{
+
+    text-align: center;
+
+}

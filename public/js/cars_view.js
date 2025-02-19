@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var table = $('#vehiclesTable').DataTable({
+    var table = $('#infoTable').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": true,
@@ -27,7 +27,7 @@ $(document).ready(function() {
     $('#tableInfo').append($('.dataTables_info'));
 
     // Agregar filtrado por columna
-    $('#vehiclesTable thead .search-column').on('keyup change', function() {
+    $('#infoTable thead .search-column').on('keyup change', function() {
         let colIndex = $(this).parent().index();
         table.column(colIndex).search(this.value).draw();
     });

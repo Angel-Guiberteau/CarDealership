@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container-fluid mt-4">
-    <h2 class="text-white bg-dark p-3 rounded">Vehículos</h2>
+    <h2 class="text-white bg-dark p-3 rounded text-center">Vehículos</h2>
     
     <div class="mb-3 d-flex justify-content-between">
         <div>
@@ -25,9 +25,9 @@
         </div>
     </div>
     
-    <table id="vehiclesTable" class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
+    <table id="infoTable" class="table text-center">
+        <thead class="table-light">
+            <tr class="text-center">
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Marca</th>
@@ -58,7 +58,7 @@
         </thead>
         <tbody>
             @for ($i = 1; $i <= 50; $i++)
-                <tr>
+                <tr class="align-middle">
                     <td>{{ $i }}</td>
                     <td>Citroën C3</td>
                     <td>Citroën</td>
