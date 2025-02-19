@@ -23,7 +23,7 @@ header {
 }
 
 hr {
-    border: 2px solid var(--blueNight);
+    border: 2px solid var(--titaniumGrey);
     opacity: 0.8;
 }
 
@@ -40,6 +40,7 @@ hr {
 .resetFilter {
     background-color: var(--perlWhite);
     color: var(--carbonBlack);
+    height: 40px;
 }
 
 .resetFilter:hover {
@@ -48,21 +49,77 @@ hr {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.range-slider {
-            position: relative;
-            width: 250px;
+/* Contenedor de los sliders */
+.range-container {
+    position: relative;
+    width: 200px; /* Ajusta el ancho según necesites */
 }
 
-.range-slider input {
+/* Valores arriba a la derecha */
+.range-values {
+    position: absolute;
+    top: -30px; /* Mueve los valores encima del slider */
+    right: 0; /* Alinea a la derecha */
+    font-size: 13px;
+    color: var(--perlWhite);
+    text-align: right; /* Asegura alineación correcta */
+}
+
+/* Barra de fondo */
+.slider-track {
+    position: absolute;
+    height: 5px;
+    background: #ccc;
+    border-radius: 5px;
+    width: 100%;
+    top: 0;
+}
+
+/* Sliders superpuestos */
+.range-container input[type="range"] {
     position: absolute;
     width: 100%;
-    pointer-events: none;
+    top: -7px;
+    appearance: none;
     background: transparent;
+    pointer-events: none;
 }
 
-.range-slider input:last-child {
+/* Barra visible */
+.range-container input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 5px;
+}
+
+/* Puntos de control */
+.range-container input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Firefox */
+.range-container input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--champagneGold);
+    border-radius: 50%;
+    cursor: pointer;
     pointer-events: auto;
 }
+
+
+/* Para navegadores Firefox */
+.range-container input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 5px;
+}
+
 
 .ofer {
     background-color: var(--champagneGold);
