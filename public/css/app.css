@@ -85,3 +85,12 @@ hr {
 .card {
     min-height: 432px; /* Ensures cards have equal height even without offers */
 }
+
+/* ADMIN LAYOUT */
+
+.container-custom {
+    width: 97%;
+    background-color: #adababb8;
+    margin: auto;
+    padding: 0.5%;
+}
