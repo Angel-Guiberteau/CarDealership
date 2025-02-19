@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mochiy+Pop+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --carbonBlack: #1C1C1C;
+    --perlWhite: #F9F9F9;
+    --titaniumGrey : #4A4A4A;
+    --champagneGold: #C9A66B;
+    --blueNight: #0D1B2A;
+    --errors: #D9534F;
+}
+
+body, html {
+    overflow-x: hidden;
+    font-family: Josefin Sans;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--carbonBlack);
+    color: var(--perlWhite);
+    padding: 1rem;
+}
+
+hr {
+    border: 2px solid var(--blueNight);
+    opacity: 0.8;
+}
+
+/*  My Syles  */
+
+/*  CLASS  */
+
+.filter {
+    background-color: var(--carbonBlack);
+    color: var(--perlWhite);
+    padding: 1rem;
+}
+
+.resetFilter {
+    background-color: var(--perlWhite);
+    color: var(--carbonBlack);
+}
+
+.resetFilter:hover {
+    background-color: var(--titaniumGrey);
+    color: var(--perlWhite);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.range-slider {
+            position: relative;
+            width: 250px;
+}
+
+.range-slider input {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    background: transparent;
+}
+
+.range-slider input:last-child {
+    pointer-events: auto;
+}
+
+.ofer {
+    background-color: var(--champagneGold);
+    color: var(--carbonBlack);
+    border-radius: 10px;
+    padding: 5px 30px;
+    min-width: 80px;
+    height: 30px;
+    line-height: 20px;
+}
+
+.ofer:hover {
+    background-color: var(--titaniumGrey);
+    color: var(--perlWhite);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/*  BOOTSTRAP  */
+
+.card {
+    min-height: 432px; /* Ensures cards have equal height even without offers */
+}
