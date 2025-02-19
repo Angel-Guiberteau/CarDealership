@@ -1,0 +1,40 @@
+$(document).ready(function() {
+    var table = $('#vehiclesTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "pageLength": 10,
+        "language": {
+            "lengthMenu": "Mostrar MENU registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando START a END de TOTAL registros",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de MAX registros en total)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+
+    $('#tablePagination').append($('.dataTables_paginate'));
+    $('#tableInfo').append($('.dataTables_info'));
+
+    // Agregar filtrado por columna
+    $('#vehiclesTable thead .search-column').on('keyup change', function() {
+        let colIndex = $(this).parent().index();
+        table.column(colIndex).search(this.value).draw();
+    });
+
+    // Control de registros por página
+    $('#entries').on('change', function() {
+        var value = $(this).val();
+        table.page.len(value === "todos" ? -1 : parseInt(value)).draw();
+    });
+});
