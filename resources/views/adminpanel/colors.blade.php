@@ -1,6 +1,6 @@
 @extends('admin_layout')
 
-@section('title', 'cars types')
+@section('title', 'Colors')
 
 @section('admin_active', 'active')
 
@@ -30,11 +30,13 @@
             <tr class="text-center">
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Hexadecimal</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
             <tr>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar ID"></th>
+                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Nombre"></th>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Nombre"></th>
                 <th></th>
                 <th></th>
@@ -44,7 +46,8 @@
             @for ($i = 1; $i <= 50; $i++)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>Deportivo</td>
+                    <td>color</td>
+                    <td>7f7f7f</td>
                     <td><button class="btn btn-dark btn-sm">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
