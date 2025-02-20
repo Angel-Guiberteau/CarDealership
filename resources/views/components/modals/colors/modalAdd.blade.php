@@ -10,6 +10,10 @@
                     <div class="mb-3 mt-3">
                         <input type="text" class="form-control" id="brand" placeholder="Nombre del color *">
                     </div>
+                    <div class="mb-3">
+                        <label for="colorHex" class="form-label">Selecciona un color</label>
+                        <input type="color" class="form-control form-control-color" id="colorHex" value="#000000">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
