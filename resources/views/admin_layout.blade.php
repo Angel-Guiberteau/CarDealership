@@ -7,14 +7,6 @@
         @include('components.admin_css')
         @include('components.admin_js')
         <title>@yield('title')</title>
-        <style> /* Borrar despues */
-            .container-custom {
-                width: 97%;
-                background-color: #adababb8;
-                margin: auto;
-                padding: 0.5%;
-            }
-        </style>
     </head>
     <body id="admin-panel">
         @include('components.header')

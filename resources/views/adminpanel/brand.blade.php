@@ -6,12 +6,12 @@
 
 @section('content')
     <div class="container-fluid mt-4">
-        <h2 class="text-white bg-dark p-3 rounded">Marcas</h2>
+        <h2 class="text-white bg-dark p-4">Vehículos</h2>
         
         <div class="mb-3 d-flex justify-content-between">
             <div>
                 <label for="entries">Mostrar</label>
-                <select id="entries" class="form-select d-inline-block w-auto mx-2">
+                <select id="entries" class="form-select d-inline-block w-auto mx-2 custom-select">
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
@@ -25,12 +25,12 @@
             </div>
         </div>
         
-        <table id="vehiclesTable" class="table table-ligth">
-            <thead>
-                <tr>
+        <table id="infoTable" class="table table-bordered custom-table">
+            <thead class="table-light">
+                <tr class="text-center">
                     <th>ID</th>
                     <th>Marca</th>
-                    <th>Editar</th>
+                    <th>Editor</th>
                     <th>Eliminar</th>
                 </tr>
                 <tr>
@@ -42,32 +42,28 @@
             </thead>
             <tbody>
                 @for ($i = 1; $i <= 50; $i++)
-                    <tr>
+                    <tr class="align-middle">
                         <td>{{ $i }}</td>
-                        <td>Ferrari</td>
-                        <td>
-                            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">
-                                Editar
-                            </button>
-                        </td>
-                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td>Citroën</td>
+                        <td class="text-center"><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
+                        <td class="text-center"><button class="btn btn-danger btn-sm">Eliminar</button></td>
                     </tr>
                 @endfor
             </tbody>
         </table>
-
-        @include('components.modals.brand.modalAdd')
-        @include('components.modals.brand.modalEdit')
-
+        
         <div class="d-flex justify-content-between mt-3">
             <div id="tableInfo"></div>
             <div id="tablePagination" class="d-flex"></div>
         </div>
     </div>
+
+        @include('components.modals.brand.modalAdd')
+        @include('components.modals.brand.modalEdit')
 @endsection
 
 @section('js')
 
-<script src="{{ asset('js/brands_view.js') }}"></script>
+<script src="{{ asset('js/dataTable.js') }}"></script>
 
 @endsection
