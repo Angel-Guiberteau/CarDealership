@@ -17,3 +17,7 @@ Route::get('/adminbrand', function () {
 Route::get('/types', function () {
     return view('adminpanel.types');
 })->name('types');
+
+Route::get('/colors', function () {
+    return view('adminpanel.colors');
+})->name('colors');
