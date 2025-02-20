@@ -73,6 +73,7 @@ return new class extends Migration {
                 'horse_power' => 132.00,
                 'year' => 2022,
                 'sale' => true,
+                'price' => 25000.00, // Added price
                 'description' => 'Coche sedán con gran eficiencia de combustible.',
                 'main_image' => 'toyota_corolla.jpg',
             ],
@@ -84,6 +85,7 @@ return new class extends Migration {
                 'horse_power' => 160.00,
                 'year' => 2021,
                 'sale' => true,
+                'price' => 22000.00, // Added price
                 'description' => 'Sedán con un manejo excelente.',
                 'main_image' => 'ford_focus.jpg',
             ],
@@ -95,6 +97,7 @@ return new class extends Migration {
                 'horse_power' => 190.00,
                 'year' => 2023,
                 'sale' => false,
+                'price' => 35000.00, // Added price
                 'description' => 'SUV con gran capacidad y tecnología avanzada.',
                 'main_image' => 'honda_crv.jpg',
             ],
@@ -106,6 +109,7 @@ return new class extends Migration {
                 'horse_power' => 355.00,
                 'year' => 2020,
                 'sale' => true,
+                'price' => 40000.00, // Added price
                 'description' => 'Camioneta de carga con un motor potente.',
                 'main_image' => 'chevrolet_silverado.jpg',
             ],
@@ -117,6 +121,7 @@ return new class extends Migration {
                 'horse_power' => 335.00,
                 'year' => 2022,
                 'sale' => false,
+                'price' => 60000.00, // Added price
                 'description' => 'SUV de lujo con características premium.',
                 'main_image' => 'bmw_x5.jpg',
             ],
@@ -128,10 +133,12 @@ return new class extends Migration {
                 'horse_power' => 221.00,
                 'year' => 2021,
                 'sale' => true,
+                'price' => 45000.00, // Added price
                 'description' => 'Coche compacto de lujo con tecnología avanzada.',
                 'main_image' => 'mercedes_benz_a_class.jpg',
             ],
         ]);
+        
     }
 
     public function down(): void

@@ -9,10 +9,10 @@
             <div class="d-flex align-items-center me-5">
                 <label for="marca" class="form-label mt-2 me-4">Marca</label>
                 <select id="marca" class="form-select">
-                    <option selected>Seleccione</option>
-                    <option>Toyota</option>
-                    <option>Ford</option>
-                    <option>Chevrolet</option>
+                    <option selected hidden disabled>Seleccione</option>
+                    @foreach ($brands as $brand)
+                        <option>{{ $brand->name }}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -26,10 +26,10 @@
             <div class="d-flex align-items-center me-5">
                 <label for="color" class="form-label mt-2 me-4">Color</label>
                 <select id="color" class="form-select">
-                    <option selected>Seleccione</option>
-                    <option>Negro</option>
-                    <option>Blanco</option>
-                    <option>Rojo</option>
+                    <option selected hidden disabled>Seleccione</option>
+                    @foreach ($colors as $color)
+                        <option>{{ $color->name }}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -74,126 +74,46 @@
 @section('content')
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 1</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                            <a href="#" class="btn ofer">Oferta</a>
+            @foreach ($cars as $car)
+                @if ($car->sale)
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
+                            <div class="card-body mt-3">
+                                <h5 class="card-title">{{ $car->name }}</h5>
+                                <p class="card-text">Precio: {{ round($car->price) }}</p>
+                                <p class="card-text">Marca: {{ $car->brand }}</p>
+                                <p class="card-text">Color: {{ $car->color }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-text">CV: {{ round($car->horse_power) }}</p>
+                                    <a href="#" class="btn ofer">Oferta</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 2</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                            <a href="#" class="btn ofer">Oferta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 3</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                            <a href="#" class="btn ofer">Oferta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 4</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                            <a href="#" class="btn ofer">Oferta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                @endif
+            @endforeach
         <hr class="my-4">
         <div class="row mt-5">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 5</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
+            @foreach ($cars as $car)
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
+                            <div class="card-body mt-3">
+                                <h5 class="card-title">{{ $car->name }}</h5>
+                                <p class="card-text">Precio: {{ round($car->price) }}</p>
+                                <p class="card-text">Marca: {{ $car->brand }}</p>
+                                <p class="card-text">Color: {{ $car->color }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-text">CV: {{ round($car->horse_power) }}</p>
+                                    @if ($car->sale)
+                                        <a href="#" class="btn ofer">Oferta</a>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 6</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 7</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
-                    <div class="card-body mt-3">
-                        <h5 class="card-title">Nombre del Modelo 8</h5>
-                        <p class="card-text">50€</p>
-                        <p class="card-text">Marca: [Marca]</p>
-                        <p class="card-text">Color: [Color]</p>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">CV: [CV]</p>
-                            <a href="#" class="btn ofer">Oferta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
