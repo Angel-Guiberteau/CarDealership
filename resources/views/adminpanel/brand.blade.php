@@ -21,12 +21,12 @@
                 registros
             </div>
             <div>
-                <button class="btn btn-dark">Agregar</button>
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
             </div>
         </div>
         
-        <table id="vehiclesTable" class="table table-striped table-bordered">
-            <thead class="table-dark">
+        <table id="vehiclesTable" class="table table-ligth">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Marca</th>
@@ -45,13 +45,20 @@
                     <tr>
                         <td>{{ $i }}</td>
                         <td>Ferrari</td>
-                        <td><button class="btn btn-dark btn-sm">Editar</button></td>
+                        <td>
+                            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">
+                                Editar
+                            </button>
+                        </td>
                         <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                     </tr>
                 @endfor
             </tbody>
         </table>
-        
+
+        @include('components.modals.brand.modalAdd')
+        @include('components.modals.brand.modalEdit')
+
         <div class="d-flex justify-content-between mt-3">
             <div id="tableInfo"></div>
             <div id="tablePagination" class="d-flex"></div>
