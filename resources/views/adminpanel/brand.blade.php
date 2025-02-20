@@ -41,14 +41,14 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 1; $i <= 50; $i++)
+                @foreach ($brands as $brand)
                     <tr class="align-middle">
-                        <td>{{ $i }}</td>
-                        <td>Citroën</td>
+                        <td>{{ $brand->id }}</td>
+                        <td>{{ $brand->name }}</td>
                         <td class="text-center"><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                         <td class="text-center"><button class="btn btn-danger btn-sm">Eliminar</button></td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
         
