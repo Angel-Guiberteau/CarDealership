@@ -8,7 +8,7 @@
                 <a class="nav-link" href="#">Marcas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Tipos de Vehículos</a>
+                <a class="nav-link" href="types">Tipos de Vehículos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Colores</a>

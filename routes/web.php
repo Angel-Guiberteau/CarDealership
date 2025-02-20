@@ -13,3 +13,7 @@ Route::get('/admin', function () {
 Route::get('/adminbrand', function () {
     return view('adminpanel.brand');
 })->name('brand');
+
+Route::get('/types', function () {
+    return view('adminpanel.types');
+})->name('types');
