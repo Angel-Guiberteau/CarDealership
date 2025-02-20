@@ -4,15 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        @include('components.css')
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
+        @include('components.admin_css')
+        @include('components.admin_js')
         <title>@yield('title')</title>
     </head>
-    <body>
+    <body id="admin-panel">
         @include('components.header')
         @include('components.admin_nav')
-        <div class="container">
+        <div class="container-custom bg-light p-3 mt-4">
             @yield('content')
         </div>
+        @yield('js')
     </body>
 </html>
