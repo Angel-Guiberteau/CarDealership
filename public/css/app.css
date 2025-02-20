@@ -83,10 +83,14 @@ hr {
 /*  BOOTSTRAP  */
 
 .card {
-    min-height: 432px; /* Ensures cards have equal height even without offers */
+    min-height: 432px; 
 }
 
 /* ADMIN LAYOUT */
+
+#admin-panel{ 
+    background-color: var(--carbonBlack);
+}
 
 .container-custom {
     width: 97%;
@@ -97,9 +101,53 @@ hr {
 
 /* DATABLES */
 
-
 #infoTable tr th{
-
     text-align: center;
+}
 
+.custom-table {
+    border-collapse: collapse;
+    border: 1px solid #dee2e688;
+}
+
+.custom-select{
+    background-color: #afb0b179;
+    color: #1C1C1C;
+    border-radius: 0px;
+    font-weight: bold;
+}
+
+.custom-table input {
+    background-color: #afb0b179;
+    border-radius: 0px;
+    width: 100%;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #dee2e600;
+}
+
+.custom-table thead tr {
+    background-color: #f8f9fa;
+}
+
+.custom-table input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.active>.page-link, .page-link.active {
+    color: #fff;
+    background-color: #1C1C1C;
+    border-color: #1C1C1C;
+}
+
+.page-link {
+    color: #1C1C1C;
+}
+
+.page-link :hover {
+    color: #fff;
+    background-color: #1C1C1C;
 }

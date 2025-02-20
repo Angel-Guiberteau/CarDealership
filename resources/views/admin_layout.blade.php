@@ -8,10 +8,10 @@
         @include('components.admin_js')
         <title>@yield('title')</title>
     </head>
-    <body>
+    <body id="admin-panel">
         @include('components.header')
         @include('components.admin_nav')
-        <div class="container-custom">
+        <div class="container-custom bg-light p-3 mt-4">
             @yield('content')
         </div>
         @yield('js')

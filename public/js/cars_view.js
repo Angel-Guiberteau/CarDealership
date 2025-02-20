@@ -26,13 +26,11 @@ $(document).ready(function() {
     $('#tablePagination').append($('.dataTables_paginate'));
     $('#tableInfo').append($('.dataTables_info'));
 
-    // Agregar filtrado por columna
     $('#infoTable thead .search-column').on('keyup change', function() {
         let colIndex = $(this).parent().index();
         table.column(colIndex).search(this.value).draw();
     });
 
-    // Control de registros por página
     $('#entries').on('change', function() {
         var value = $(this).val();
         table.page.len(value === "todos" ? -1 : parseInt(value)).draw();

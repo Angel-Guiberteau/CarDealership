@@ -6,12 +6,12 @@
 
 @section('content')
 <div class="container-fluid mt-4">
-    <h2 class="text-white bg-dark p-3 rounded text-center">Vehículos</h2>
+    <h2 class="text-white bg-dark p-4">Vehículos</h2>
     
     <div class="mb-3 d-flex justify-content-between">
         <div>
             <label for="entries">Mostrar</label>
-            <select id="entries" class="form-select d-inline-block w-auto mx-2">
+            <select id="entries" class="form-select d-inline-block w-auto mx-2 custom-select">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -21,11 +21,11 @@
             registros
         </div>
         <div>
-            <button class="btn btn-dark">Agregar</button>
+            <button class="btn btn-dark ">Agregar</button>
         </div>
     </div>
     
-    <table id="infoTable" class="table text-center">
+    <table id="infoTable" class="table text-center table-bordered custom-table">
         <thead class="table-light">
             <tr class="text-center">
                 <th>ID</th>
@@ -84,7 +84,5 @@
 @endsection
 
 @section('js')
-
 <script src="{{ asset('js/cars_view.js') }}"></script>
-
 @endsection
