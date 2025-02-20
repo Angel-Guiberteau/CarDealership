@@ -7,11 +7,12 @@
         @include('components.css')
         <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
         <title>@yield('title')</title>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     </head>
-    <body>
+    <body cz-shortcut-listen="true">
         @include('components.header')
         @include('components.admin_nav')
-        <div class="container">
+        <div class="container-custom">
             @yield('content')
         </div>
     </body>
