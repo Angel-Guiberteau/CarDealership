@@ -64,5 +64,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/cars_view.js') }}"></script>
+    <script src="{{ asset('js/dataTable.js') }}"></script>
 @endsection
