@@ -1,6 +1,6 @@
 @extends('admin_layout')
 
-@section('title', 'Admin Panel')
+@section('title', 'cars types')
 
 @section('admin_active', 'active')
 
@@ -21,54 +21,30 @@
             registros
         </div>
         <div>
-            <button class="btn btn-dark ">Agregar</button>
+            <button class="btn btn-dark">Agregar</button>
         </div>
     </div>
     
     <table id="infoTable" class="table text-center table-bordered custom-table">
-        <thead class="table-light">
+        <thead class="text-center">
             <tr class="text-center">
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Marca</th>
-                <th>Tipo</th>
-                <th>Color</th>
-                <th>Potencia</th>
-                <th>Año</th>
-                <th>Oferta</th>
-                <th>Descripción</th>
-                <th>Archivos</th>
                 <th>Editor</th>
                 <th>Eliminar</th>
             </tr>
             <tr>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar ID"></th>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Nombre"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Marca"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Tipo"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Color"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Potencia"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Año"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Oferta"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Descripción"></th>
-                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Archivos"></th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @for ($i = 1; $i <= 50; $i++)
-                <tr class="align-middle">
+                <tr>
                     <td>{{ $i }}</td>
-                    <td>Citroën C3</td>
-                    <td>Citroën</td>
-                    <td>SUV</td>
-                    <td>Gris</td>
-                    <td>60</td>
-                    <td>2002</td>
-                    <td>Sí</td>
-                    <td>Los modelos de gasolina son un 1.1L de 60 CV...</td>
-                    <td>2022-12-01-C3.jpg</td>
+                    <td>Deportivo</td>
                     <td><button class="btn btn-dark btn-sm">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
@@ -81,8 +57,9 @@
         <div id="tablePagination" class="d-flex"></div>
     </div>
 </div>
+
 @endsection
 
 @section('js')
-<script src="{{ asset('js/dataTable.js') }}"></script>
+    <script src="{{ asset('js/cars_view.js') }}"></script>
 @endsection
