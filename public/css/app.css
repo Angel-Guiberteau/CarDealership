@@ -23,7 +23,7 @@ header {
 }
 
 hr {
-    border: 2px solid var(--blueNight);
+    border: 2px solid var(--titaniumGrey);
     opacity: 0.8;
 }
 
@@ -40,6 +40,7 @@ hr {
 .resetFilter {
     background-color: var(--perlWhite);
     color: var(--carbonBlack);
+    height: 40px;
 }
 
 .resetFilter:hover {
@@ -48,21 +49,77 @@ hr {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.range-slider {
-            position: relative;
-            width: 250px;
+/* Contenedor de los sliders */
+.range-container {
+    position: relative;
+    width: 200px; /* Ajusta el ancho según necesites */
 }
 
-.range-slider input {
+/* Valores arriba a la derecha */
+.range-values {
+    position: absolute;
+    top: -30px; /* Mueve los valores encima del slider */
+    right: 0; /* Alinea a la derecha */
+    font-size: 13px;
+    color: var(--perlWhite);
+    text-align: right; /* Asegura alineación correcta */
+}
+
+/* Barra de fondo */
+.slider-track {
+    position: absolute;
+    height: 5px;
+    background: #ccc;
+    border-radius: 5px;
+    width: 100%;
+    top: 0;
+}
+
+/* Sliders superpuestos */
+.range-container input[type="range"] {
     position: absolute;
     width: 100%;
-    pointer-events: none;
+    top: -7px;
+    appearance: none;
     background: transparent;
+    pointer-events: none;
 }
 
-.range-slider input:last-child {
+/* Barra visible */
+.range-container input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 5px;
+}
+
+/* Puntos de control */
+.range-container input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Firefox */
+.range-container input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--champagneGold);
+    border-radius: 50%;
+    cursor: pointer;
     pointer-events: auto;
 }
+
+
+/* Para navegadores Firefox */
+.range-container input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 5px;
+}
+
 
 .ofer {
     background-color: var(--champagneGold);
@@ -83,5 +140,71 @@ hr {
 /*  BOOTSTRAP  */
 
 .card {
-    min-height: 432px; /* Ensures cards have equal height even without offers */
+    min-height: 432px; 
+}
+
+/* ADMIN LAYOUT */
+
+#admin-panel{ 
+    background-color: var(--carbonBlack);
+}
+
+.container-custom {
+    width: 97%;
+    background-color: #adababb8;
+    margin: auto;
+    padding: 0.5%;
+}
+
+/* DATABLES */
+
+#infoTable tr th{
+    text-align: center;
+}
+
+.custom-table {
+    border-collapse: collapse;
+    border: 1px solid #dee2e688;
+}
+
+.custom-select{
+    background-color: #afb0b179;
+    color: #1C1C1C;
+    border-radius: 0px;
+    font-weight: bold;
+}
+
+.custom-table input {
+    background-color: #afb0b179;
+    border-radius: 0px;
+    width: 100%;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #dee2e600;
+}
+
+.custom-table thead tr {
+    background-color: #f8f9fa;
+}
+
+.custom-table input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.active>.page-link, .page-link.active {
+    color: #fff;
+    background-color: #1C1C1C;
+    border-color: #1C1C1C;
+}
+
+.page-link {
+    color: #1C1C1C;
+}
+
+.page-link :hover {
+    color: #fff;
+    background-color: #1C1C1C;
 }
