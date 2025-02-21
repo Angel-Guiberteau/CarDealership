@@ -57,22 +57,22 @@
             </tr>
         </thead>
         <tbody>
-            @for ($i = 1; $i <= 50; $i++)
+            @foreach ($cars as $car)
                 <tr class="align-middle">
-                    <td>{{ $i }}</td>
-                    <td>Citroën C3</td>
-                    <td>Citroën</td>
-                    <td>SUV</td>
-                    <td>Gris</td>
-                    <td>60</td>
-                    <td>2002</td>
-                    <td>Sí</td>
-                    <td>Los modelos de gasolina son un 1.1L de 60 CV...</td>
-                    <td>2022-12-01-C3.jpg</td>
+                    <td>{{ $car->id }}</td>
+                    <td>{{ $car->name }}</td>
+                    <td>{{ $car->brand_name }}</td>
+                    <td>{{ $car->type_name }}</td>
+                    <td>{{ $car->color_name }}</td>
+                    <td>{{ $car->horse_power }} CV</td>
+                    <td>{{ $car->year }}</td>
+                    <td>{{ $car->sale ? 'Sí' : 'No' }}</td>
+                    <td>{{ $car->description }}</td>
+                    <td>{{ $car->main_image }}</td>
                     <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
-            @endfor
+            @endforeach
         </tbody>
     </table>
     
@@ -82,8 +82,8 @@
     </div>
 </div>
 
-        @include('components.modals.cars.modalAdd')
-        @include('components.modals.cars.modalEdit')
+@include('components.modals.cars.modalAdd')
+@include('components.modals.cars.modalEdit')
 
 @endsection
 
