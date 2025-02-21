@@ -8,13 +8,13 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\TypeController;
 
 use App\Http\Controllers\ColorController;
-
+use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
 Route::get('/admin', function () {
-    return view('adminpanel.cars');
+    return CarController::listCars();
 })->name('admin');
 
 Route::get('/brand', [BrandController::class,'index'])->name('brand');
