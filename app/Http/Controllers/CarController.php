@@ -21,4 +21,9 @@ class CarController extends Controller
         return view('adminpanel.cars')
                 ->with('cars', Car::listCarsAdmin());
     }
+
+    public static function getTech(): View{
+        return view('tech_sheet.tech_sheet')
+                ->with('cars', Car::getTech());
+    }
 }
