@@ -9,7 +9,7 @@ use App\Models\Type;
 class TypeController extends Controller
 {
     public static function index():View {
-        return view('adminpanel.Type')
+        return view('adminpanel.types')
                 ->with('types', Type::allTypes());
     }
 }
