@@ -21,7 +21,7 @@
             registros
         </div>
         <div>
-            <button class="btn btn-dark ">Agregar</button>
+            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
         </div>
     </div>
     
@@ -81,6 +81,10 @@
         <div id="tablePagination" class="d-flex"></div>
     </div>
 </div>
+
+        @include('components.modals.cars.modalAdd')
+        @include('components.modals.cars.modalEdit')
+
 @endsection
 
 @section('js')
