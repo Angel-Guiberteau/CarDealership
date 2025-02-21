@@ -12,4 +12,9 @@ class Type extends Model {
     public static function allTypes():Collection{
         return self::all();
     }
+    public static function addType($data){
+        return self::create([
+            'name' => $data['name']
+        ]);
+    }
 }

@@ -21,17 +21,15 @@ Route::get('/brand', [BrandController::class,'index'])->name('brand');
 
 Route::get('/types', [TypeController::class,'index'])->name('types');
 
-Route::get('/colors', function () {
-    return view('adminpanel.colors');
-})->name('colors');
+Route::get('/colors', [ColorController::class,'index'])->name('colors');
 
 // POST
 
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
 
+Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
+
 Route::get('/tech', function () {
     return CarController::getTech();
 })->name('tech');
-
-Route::get('/colors', [ColorController::class,'index'])->name('colors');
 
