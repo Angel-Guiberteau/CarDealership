@@ -22,3 +22,7 @@ Route::get('/types', function () {
 Route::get('/colors', function () {
     return view('adminpanel.colors');
 })->name('colors');
+
+Route::get('/tech', function () {
+    return view('tech_sheet.tech_sheet');
+})->name('tech');
