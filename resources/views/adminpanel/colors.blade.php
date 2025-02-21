@@ -43,15 +43,15 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 1; $i <= 50; $i++)
+                @foreach ($colors as $color)
                     <tr>
-                        <td>{{ $i }}</td>
-                        <td>color</td>
-                        <td>7f7f7f</td>
+                        <td>{{ $color->id }}</td>
+                        <td>{{ $color->name }}</td>
+                        <td>{{ $color->hex }}</td>
                         <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                         <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                     </tr>
-                @endfor
+                @endforeach 
             </tbody>
         </table>
         

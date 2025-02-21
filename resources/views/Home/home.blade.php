@@ -5,7 +5,7 @@
 @section('filter')
     <div class="container-fluid p-3 d-flex justify-content-around filter">
         <div class="d-flex p-2">
-            <!-- Marca -->
+            <!-- Brand -->
             <div class="d-flex align-items-center me-5">
                 <label for="marca" class="form-label mt-2 me-4">Marca</label>
                 <select id="marca" class="form-select">
@@ -16,7 +16,7 @@
                 </select>
             </div>
 
-            <!-- Modelo -->
+            <!-- Model -->
             <div class="d-flex align-items-center me-5">
                 <label for="modelo" class="form-label mt-2 me-4">Modelo</label>
                 <input type="text" id="modelo" class="form-control" placeholder="Ej. Corolla">
@@ -33,11 +33,10 @@
                 </select>
             </div>
 
-            <!-- Precio -->
+            <!-- Price -->
             <div class="d-flex align-items-center me-5">
                 <label class="form-label mt-2 me-4">Precio</label>
                 <div class="range-container">
-                    <!-- Contenedor de valores para alinearlos arriba y a la derecha -->
                     <div class="range-values">
                         <span id="precio_min_val">5000</span> - 
                         <span id="precio_max_val">100000</span>
@@ -48,11 +47,10 @@
                 </div>
             </div>
 
-            <!-- Potencia -->
+            <!-- HorsePower -->
             <div class="d-flex align-items-center me-5">
                 <label class="form-label mt-2 me-4">Potencia</label>
                 <div class="range-container">
-                    <!-- Contenedor de valores para alinearlos arriba y a la derecha -->
                     <div class="range-values">
                         <span id="potencia_min_val">50</span> - 
                         <span id="potencia_max_val">1000</span>
@@ -64,7 +62,7 @@
             </div>
         </div>
 
-        <!-- Botón Restablecer -->
+        <!-- Reset Button -->
         <div class="d-flex">
             <button id="reset" class="btn resetFilter mt-2">Restablecer</button>
         </div>
@@ -82,8 +80,8 @@
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
-                                <p class="card-text">Marca: {{ $car->brand }}</p>
-                                <p class="card-text">Color: {{ $car->color }}</p>
+                                <p class="card-text">Marca: {{ $car->brand->name }}</p>
+                                <p class="card-text">Color: {{ $car->color->name }}</p>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-text">CV: {{ round($car->horse_power) }}</p>
                                     <a href="#" class="btn ofer">Oferta</a>
@@ -102,8 +100,8 @@
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
-                                <p class="card-text">Marca: {{ $car->brand }}</p>
-                                <p class="card-text">Color: {{ $car->color }}</p>
+                                <p class="card-text">Marca: {{ $car->brand->name }}</p>
+                                <p class="card-text">Color: {{ $car->color->name }}</p>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-text">CV: {{ round($car->horse_power) }}</p>
                                     @if ($car->sale)
