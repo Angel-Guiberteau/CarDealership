@@ -16,4 +16,14 @@ class CarController extends Controller
                 ->with('brands', Brand::allBrands())
                 ->with('colors', Color::allColors());
     }
+
+    public static function listCars(): View{
+        return view('adminpanel.cars')
+                ->with('cars', Car::listCarsAdmin());
+    }
+
+    public static function getTech(): View{
+        return view('tech_sheet.tech_sheet')
+                ->with('cars', Car::getTech());
+    }
 }

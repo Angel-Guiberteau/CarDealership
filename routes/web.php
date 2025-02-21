@@ -7,13 +7,13 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\TypeController;
 
 use App\Http\Controllers\ColorController;
-
+use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
 Route::get('/admin', function () {
-    return view('adminpanel.cars');
+    return CarController::listCars();
 })->name('admin');
 
 Route::get('/brand', [BrandController::class,'index'])->name('brand');
@@ -24,12 +24,15 @@ Route::get('/colors', [ColorController::class,'index'])->name('colors');
 
 Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('brandDeleted');
 
+
 // POST
 
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
 
+Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
+
 Route::get('/tech', function () {
-    return view('tech_sheet.tech_sheet');
+    return CarController::getTech();
 })->name('tech');
 
 // PUT
