@@ -5,7 +5,6 @@ $(document).ready(function() {
         "searching": true,
         "ordering": true,
         "info": true,  
-        "autoWidth": false,
         "pageLength": 10,
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
