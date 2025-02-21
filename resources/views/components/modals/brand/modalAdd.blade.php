@@ -6,15 +6,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ route('brandCreated') }}" method="POST" id="brandForm">
+                    @csrf
                     <div class="mb-3 mt-3">
-                        <input type="text" class="form-control" id="brand" placeholder="Nombre de marca *">
+                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Nombre de marca *">
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary w-100">Agregar</button>
+                <button type="submit" id="sendButton" class="btn btn-secondary w-100">Agregar</button>
             </div>
+                </form>
         </div>
     </div>
 </div>

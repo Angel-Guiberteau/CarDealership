@@ -22,3 +22,7 @@ Route::get('/types', function () {
 Route::get('/colors', function () {
     return view('adminpanel.colors');
 })->name('colors');
+
+// POST
+
+Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
