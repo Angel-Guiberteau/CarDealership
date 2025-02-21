@@ -41,14 +41,14 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 1; $i <= 50; $i++)
+                @foreach ($types as $type)
                     <tr>
-                        <td>{{ $i }}</td>
-                        <td>Deportivo</td>
+                        <td>{{ $type->id }}</td>
+                        <td>{{ $type->name }}</td>
                         <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                         <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
         </table>
         
