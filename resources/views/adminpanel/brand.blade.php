@@ -40,7 +40,7 @@
                 <tr class="text-center">
                     <th>ID</th>
                     <th>Marca</th>
-                    <th>Editor</th>
+                    <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
                 <tr>
@@ -56,15 +56,19 @@
                         <td>{{ $brand->id }}</td>
                         <td>{{ $brand->name }}</td>
                         <td class="text-center">
-                            <button class="btn btn-dark btn-sm editBrandBtn" data-bs-toggle="modal" 
+                            <button class="btn btn-dark btn-sm editBrandBtn" 
+                                data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $brand->id }}"
-                                data-name="{{ $brand->name }}"> 
+                                data-name="{{ $brand->name }}">
                                 Editar
                             </button>
                         </td>       
                         <td class="text-center">
-                            <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">Eliminar</button>
+                            <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">
+                                Eliminar
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -77,8 +81,9 @@
         </div>
     </div>
 
-        @include('components.modals.brand.modalAdd')
-        @include('components.modals.brand.modalEdit')
+    @include('components.modals.brand.modalAdd')
+    @include('components.modals.brand.modalEdit')
+
 @endsection
 
 @section('js')

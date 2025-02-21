@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Brand;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 
 class BrandController extends Controller {
     
@@ -56,7 +54,8 @@ class BrandController extends Controller {
         return redirect()->route('brand')->with('error', 'Marca no encontrada.');
     }
 
-    public function updateBrand(): RedirectResponse{
+    public function updateBrand(): RedirectResponse
+    {
         $request = request();
 
         $request->validate([
@@ -65,7 +64,7 @@ class BrandController extends Controller {
 
         $id = $request->input('brand_id');
 
-        $brand = Brand::findBrand($id);
+        $brand = Brand::find($id);
 
         if ($brand) {
             $updated = Brand::editingBrand($request->input('brand'), $id);
