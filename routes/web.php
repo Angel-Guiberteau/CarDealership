@@ -21,4 +21,13 @@ Route::get('/brand', [BrandController::class,'index'])->name('brand');
 
 Route::get('/types', [TypeController::class,'index'])->name('types');
 
+Route::get('/colors', function () {
+    return view('adminpanel.colors');
+})->name('colors');
+
+Route::get('/tech', function () {
+    return view('tech_sheet.tech_sheet');
+})->name('tech');
+
 Route::get('/colors', [ColorController::class,'index'])->name('colors');
+
