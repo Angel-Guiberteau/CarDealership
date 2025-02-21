@@ -10,6 +10,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Marcas</h2>
         
@@ -50,8 +55,17 @@
                     <tr class="align-middle">
                         <td>{{ $brand->id }}</td>
                         <td>{{ $brand->name }}</td>
-                        <td class="text-center"><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                        <td class="text-center"><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td class="text-center">
+                            <button class="btn btn-dark btn-sm editBrandBtn" data-bs-toggle="modal" 
+                                data-bs-target="#modalEdit"
+                                data-id="{{ $brand->id }}"
+                                data-name="{{ $brand->name }}"> 
+                                Editar
+                            </button>
+                        </td>       
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">Eliminar</button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -71,5 +85,6 @@
 
 <script src="{{ asset('js/dataTable.js') }}"></script>
 <script src="{{ asset('js/brand.js') }}"></script>
+<script src="{{ asset('js/sweetAlert.js') }}"></script>
 
 @endsection

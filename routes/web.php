@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\CarController;
 
 use App\Http\Controllers\BrandController;
@@ -23,6 +22,9 @@ Route::get('/types', [TypeController::class,'index'])->name('types');
 
 Route::get('/colors', [ColorController::class,'index'])->name('colors');
 
+Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('brandDeleted');
+
+
 // POST
 
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
@@ -32,4 +34,8 @@ Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 Route::get('/tech', function () {
     return CarController::getTech();
 })->name('tech');
+
+// PUT
+
+Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
 
