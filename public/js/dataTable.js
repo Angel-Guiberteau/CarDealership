@@ -3,8 +3,8 @@ $(document).ready(function() {
         "paging": true,
         "lengthChange": false,
         "searching": true,
-        "ordering": true,
-        "info": true,  
+        "ordering": false, 
+        "info": true,
         "pageLength": 10,
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
