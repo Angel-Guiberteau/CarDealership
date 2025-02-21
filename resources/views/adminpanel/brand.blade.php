@@ -5,16 +5,7 @@
 @section('admin_active', 'active')
 
 @section('content')
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+    @include('components.validations.successError')
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Marcas</h2>
         
