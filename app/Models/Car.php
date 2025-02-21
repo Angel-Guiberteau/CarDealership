@@ -22,4 +22,16 @@ class Car extends Model {
     public static function allCars(): Collection{
         return self::with(['brand', 'color'])->get();
     }
+
+    public static function listCarsAdmin(): Collection{
+        return self::join('brands', 'cars.brand_id', '=', 'brands.id')
+            ->join('types', 'cars.type_id', '=', 'types.id')
+            ->join('colors', 'cars.color_id', '=', 'colors.id')
+            ->select('cars.*', 
+                'brands.name as brand_name', 
+                'types.name as type_name', 
+                'colors.name as color_name', 
+                'colors.hex as color_hex')
+            ->get();
+    }
 }
