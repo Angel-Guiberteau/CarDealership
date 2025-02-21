@@ -69,7 +69,7 @@
                     <td>Sí</td>
                     <td>Los modelos de gasolina son un 1.1L de 60 CV...</td>
                     <td>2022-12-01-C3.jpg</td>
-                    <td><button class="btn btn-dark btn-sm">Editar</button></td>
+                    <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                     <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
             @endfor

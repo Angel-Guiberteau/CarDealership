@@ -1,4 +1,3 @@
-<!-- Modal Agregar Vehículo -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="addVehicleLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="background-color: #e0e0e0;">
