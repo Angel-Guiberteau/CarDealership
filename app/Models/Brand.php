@@ -18,8 +18,8 @@ class Brand extends Model {
         return self::where('name', $name)->exists();
     }
 
-    public static function createBrand(string $name): void {
-        self::create(['name' => $name]);
+    public static function createBrand(string $name): bool {
+        return (bool) self::create(['name' => $name]);
     }
 
     public static function findBrand(int $id)
