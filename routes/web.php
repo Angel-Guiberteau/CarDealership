@@ -29,6 +29,8 @@ Route::get('/colors', function () {
 
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
 
+Route::post('/addColor', [ColorController::class, 'addColor'])->name('addColor');
+
 Route::get('/tech', function () {
     return view('tech_sheet.tech_sheet');
 })->name('tech');

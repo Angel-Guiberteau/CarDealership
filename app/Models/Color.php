@@ -13,4 +13,10 @@ class Color extends Model {
     public static function allColors():Collection{
         return self::all();
     }
+    public static function addColor($data){
+        return self::create([
+            'name' => $data['name'],
+            'hex' => $data['color']
+        ]);
+    }
 }
