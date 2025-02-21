@@ -30,7 +30,7 @@ Route::get('/colors', function () {
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
 
 Route::get('/tech', function () {
-    return view('tech_sheet.tech_sheet');
+    return CarController::getTech();
 })->name('tech');
 
 Route::get('/colors', [ColorController::class,'index'])->name('colors');

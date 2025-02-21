@@ -34,4 +34,20 @@ class Car extends Model {
                 'colors.hex as color_hex')
             ->get();
     }
+
+    public static function getTech(): Collection{
+        return self::join('brands', 'cars.brand_id', '=', 'brands.id')
+                ->join('types', 'cars.type_id', '=', 'types.id')
+                ->join('colors', 'cars.color_id', '=', 'colors.id')
+                ->select(
+                    'cars.*', 
+                    'brands.name as brand_name', 
+                    'types.name as type_name', 
+                    'colors.name as color_name', 
+                    'colors.hex as color_hex'
+                )
+                ->where('cars.id', 1)
+                ->get();
+
+    }
 }
