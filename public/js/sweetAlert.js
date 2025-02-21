@@ -1,9 +1,24 @@
-function confirmDelete(brandId,name) {
+function confirmDelete(brandId, name) {
     swal({
         title: "¿Estás seguro?",
-        text: "Se eliminara "+name+". ¿Deseas continuar?",
+        text: "Se eliminará " + name + ". ¿Deseas continuar?",
         icon: "warning",
-        buttons: ["Cancelar", "Sí, eliminar"],
+        buttons: {
+            cancel: {
+                text: "Cancelar",
+                value: null,
+                visible: true,
+                className: "swal-button--center",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Sí, eliminar",
+                value: true,
+                visible: true,
+                className: "swal-button--center",
+                closeModal: true
+            }
+        },
         dangerMode: true,
     })
     .then((willDelete) => {
@@ -18,7 +33,22 @@ function confirmEdit(brandId) {
         title: "¿Estás seguro?",
         text: "¿Deseas editar este registro?",
         icon: "warning",
-        buttons: ["Cancelar", "Sí, editar"],
+        buttons: {
+            cancel: {
+                text: "Cancelar",
+                value: null,
+                visible: true,
+                className: "swal-button--center",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Sí, editar",
+                value: true,
+                visible: true,
+                className: "swal-button--center",
+                closeModal: true
+            }
+        },
         dangerMode: true,
     })
     .then((willEdit) => {

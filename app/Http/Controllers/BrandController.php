@@ -18,12 +18,11 @@ class BrandController extends Controller {
 
     public static function createBrand(): RedirectResponse {
         $request = request();
-        
-        $validationResponse = self::validateBrand($request['brand']);
-        if ($validationResponse) {
-            return $validationResponse;
-        }
-        
+
+        $request->validate([
+            'brand' => 'required|string|max:255',
+        ]);
+
         if (Brand::createBrand($request['brand'])) {
             return back()->with('success', 'Marca creada con éxito');
         }
