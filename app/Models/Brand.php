@@ -18,8 +18,8 @@ class Brand extends Model {
         return self::where('name', $name)->exists();
     }
 
-    public static function createBrand(string $name): void {
-        self::create(['name' => $name]);
+    public static function createBrand(string $name): bool {
+        return (bool) self::create(['name' => $name]);
     }
 
     public static function findBrand(int $id)
@@ -29,7 +29,6 @@ class Brand extends Model {
 
     public static function editingBrand(string $name, int $id): int
     {
-        return self::where('id', $id)
-            ->update(['name' => $name]);
+        return self::where('id', $id)->update(['name' => $name]);
     }
 }
