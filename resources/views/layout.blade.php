@@ -17,5 +17,6 @@
             @yield('content')
         </div>
         <script src="{{ asset('js/sliderFilter.js') }}"></script>
+        @yield('js')
     </body>
 </html>

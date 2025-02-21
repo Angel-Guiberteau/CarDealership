@@ -37,8 +37,8 @@
     </div>
 </div>
 
-<script>
-    
-</script>
+@endsection
 
+@section('js')
+<script src="{{ asset('js/tech_sheet.js') }}"></script>
 @endsection
