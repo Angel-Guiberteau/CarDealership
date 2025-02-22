@@ -46,7 +46,12 @@
                         <td>{{ $type->id }}</td>
                         <td>{{ $type->name }}</td>
                         <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDelete({{ $type->id }}, '{{ $type->name }}')">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -64,4 +69,5 @@
 
 @section('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
 @endsection
