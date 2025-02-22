@@ -18,7 +18,7 @@ class BrandController extends Controller {
         $request = request();
 
         $request->validate([
-            'brand' => 'required|string|max:255',
+            'brand' => 'required|string|max:20',
         ]);
 
         if (Brand::createBrand($request['brand'])) {
