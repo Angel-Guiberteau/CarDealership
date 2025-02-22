@@ -24,6 +24,8 @@ Route::get('/colors', [ColorController::class,'index'])->name('colors');
 
 Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('brandDeleted');
 
+Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typeDeleted');
+
 
 // POST
 

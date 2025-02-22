@@ -17,4 +17,8 @@ class Type extends Model {
             'name' => $data
         ]);
     }
+
+    public static function findType($id){
+        return self::find($id);
+    }
 }
