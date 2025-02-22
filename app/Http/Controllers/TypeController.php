@@ -35,4 +35,13 @@ class TypeController extends Controller
 
         return !empty($validated);
     }
+
+    public static function deleteType($id): RedirectResponse {
+        $type = Type::findType($id);
+        if ($type) {
+            $type->delete();
+            return redirect()->route('types')->with('success', 'Tipo eliminado con éxito.');
+        }
+        return redirect()->route('types')->with('error', 'Error al eliminar el tipo.');
+    }
 }
