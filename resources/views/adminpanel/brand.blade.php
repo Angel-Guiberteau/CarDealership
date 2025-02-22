@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <table id="infoTable" class="table table-bordered custom-table">
+        <table id="infoTable" class=" text-center table table-bordered custom-table">
             <thead class="table-light">
                 <tr class="text-center">
                     <th>ID</th>
