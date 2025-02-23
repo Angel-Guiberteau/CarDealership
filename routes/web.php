@@ -41,3 +41,5 @@ Route::get('/tech', function () {
 
 Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
 
+Route::put('/updateType/', [TypeController::class, 'updateType'])->name('typeUpdated');
+

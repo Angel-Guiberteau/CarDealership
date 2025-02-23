@@ -27,8 +27,7 @@ class Brand extends Model {
         return self::find($id);
     }
 
-    public static function editingBrand(string $name, int $id): int
-    {
+    public static function editingBrand(string $name, int $id): int {
         return self::where('id', $id)->update(['name' => $name]);
     }
 }
