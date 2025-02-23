@@ -53,8 +53,7 @@ class BrandController extends Controller {
         return redirect()->route('brand')->with('error', 'Marca no encontrada.');
     }
 
-    public function updateBrand(): RedirectResponse
-    {
+    public function updateBrand(): RedirectResponse {
         $request = request();
 
         $request->validate([
@@ -63,7 +62,7 @@ class BrandController extends Controller {
 
         $id = $request->input('brand_id');
 
-        $brand = Brand::find($id);
+        $brand = Brand::findBrand($id);
 
         if ($brand) {
             $updated = Brand::editingBrand($request->input('brand'), $id);
