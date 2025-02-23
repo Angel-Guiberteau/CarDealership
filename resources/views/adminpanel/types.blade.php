@@ -45,7 +45,15 @@
                     <tr>
                         <td>{{ $type->id }}</td>
                         <td>{{ $type->name }}</td>
-                        <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
+                        <td class="text-center">
+                            <button class="btn btn-dark btn-sm editTypeBtn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalEdit"
+                                data-id="{{ $type->id }}"
+                                data-name="{{ $type->name }}">
+                                Editar
+                            </button>
+                        </td> 
                         <td class="text-center">
                             <button class="btn btn-danger btn-sm" 
                                 onclick="confirmDelete({{ $type->id }}, '{{ $type->name }}')">
@@ -70,4 +78,5 @@
 @section('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
+    <script src="{{ asset('js/type.js') }}"></script>
 @endsection

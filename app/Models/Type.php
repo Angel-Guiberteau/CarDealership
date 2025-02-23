@@ -21,4 +21,8 @@ class Type extends Model {
     public static function findType($id){
         return self::find($id);
     }
+
+    public static function editingType(string $name, int $id): int {
+        return self::where('id', $id)->update(['name' => $name]);
+    }
 }

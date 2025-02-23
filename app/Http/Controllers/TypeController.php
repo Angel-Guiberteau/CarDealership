@@ -44,4 +44,27 @@ class TypeController extends Controller
         }
         return redirect()->route('types')->with('error', 'Error al eliminar el tipo.');
     }
+
+    public static function updateType(): RedirectResponse {
+        $request = request();
+
+        $request->validate([
+            'type' => 'required|string|max:20',
+        ]);
+
+        $id = $request->input('type_id');
+
+        $type = Type::findType($id);
+
+        if ($type) {
+            $updated = Type::editingType($request->input('type'), $id);
+            if ($updated > 0) {
+                return redirect()->route('types')->with('success', 'Tipo actualizado con éxito.');
+            } else {
+                return redirect()->route('types')->with('info', 'No se realizaron cambios en el tipo.');
+            }
+        } else {
+            return redirect()->route('types')->with('error', 'Tipo no encontrada.');
+        }
+    }
 }
