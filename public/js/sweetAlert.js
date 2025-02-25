@@ -1,4 +1,4 @@
-function confirmDelete(brandId,name) {
+function confirmDeleteBrand(brandId,name) {
     swal({
         title: "¿Estás seguro?",
         text: "Se eliminara "+name+". ¿Deseas continuar?",
@@ -13,7 +13,7 @@ function confirmDelete(brandId,name) {
     });
 }
 
-function confirmDelete(typeId,name) {
+function confirmDeleteType(typeId,name) {
     swal({
         title: "¿Estás seguro?",
         text: "Se eliminara "+name+". ¿Deseas continuar?",
