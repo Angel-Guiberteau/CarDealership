@@ -22,7 +22,7 @@ return new class extends Migration
             $table->year('year');
             $table->boolean('sale');
             $table->tinyText('description')->nullable();
-            $table->string('main_image', 30);
+            $table->string('main_image', 255);
             $table->timestamps(); 
 
             $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade');
