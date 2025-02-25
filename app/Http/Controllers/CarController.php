@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Color;
+use App\Models\Type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -20,7 +21,10 @@ class CarController extends Controller
 
     public static function listCars(): View{
         return view('adminpanel.cars')
-                ->with('cars', Car::listCarsAdmin());
+                ->with('cars', Car::listCarsAdmin())
+                ->with('brands', Brand::allBrands())
+                ->with('colors', Color::allColors())
+                ->with('types', Type::allTypes());
     }
 
     public static function getTech(): View{
