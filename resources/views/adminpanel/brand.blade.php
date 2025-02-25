@@ -57,7 +57,7 @@
                         </td>       
                         <td class="text-center">
                             <button class="btn btn-danger btn-sm" 
-                                onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">
+                                onclick="confirmDeleteBrand({{ $brand->id }}, '{{ $brand->name }}')">
                                 Eliminar
                             </button>
                         </td>

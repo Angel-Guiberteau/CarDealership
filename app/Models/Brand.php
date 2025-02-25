@@ -30,4 +30,8 @@ class Brand extends Model {
     public static function editingBrand(string $name, int $id): int {
         return self::where('id', $id)->update(['name' => $name]);
     }
+
+    public static function deleteBrand(int $id): int {
+        return self::destroy($id);
+    }
 }
