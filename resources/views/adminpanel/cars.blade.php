@@ -70,7 +70,7 @@
                     <td>{{ $car->description }}</td>
                     <td>{{ $car->main_image }}</td>
                     <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                    <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                    <td>@include('components.delete_button')</td>
                 </tr>
             @endforeach
         </tbody>
