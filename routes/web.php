@@ -31,15 +31,17 @@ Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
     return CarController::deleteCar($id);
 })->name('deleteCar');
 
+Route::get('/tech', function () {
+    return CarController::getTech();
+})->name('tech');
+
 // POST
+
+Route::post('/addColor', [ColorController::class, 'addColor'])->name('addColor');
 
 Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
 
 Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
-
-Route::get('/tech', function () {
-    return CarController::getTech();
-})->name('tech');
 
 // PUT
 

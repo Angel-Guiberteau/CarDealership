@@ -5,7 +5,6 @@
 @section('admin_active', 'active')
 
 @section('content')
-    @include('components.validations.successError')
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Marcas</h2>
         
