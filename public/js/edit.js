@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function() {
             document.getElementById("id").value = this.getAttribute("data-id");
             document.getElementById("edit").value = this.getAttribute("data-name");
+            document.getElementById("editColorHex").value = this.getAttribute("data-hex");
             sendEdit.disabled = false;
         });
     });

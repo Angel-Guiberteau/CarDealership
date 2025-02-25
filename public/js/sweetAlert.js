@@ -27,3 +27,18 @@ function confirmDeleteType(typeId,name) {
         }
     });
 }
+
+function confirmDeleteColor(colorId,name) {
+    swal({
+        title: "¿Estás seguro?",
+        text: "Se eliminara el color "+name+". ¿Deseas continuar?",
+        icon: "warning",
+        buttons: ["Cancelar", "Sí, eliminar"],
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            window.location.href = '/deleteColor/' + colorId;
+        }
+    });
+}

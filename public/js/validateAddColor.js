@@ -7,9 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Permite letras y espacios
 
         if (!regex.test(nameValue)) {
-            event.preventDefault(); // Evita que el formulario se envíe
+            event.preventDefault();
             
-            // SweetAlert v1
             swal({
                 title: "Error",
                 text: "El nombre solo puede contener letras y espacios.",
