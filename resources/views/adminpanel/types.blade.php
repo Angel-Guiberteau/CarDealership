@@ -75,8 +75,8 @@
 
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
     <script src="{{ asset('js/edit.js') }}"></script>
-@endsection
+@endpush
