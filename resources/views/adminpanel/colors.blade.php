@@ -65,7 +65,7 @@
     @include('components.validations.sweet_alert')
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/validateAddColor.js') }}"></script>
-@endsection
+@endpush
