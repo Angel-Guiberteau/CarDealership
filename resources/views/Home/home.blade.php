@@ -70,6 +70,9 @@
 @endsection
 
 @section('content')
+    <div class="container-fluid p-0">
+        <h4 class="text-center mt-5 bg-champagne text-white p-3">Oferta</h4>
+    </div>
     <div class="container">
         <div class="row mt-5">
             @foreach ($cars as $car)
@@ -91,7 +94,10 @@
                     </div>
                 @endif
             @endforeach
-        <hr class="my-4">
+        </div>
+        <div class="container-fluid p-0">
+            <h4 class="text-center mt-5 bg-black text-white p-3">Todos los vehículos</h4>
+        </div>
         <div class="row mt-5">
             @foreach ($cars as $car)
                     <div class="col-md-3 mb-4">

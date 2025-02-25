@@ -27,7 +27,7 @@ hr {
     opacity: 0.8;
 }
 
-/*  My Syles  */
+/*  My Styles  */
 
 /*  CLASS  */
 
@@ -49,23 +49,23 @@ hr {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Contenedor de los sliders */
+/* Container for sliders */
 .range-container {
     position: relative;
-    width: 200px; /* Ajusta el ancho según necesites */
+    width: 200px;
 }
 
-/* Valores arriba a la derecha */
+/* Values at the top right */
 .range-values {
     position: absolute;
-    top: -30px; /* Mueve los valores encima del slider */
-    right: 0; /* Alinea a la derecha */
+    top: -30px; 
+    right: 0; 
     font-size: 13px;
     color: var(--perlWhite);
-    text-align: right; /* Asegura alineación correcta */
+    text-align: right;
 }
 
-/* Barra de fondo */
+/* Background bar */
 .slider-track {
     position: absolute;
     height: 5px;
@@ -75,7 +75,7 @@ hr {
     top: 0;
 }
 
-/* Sliders superpuestos */
+/* Overlapping sliders */
 .range-container input[type="range"] {
     position: absolute;
     width: 100%;
@@ -85,13 +85,13 @@ hr {
     pointer-events: none;
 }
 
-/* Barra visible */
+/* Visible bar */
 .range-container input[type="range"]::-webkit-slider-runnable-track {
     background: transparent;
     height: 5px;
 }
 
-/* Puntos de control */
+/* Control points */
 .range-container input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 14px;
@@ -113,13 +113,11 @@ hr {
     pointer-events: auto;
 }
 
-
-/* Para navegadores Firefox */
+/* For Firefox browsers */
 .range-container input[type="range"]::-moz-range-track {
     background: transparent;
     height: 5px;
 }
-
 
 .ofer {
     background-color: var(--champagneGold);
@@ -135,6 +133,10 @@ hr {
     background-color: var(--titaniumGrey);
     color: var(--perlWhite);
     transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.bg-champagne {
+    background-color: var(--champagneGold);
 }
 
 /*  BOOTSTRAP  */
@@ -156,7 +158,7 @@ hr {
     padding: 0.5%;
 }
 
-/* DATABLES */
+/* DATATABLES */
 
 #infoTable tr th{
     text-align: center;
