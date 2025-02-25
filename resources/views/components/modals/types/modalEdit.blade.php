@@ -16,7 +16,9 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" id="sendEdit" class="btn btn-secondary w-100">Guardar</button>
+                <button type="submit" id="sendEdit" class="btn btn-secondary w-100">Guardar</button>
             </div>
+                </form>
                 </form>
         </div>
     </div>

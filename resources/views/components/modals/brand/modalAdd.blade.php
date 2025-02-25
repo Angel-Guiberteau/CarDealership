@@ -9,7 +9,7 @@
                 <form action="{{ route('brandCreated') }}" method="POST" id="brandForm">
                     @csrf
                     <div class="mb-3 mt-3">
-                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Nombre de marca *">
+                        <input type="text" class="form-control" id="input" name="brand" placeholder="Nombre de marca *">
                     </div>
             </div>
             <div class="modal-footer">

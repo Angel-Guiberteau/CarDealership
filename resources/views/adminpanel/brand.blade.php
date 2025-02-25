@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <table id="infoTable" class=" text-center table table-bordered custom-table">
+        <table id="infoTable" class=" text-center  text-center table table-bordered custom-table">
             <thead class="table-light">
                 <tr class="text-center">
                     <th>ID</th>
@@ -47,7 +47,7 @@
                         <td>{{ $brand->id }}</td>
                         <td>{{ $brand->name }}</td>
                         <td class="text-center">
-                            <button class="btn btn-dark btn-sm editBrandBtn" 
+                            <button class="btn btn-dark btn-sm editBtn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $brand->id }}"
@@ -57,7 +57,7 @@
                         </td>       
                         <td class="text-center">
                             <button class="btn btn-danger btn-sm" 
-                                onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">
+                                onclick="confirmDeleteBrand({{ $brand->id }}, '{{ $brand->name }}')">
                                 Eliminar
                             </button>
                         </td>
@@ -74,13 +74,14 @@
 
     @include('components.modals.brand.modalAdd')
     @include('components.modals.brand.modalEdit')
+    @include('components.validations.sweet_alert')
 
 @endsection
 
-@section('js')
+@push('js')
 
 <script src="{{ asset('js/dataTable.js') }}"></script>
-<script src="{{ asset('js/brand.js') }}"></script>
 <script src="{{ asset('js/sweetAlert.js') }}"></script>
+<script src="{{ asset('js/edit.js') }}"></script>
 
-@endsection
+@endpush

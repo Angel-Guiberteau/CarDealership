@@ -115,3 +115,7 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="{{ asset('js/sliderFilter.js') }}"></script>
+@endpush

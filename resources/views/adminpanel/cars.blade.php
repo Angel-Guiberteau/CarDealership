@@ -70,7 +70,7 @@
                     <td>{{ $car->description }}</td>
                     <td>{{ $car->main_image }}</td>
                     <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                    <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                    <td>@include('components.delete_button')</td>
                 </tr>
             @endforeach
         </tbody>
@@ -84,9 +84,12 @@
 
 @include('components.modals.cars.modalAdd')
 @include('components.modals.cars.modalEdit')
+@include('components.validations.sweet_alert')
 
 @endsection
 
 @section('js')
 <script src="{{ asset('js/dataTable.js') }}"></script>
+<script src="{{ asset('js/cars.js') }}"></script>
+<script src="{{ asset('js/sweetAlert.js') }}"></script>
 @endsection

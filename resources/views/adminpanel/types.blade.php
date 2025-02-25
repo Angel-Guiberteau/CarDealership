@@ -46,7 +46,7 @@
                         <td>{{ $type->id }}</td>
                         <td>{{ $type->name }}</td>
                         <td class="text-center">
-                            <button class="btn btn-dark btn-sm editTypeBtn" 
+                            <button class="btn btn-dark btn-sm editBtn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $type->id }}"
@@ -56,7 +56,7 @@
                         </td> 
                         <td class="text-center">
                             <button class="btn btn-danger btn-sm" 
-                                onclick="confirmDelete({{ $type->id }}, '{{ $type->name }}')">
+                                onclick="confirmDeleteType({{ $type->id }}, '{{ $type->name }}')">
                                 Eliminar
                             </button>
                         </td>
@@ -72,11 +72,12 @@
     </div>
     @include('components.modals.types.modalAdd')
     @include('components.modals.types.modalEdit')
+    @include('components.validations.sweet_alert')
 
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
-    <script src="{{ asset('js/type.js') }}"></script>
-@endsection
+    <script src="{{ asset('js/edit.js') }}"></script>
+@endpush
