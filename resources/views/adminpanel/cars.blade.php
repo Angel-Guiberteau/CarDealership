@@ -84,9 +84,12 @@
 
 @include('components.modals.cars.modalAdd')
 @include('components.modals.cars.modalEdit')
+@include('components.validations.sweet_alert')
 
 @endsection
 
 @section('js')
 <script src="{{ asset('js/dataTable.js') }}"></script>
+<script src="{{ asset('js/cars.js') }}"></script>
+<script src="{{ asset('js/sweetAlert.js') }}"></script>
 @endsection
