@@ -46,7 +46,7 @@
                         <td>{{ $type->id }}</td>
                         <td>{{ $type->name }}</td>
                         <td class="text-center">
-                            <button class="btn btn-dark btn-sm editTypeBtn" 
+                            <button class="btn btn-dark btn-sm editBtn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $type->id }}"
@@ -78,5 +78,5 @@
 @section('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
-    <script src="{{ asset('js/type.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
 @endsection
