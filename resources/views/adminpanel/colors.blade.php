@@ -7,7 +7,6 @@
 @section('content')
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Colores</h2>
-        
         <div class="mb-3 d-flex justify-content-between">
             <div>
                 <label for="entries">Mostrar</label>
@@ -37,7 +36,7 @@
                 <tr>
                     <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar ID"></th>
                     <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Nombre"></th>
-                    <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Nombre"></th>
+                    <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Hexadecimal"></th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -48,8 +47,22 @@
                         <td>{{ $color->id }}</td>
                         <td>{{ $color->name }}</td>
                         <td>{{ $color->hex }}</td>
-                        <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td>
+                            <button class="btn btn-dark btn-sm editBtn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalEdit"
+                                data-id="{{ $color->id }}"
+                                data-name="{{ $color->name }}"
+                                data-hex="{{ $color->hex }}">
+                                Editar
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDeleteColor({{ $color->id }}, '{{ $color->name }}')">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                 @endforeach 
             </tbody>
@@ -66,6 +79,8 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/validateAddColor.js') }}"></script>
+    <script src="{{ asset('js/edit.js') }}"></script>
 @endpush

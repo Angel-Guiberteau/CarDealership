@@ -49,14 +49,16 @@ class ColorController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:20',
+            'hex' => 'required|string',
         ]);
 
         $id = $request->input('color_id');
-
+        $name = $request->input('name');
+        $hex = $request->input('hex');
         $color = Color::findColor($id);
 
         if ($color) {
-            $updated = Color::editingColor($request->input('name'), $id);
+            $updated = Color::editingColor($name, $id, $hex);
             if ($updated > 0) {
                 return redirect()->route('colors')->with('success', 'Color actualizado con éxito.');
             } else {
