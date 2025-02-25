@@ -1,15 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
     // Add
-    const brandInput = document.getElementById("brand");
-    const sendCreate = document.getElementById("sendButton"); 
-    
+    const typeInput = document.getElementById("type");
+    const sendCreate = document.getElementById("sendButton");
+
     // Edit
-    const editBrandInput = document.getElementById("editBrand");
+    const editTypeInput = document.getElementById("editType");
     const sendEdit = document.getElementById("sendEdit");
-    const editBrandForm = document.getElementById("editBrandForm");
-    const createBrandForm = document.getElementById("createBrandForm");
-    const editButtons = document.querySelectorAll(".editBrandBtn");
+    const editTypeForm = document.getElementById("editTypeForm");
+    const editButtons = document.querySelectorAll(".editTypeBtn");
+
 
     const VALID_NAME_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Characters allowed: letters, spaces and accents
 
@@ -27,46 +26,46 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    editBrandInput.addEventListener("input", function () {
-        validateInput(editBrandInput, sendEdit);
+    editTypeInput.addEventListener("input", function () {
+        validateInput(editTypeInput, sendEdit);
     });
 
-    brandInput.addEventListener("input", function () {
-        validateInput(brandInput, sendCreate);
+    typeInput.addEventListener("input", function () {
+        validateInput(typeInput, sendCreate);
     });
 
     editButtons.forEach(button => {
         button.addEventListener("click", function() {
-            document.getElementById("brand_id").value = this.getAttribute("data-id");
-            document.getElementById("editBrand").value = this.getAttribute("data-name");
+            document.getElementById("type_id").value = this.getAttribute("data-id");
+            editTypeInput.value = this.getAttribute("data-name");
             sendEdit.disabled = false;
         });
     });
 
-    editBrandForm.addEventListener("submit", function (event) {
-        if (editBrandInput.classList.contains("is-invalid")) {
+    editTypeForm.addEventListener("submit", function (event) {
+        if (editTypeInput.classList.contains("is-invalid")) {
             event.preventDefault();
         }
     });
 
-    createBrandForm.addEventListener("submit", function (event) {
-        if (brandInput.classList.contains("is-invalid")) {
+    createTypeForm.addEventListener("submit", function (event) {
+        if (typeInput.classList.contains("is-invalid")) {
             event.preventDefault();
         }
     });
 
-    editBrandForm.addEventListener("submit", function(event) {
+    editTypeForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
         swal({
             title: "¿Confirmar edición?",
-            text: "¿Estás seguro de que deseas modificar esta marca?",
+            text: "¿Estás seguro de que deseas modificar este tipo?",
             icon: "warning",
             buttons: ["Cancelar", "Sí, actualizar"],
             dangerMode: false,
         }).then((willEdit) => {
             if (willEdit) {
-                editBrandForm.submit();
+                editTypeForm.submit();
             }
         });
     });

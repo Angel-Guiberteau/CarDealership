@@ -5,9 +5,9 @@
 @section('admin_active', 'active')
 
 @section('content')
+    @include('components.validations.successError')
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Tipos</h2>
-        
         <div class="mb-3 d-flex justify-content-between">
             <div>
                 <label for="entries">Mostrar</label>
@@ -45,8 +45,21 @@
                     <tr>
                         <td>{{ $type->id }}</td>
                         <td>{{ $type->name }}</td>
-                        <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                        <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td class="text-center">
+                            <button class="btn btn-dark btn-sm editTypeBtn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalEdit"
+                                data-id="{{ $type->id }}"
+                                data-name="{{ $type->name }}">
+                                Editar
+                            </button>
+                        </td> 
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDelete({{ $type->id }}, '{{ $type->name }}')">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -64,4 +77,6 @@
 
 @section('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
+    <script src="{{ asset('js/type.js') }}"></script>
 @endsection

@@ -9,7 +9,20 @@ class Type extends Model {
     protected $table = 'types';
     protected $fillable = ['name'];
 
-    public static function allTypes():Collection{
+    public static function allTypes(): Collection{
         return self::all();
+    }
+    public static function addType($data): bool{
+        return (bool) self::create([
+            'name' => $data
+        ]);
+    }
+
+    public static function findType($id){
+        return self::find($id);
+    }
+
+    public static function editingType(string $name, int $id): int {
+        return self::where('id', $id)->update(['name' => $name]);
     }
 }

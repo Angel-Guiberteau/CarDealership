@@ -13,7 +13,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="colorHex" class="form-label">Selecciona un color</label>
-                            <input type="color" name="color" class="form-control form-control-color" id="colorHex" value="#000000">
+                            <input type="color" name="hex" class="form-control form-control-color" id="colorHex" value="#000000">
                         </div>
                 </div>
                 <div class="modal-footer">

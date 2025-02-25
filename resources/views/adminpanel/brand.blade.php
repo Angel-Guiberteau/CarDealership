@@ -5,11 +5,7 @@
 @section('admin_active', 'active')
 
 @section('content')
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    @include('components.validations.successError')
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Marcas</h2>
         
@@ -30,12 +26,12 @@
             </div>
         </div>
         
-        <table id="infoTable" class="table table-bordered custom-table">
+        <table id="infoTable" class=" text-center table table-bordered custom-table">
             <thead class="table-light">
                 <tr class="text-center">
                     <th>ID</th>
                     <th>Marca</th>
-                    <th>Editor</th>
+                    <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
                 <tr>
@@ -50,8 +46,21 @@
                     <tr class="align-middle">
                         <td>{{ $brand->id }}</td>
                         <td>{{ $brand->name }}</td>
-                        <td class="text-center"><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
-                        <td class="text-center"><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                        <td class="text-center">
+                            <button class="btn btn-dark btn-sm editBrandBtn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalEdit"
+                                data-id="{{ $brand->id }}"
+                                data-name="{{ $brand->name }}">
+                                Editar
+                            </button>
+                        </td>       
+                        <td class="text-center">
+                            <button class="btn btn-danger btn-sm" 
+                                onclick="confirmDelete({{ $brand->id }}, '{{ $brand->name }}')">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -63,13 +72,15 @@
         </div>
     </div>
 
-        @include('components.modals.brand.modalAdd')
-        @include('components.modals.brand.modalEdit')
+    @include('components.modals.brand.modalAdd')
+    @include('components.modals.brand.modalEdit')
+
 @endsection
 
 @section('js')
 
 <script src="{{ asset('js/dataTable.js') }}"></script>
 <script src="{{ asset('js/brand.js') }}"></script>
+<script src="{{ asset('js/sweetAlert.js') }}"></script>
 
 @endsection
