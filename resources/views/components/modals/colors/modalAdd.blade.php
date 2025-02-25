@@ -9,7 +9,7 @@
                 @csrf
                 <div class="modal-body">
                         <div class="mb-3 mt-3">
-                            <input type="text" name="name" class="form-control" id="brand" placeholder="Nombre del color *">
+                            <input type="text" name="name" class="form-control" id="input" placeholder="Nombre del color *">
                         </div>
                         <div class="mb-3">
                             <label for="colorHex" class="form-label">Selecciona un color</label>
@@ -17,7 +17,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary w-100">Añadir</button>
+                    <button type="submit" id="sendButton" class="btn btn-secondary w-100">Añadir</button>
                 </div>
             </form>
         </div>

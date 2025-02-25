@@ -27,6 +27,8 @@ Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('
 
 Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typeDeleted');
 
+Route::get('/deleteColor/{id}', [ColorController::class, 'deleteColor'])->name('ColorDeleted');
+
 Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
     return CarController::deleteCar($id);
 })->name('deleteCar');
@@ -48,4 +50,6 @@ Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
 
 Route::put('/updateType/', [TypeController::class, 'updateType'])->name('typeUpdated');
+
+Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
 

@@ -23,7 +23,15 @@ class Color extends Model {
         return self::find($id);
     }
 
-    public static function editingColor(string $name, int $id): int {
-        return self::where('id', $id)->update(['name' => $name]);
+    public static function editingColor(string $name, int $id, string $hex): int {
+        $color = self::find($id);
+
+        if($color->name != $name)
+            $color->name = $name;
+
+        if($color->hex != $hex)
+            $color->hex = $hex;
+
+        return $color->update();
     }
 }

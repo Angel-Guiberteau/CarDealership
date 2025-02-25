@@ -5,20 +5,23 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Editar color</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3 mt-3">
-                        <input type="text" class="form-control" id="brand" placeholder="Color Seleccionada Modificar">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editColorHex" class="form-label">Selecciona un color</label>
-                        <input type="color" class="form-control form-control-color" id="editColorHex" value="#000000">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary w-100">Guardar</button>
-            </div>
-        </div>
+            <form action="{{ route('colorUpdated') }}" method="POST" id="editForm">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                        <div class="mb-3 mt-3">
+                            <input type="hidden" name="color_id" id="id">
+                            <input type="text" class="form-control" id="edit" name="name" placeholder="Color Seleccionado a Modificar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editColorHex" class="form-label">Selecciona un color</label>
+                            <input type="color" name="hex" class="form-control form-control-color" id="editColorHex" value="#000000">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"  id="sendEdit" class="btn btn-secondary w-100">Guardar</button>
+                </div>
+            </form>
+        </div> 
     </div>
 </div>
