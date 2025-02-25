@@ -1,15 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     // Add
-    const brandInput = document.getElementById("brand");
+    const input = document.getElementById("input");
     const sendCreate = document.getElementById("sendButton"); 
     
     // Edit
-    const editBrandInput = document.getElementById("editBrand");
+    const editInput = document.getElementById("edit");
     const sendEdit = document.getElementById("sendEdit");
-    const editBrandForm = document.getElementById("editBrandForm");
-    const createBrandForm = document.getElementById("createBrandForm");
-    const editButtons = document.querySelectorAll(".editBrandBtn");
+    const editForm = document.getElementById("editForm");
+    const editButtons = document.querySelectorAll(".editBtn");
 
     const VALID_NAME_REGEX = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Characters allowed: letters, spaces and accents
 
@@ -27,35 +26,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    editBrandInput.addEventListener("input", function () {
-        validateInput(editBrandInput, sendEdit);
+    editInput.addEventListener("input", function () {
+        validateInput(editInput, sendEdit);
     });
 
-    brandInput.addEventListener("input", function () {
-        validateInput(brandInput, sendCreate);
+    input.addEventListener("input", function () {
+        validateInput(input, sendCreate);
     });
 
     editButtons.forEach(button => {
         button.addEventListener("click", function() {
-            document.getElementById("brand_id").value = this.getAttribute("data-id");
-            document.getElementById("editBrand").value = this.getAttribute("data-name");
+            document.getElementById("id").value = this.getAttribute("data-id");
+            document.getElementById("edit").value = this.getAttribute("data-name");
             sendEdit.disabled = false;
         });
     });
 
-    editBrandForm.addEventListener("submit", function (event) {
-        if (editBrandInput.classList.contains("is-invalid")) {
+    editForm.addEventListener("submit", function (event) {
+        if (editInput.classList.contains("is-invalid")) {
             event.preventDefault();
         }
     });
 
-    createBrandForm.addEventListener("submit", function (event) {
-        if (brandInput.classList.contains("is-invalid")) {
-            event.preventDefault();
-        }
-    });
-
-    editBrandForm.addEventListener("submit", function(event) {
+    editForm.addEventListener("submit", function(event) {
         event.preventDefault();
 
         swal({
@@ -66,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             dangerMode: false,
         }).then((willEdit) => {
             if (willEdit) {
-                editBrandForm.submit();
+                editForm.submit();
             }
         });
     });

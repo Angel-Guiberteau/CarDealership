@@ -6,12 +6,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('brandUpdated') }}" method="POST" id="editBrandForm">
+                <form action="{{ route('brandUpdated') }}" method="POST" id="editForm">
                     @csrf
                     @method('PUT')
                     <div class="mb-3 mt-3">
-                        <input type="hidden" name="brand_id" id="brand_id">
-                        <input type="text" class="form-control" id="editBrand" name="brand" placeholder="Marca Seleccionada Modificar">
+                        <input type="hidden" name="brand_id" id="id">
+                        <input type="text" class="form-control" id="edit" name="brand" placeholder="Marca Seleccionada Modificar">
                     </div>
             </div>
             <div class="modal-footer">
