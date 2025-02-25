@@ -17,7 +17,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary w-100">Añadir</button>
+                    <button type="submit" class="btn btn-secondary w-100">Añadir</button>
                 </div>
             </form>
         </div>
