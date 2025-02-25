@@ -66,4 +66,5 @@
 
 @section('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
+    <script src="{{ asset('js/validateAddColor.js') }}"></script>
 @endsection

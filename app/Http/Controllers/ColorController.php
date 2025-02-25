@@ -8,7 +8,7 @@ use App\Models\Color;
 
 class ColorController extends Controller
 {
-    public static function index():View {
+    public static function index() {
         return view('adminpanel.colors')
                 ->with('colors', Color::allColors());
     }
@@ -16,9 +16,9 @@ class ColorController extends Controller
         $data = self::validateRequestAdd($request);
 
         if(Color::addColor($data)){
-            return view('adminpanel.colors');
+            return redirect()->back();
         }
-        return view('adminpanel.colors')->with('error', 'Algo ha salido mal');
+        return redirect()->back()->with('error', 'Algo ha salido mal');
     }
 
     private static function validateRequestAdd($request){
