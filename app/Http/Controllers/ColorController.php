@@ -19,11 +19,11 @@ class ColorController extends Controller
 
         if (self::validateRequestAdd($request)) {
             if (Color::addColor($color)) {
-                return back()->with('success', 'Tipo creado correctamente');
+                return back()->with('success', 'Color creado correctamente');
             }
-            return back()->with('error', 'Algo ha salido mal, no se pudo crear el tipo');
+            return back()->with('error', 'Algo ha salido mal, no se pudo crear el color');
         }
-        return back()->with('error', 'Validación fallida, no se pudo crear el tipo');
+        return back()->with('error', 'Validación fallida, no se pudo crear el color');
     }
 
     private static function validateRequestAdd(Request $request): bool {
@@ -39,9 +39,9 @@ class ColorController extends Controller
         $color = Color::findColor($id);
         if ($color) {
             $color->delete();
-            return redirect()->route('colors')->with('success', 'Tipo eliminado con éxito.');
+            return redirect()->route('colors')->with('success', 'Color eliminado con éxito.');
         }
-        return redirect()->route('colors')->with('error', 'Error al eliminar el tipo.');
+        return redirect()->route('colors')->with('error', 'Error al eliminar el Color.');
     }
 
     public static function updateColor(): RedirectResponse {
@@ -58,12 +58,12 @@ class ColorController extends Controller
         if ($color) {
             $updated = Color::editingColor($request->input('name'), $id);
             if ($updated > 0) {
-                return redirect()->route('colors')->with('success', 'Tipo actualizado con éxito.');
+                return redirect()->route('colors')->with('success', 'Color actualizado con éxito.');
             } else {
-                return redirect()->route('colors')->with('info', 'No se realizaron cambios en el tipo.');
+                return redirect()->route('colors')->with('info', 'No se realizaron cambios en el color.');
             }
         } else {
-            return redirect()->route('colors')->with('error', 'Tipo no encontrada.');
+            return redirect()->route('colors')->with('error', 'Color no encontrada.');
         }
     }
 }
