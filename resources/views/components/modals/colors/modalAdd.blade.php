@@ -5,20 +5,21 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo color</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3 mt-3">
-                        <input type="text" class="form-control" id="brand" placeholder="Nombre del color *">
-                    </div>
-                    <div class="mb-3">
-                        <label for="colorHex" class="form-label">Selecciona un color</label>
-                        <input type="color" class="form-control form-control-color" id="colorHex" value="#000000">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary w-100">Añadir</button>
-            </div>
+            <form action="{{ route('addColor')}}" method="post" accept-charset="UTF-8" >
+                @csrf
+                <div class="modal-body">
+                        <div class="mb-3 mt-3">
+                            <input type="text" name="name" class="form-control" id="brand" placeholder="Nombre del color *">
+                        </div>
+                        <div class="mb-3">
+                            <label for="colorHex" class="form-label">Selecciona un color</label>
+                            <input type="color" name="hex" class="form-control form-control-color" id="colorHex" value="#000000">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary w-100">Añadir</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
