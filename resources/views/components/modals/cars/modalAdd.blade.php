@@ -6,33 +6,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <div class="modal-body">
-                <form id="vehiculoForm">
+                <form id="vehiculoForm" action="{{ route('addCar') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Marca *</label>
                         <select class="form-select" name="brand" required>
-                            <option selected disabled hidden>Seleccionar Marca</option>
+                            <option selected disabled>Seleccionar Marca</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Modelo *</label>
                         <input type="text" class="form-control" name="model" placeholder="Nombre del modelo *" required>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Color *</label>
                         <select class="form-select" name="color" required>
-                            <option selected disabled hidden>Seleccionar Color</option>
+                            <option selected disabled>Seleccionar Color</option>
                             @foreach($colors as $color)
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Tipo *</label>
                         <select class="form-select" name="type" required>
-                            <option selected disabled hidden>Seleccionar Tipo</option>
+                            <option selected disabled>Seleccionar Tipo</option>
                             @foreach($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
@@ -44,7 +40,7 @@
                             <span>120.000€</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label class="form-label">Precio*</label>
+                            <label for="precioRange" class="form-label me-3">Precio*</label>
                             <input type="range" class="form-range" min="0" max="120000" step="1000" id="precioRange" name="price" value="0" oninput="precioOutput.innerText = precioRange.value + '€'" style="flex-grow: 1;">
                         </div>
                     </div>
@@ -54,7 +50,7 @@
                             <span>1000CV</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label class="form-label">Potencia*</label>
+                            <label for="potenciaRange" class="form-label me-3">Potencia*</label>
                             <input type="range" class="form-range" min="0" max="1000" step="10" id="potenciaRange" name="power" value="0" oninput="potenciaOutput.innerText = potenciaRange.value + 'CV'" style="flex-grow: 1;">
                         </div>
                     </div>
@@ -65,10 +61,13 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label class="form-label">Adjuntar Imagen *</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" accept="image/*" name="image" id="imagenInput" required>
+                            <input type="file" class="form-control" accept="image/*" name="image" id="imagenInput">
                             <label class="input-group-text" for="imagenInput">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 9l5 -5l5 5" /><path d="M12 4l0 12" /></svg>
                             </label>
+                            <button class="input-group-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M9 12h6" /><path d="M12 9v6" /></svg>
+                            </button>
                         </div>
                     </div>
                 </form>
