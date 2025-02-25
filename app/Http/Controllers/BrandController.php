@@ -47,8 +47,10 @@ class BrandController extends Controller {
     public static function deleteBrand($id): RedirectResponse {
         $brand = Brand::findBrand($id);
         if ($brand) {
-            $brand->delete();
-            return redirect()->route('brand')->with('success', 'Marca eliminada con éxito.');
+            if(Brand::deleteBrand($id))
+                return redirect()->route('brand')->with('success', 'Marca eliminada con éxito.');
+            else
+                return redirect()->route('brand')->with('error', 'Error al eliminar la marca.');
         }
         return redirect()->route('brand')->with('error', 'Marca no encontrada.');
     }
