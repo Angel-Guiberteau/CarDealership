@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('main_image', 30);
             $table->timestamps(); 
 
-            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade');
-            $table->foreign('type_id')->references('id')->on('types')->onUpdate('cascade');
-            $table->foreign('color_id')->references('id')->on('colors')->onUpdate('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
