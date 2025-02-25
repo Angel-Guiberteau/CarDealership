@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Color;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class CarController extends Controller
 {
@@ -26,4 +27,15 @@ class CarController extends Controller
         return view('tech_sheet.tech_sheet')
                 ->with('cars', Car::getTech());
     }
+
+    public static function deleteCar(int $id): RedirectResponse{
+        $car = Car::deleteCar($id);
+
+        if ($car) {
+            return redirect()->route('admin')->with('success', 'Car deleted successfully');
+        }
+
+        return redirect()->route('admin')->with('error', 'Error deleting car');
+    }
+
 }

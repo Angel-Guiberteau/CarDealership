@@ -9,6 +9,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ColorController;
 use App\Models\Car;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\RedirectResponse;
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
@@ -26,6 +27,9 @@ Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('
 
 Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typeDeleted');
 
+Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
+    return CarController::deleteCar($id);
+})->name('deleteCar');
 
 // POST
 

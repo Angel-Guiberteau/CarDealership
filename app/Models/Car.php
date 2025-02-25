@@ -50,4 +50,8 @@ class Car extends Model {
                 ->get();
 
     }
+
+    public static function deleteCar(int $id): bool{
+        return self::where('id', $id)->delete();
+    }
 }
