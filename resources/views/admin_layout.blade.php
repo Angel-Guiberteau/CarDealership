@@ -15,6 +15,6 @@
         <div class="container-custom bg-light p-3 mt-4">
             @yield('content')
         </div>
-        @yield('js')
+        @stack('js')
     </body>
 </html>
