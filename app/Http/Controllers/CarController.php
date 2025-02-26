@@ -53,7 +53,7 @@ class CarController extends Controller
             'model' => 'required|string|max:20',
             'color' => 'required|exists:colors,id',
             'type_id' => 'required|exists:types,id',
-            'price' => 'required|numeric|min:0|max:120000',
+            'price' => 'required|numeric|min:0|max:1200000',
             'horse_power' => 'required|numeric|min:0|max:1000', 
             'sale' => 'nullable',
             'main_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
