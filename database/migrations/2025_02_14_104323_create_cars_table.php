@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->unsignedInteger("id")->autoIncrement(); 
-            $table->string('name', 20)->unique();
+            $table->string('name', 20);
             $table->unsignedInteger('brand_id');
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('color_id');

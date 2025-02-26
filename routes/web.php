@@ -43,6 +43,10 @@ Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brand
 
 Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 
+Route::post('/addCar', function (): RedirectResponse {
+    return CarController::addCar();
+})->name('addCar');
+
 // PUT
 
 Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
