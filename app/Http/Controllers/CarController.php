@@ -65,9 +65,11 @@ class CarController extends Controller
         $validatedData['name'] = $validatedData['model'];
 
         $mainImageName = time() . '_main.' . $request->file('main_image')->extension();
-        $carFolder = "public/{$validatedData['model']}_" . uniqid();
-        $mainImagePath = "{$carFolder}/{$mainImageName}";
-        $request->file('main_image')->storeAs($carFolder, $mainImageName);
+
+        $request->file('main_image')->storeAs('img/'.$validatedData['model'], $mainImageName, 'public');
+
+        $mainImagePath = 'img/'.$validatedData['model'].'/'.$mainImageName;
+
         $validatedData['main_image'] = $mainImagePath;
 
         $validatedData['year'] = $request->input('year');
@@ -80,8 +82,8 @@ class CarController extends Controller
         if ($request->hasFile('secondary_images')) {
             foreach ($request->file('secondary_images') as $image) {
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $imagePath = "{$carFolder}/{$imageName}";
-                $image->storeAs($carFolder, $imageName);
+                $imagePath = 'img/'.$validatedData['model'].'/'.$imageName;
+                $image->storeAs('img/'.$validatedData['model'], $imageName, 'public');
 
                 CarImage::storeImage($car->id, $imagePath);
             }
