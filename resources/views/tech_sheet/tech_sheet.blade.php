@@ -30,10 +30,10 @@
             </div>        
 
             <div class="car-info mt-3">
-                <h5 class="bg-secondary text-white p-2">{{ $car->name }}</h5>
+                <h5 class="bg-midnightBlue text-white p-2">{{ $car->name }}</h5>
                 <p><strong>Marca:</strong> {{ $car->brand_name }}</p>
                 <p><strong>Color:</strong> <span style="color: {{ $car->color_hex }}">{{ $car->color_name }}</span></p>
-                <h6 class="bg-secondary text-white p-2">Especificaciones</h6>
+                <h6 class="bg-midnightBlue text-white p-2">Especificaciones</h6>
                 <p><strong>Potencia:</strong> {{ $car->horse_power }} CV</p>
             </div>
 
