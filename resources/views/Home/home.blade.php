@@ -124,7 +124,9 @@
                             <p class="card-text">Color: {{ $car->color->name }}</p>
                             <div class="d-flex justify-content-between">
                                 <p class="card-text">CV: {{ round($car->horse_power) }}</p>
-                                <a href="#" class="btn ofer">Oferta</a>
+                                @if ($car->sale)
+                                    <a href="#" class="btn ofer">Oferta</a>
+                                @endif
                             </div>
                         </div>
                     </div>
