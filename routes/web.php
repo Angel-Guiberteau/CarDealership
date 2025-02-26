@@ -34,9 +34,7 @@ Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
     return CarController::deleteCar($id);
 })->name('deleteCar');
 
-Route::get('/tech', function () {
-    return CarController::getTech();
-})->name('tech');
+Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
 
 // POST
 

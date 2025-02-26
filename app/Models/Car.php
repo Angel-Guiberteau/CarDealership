@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 class Car extends Model {
     
@@ -41,27 +42,29 @@ class Car extends Model {
             ->get();
     }
 
-    public static function getTech(): Collection{
+    public static function getTech($id): Collection {
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
-                ->join('types', 'cars.type_id', '=', 'types.id')
-                ->join('colors', 'cars.color_id', '=', 'colors.id')
-                ->select(
-                    'cars.*', 
-                    'brands.name as brand_name', 
-                    'types.name as type_name', 
-                    'colors.name as color_name', 
-                    'colors.hex as color_hex'
-                )
-                ->where('cars.id', 17)
-                ->get();
-
+            ->join('types', 'cars.type_id', '=', 'types.id')
+            ->join('colors', 'cars.color_id', '=', 'colors.id')
+            ->leftJoin('cars_images', 'cars.id', '=', 'cars_images.car_id')
+            ->select(
+                'cars.*', 
+                'brands.name as brand_name', 
+                'types.name as type_name', 
+                'colors.name as color_name', 
+                'colors.hex as color_hex',
+                DB::raw("GROUP_CONCAT(cars_images.image SEPARATOR ';') as images")
+            )
+            ->where('cars.id', $id)
+            ->groupBy('cars.id', 'brands.name', 'types.name', 'colors.name', 'colors.hex') 
+            ->get();
     }
 
     public static function deleteCar(int $id): bool{
         return self::where('id', $id)->delete();
     }
-    // Modelo Car
-    public static function createCar(array $data)
+
+    public static function createCar(array $data): Car
     {
         return self::create([
             'brand_id' => $data['brand'],

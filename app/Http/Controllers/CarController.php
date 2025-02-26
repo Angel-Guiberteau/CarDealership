@@ -28,10 +28,11 @@ class CarController extends Controller
                 ->with('types', Type::allTypes());
     }
 
-    public static function getTech(): View{
+    public static function getTech($id): View {
         return view('tech_sheet.tech_sheet')
-                ->with('cars', Car::getTech());
+                ->with('cars', Car::getTech($id));
     }
+    
 
     public static function deleteCar(int $id): RedirectResponse{
         $car = Car::deleteCar($id);
@@ -54,14 +55,14 @@ class CarController extends Controller
             'type_id' => 'required|exists:types,id',
             'price' => 'required|numeric|min:0|max:120000',
             'horse_power' => 'required|numeric|min:0|max:1000', 
-            'offer' => 'nullable',
+            'sale' => 'nullable',
             'main_image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'secondary_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'year' => 'required|digits:4|integer|min:1900|max:2099',
             'description' => 'nullable|string|max:255', 
         ]);
 
-        $validatedData['sale'] = $request->has('offer') ? 1 : 0;
+        $validatedData['sale'] = $request->has('sale') ? 1 : 0;
         $validatedData['name'] = $validatedData['model'];
 
         $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();

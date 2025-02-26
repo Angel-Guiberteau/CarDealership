@@ -77,14 +77,15 @@
         <div class="row mt-5">
             @foreach ($cars as $car)
                 @if ($car->sale)
-                    <div class="col-md-3 mb-4 cars-offer">
+                <div class="col-md-3 mb-4 cars-offer">
+                    <a href="{{ route('tech_sheet', $car->id) }}" style="display: block; text-decoration: none; color: inherit;">
                         <div class="card"
                             data-card-id="{{ $car->id }}"
                             data-card-brand="{{ $car->brand->name }}"
                             data-card-color="{{ $car->color->name }}"
                             data-card-price="{{ $car->price }}"
                             data-card-horsepower="{{ $car->horse_power }}">
-                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3" style="max-width: 90%;">
+                            <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
@@ -96,7 +97,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                
                 @endif
             @endforeach
         </div>
@@ -105,28 +108,29 @@
         </div>
         <div class="row mt-5">
             @foreach ($cars as $car)
-                    <div class="col-md-3 mb-4 cars-all">
-                        <div class="card"
-                            data-card-id="{{ $car->id }}"
-                            data-card-brand="{{ $car->brand->name }}"
-                            data-card-color="{{ $car->color->name }}"
-                            data-card-price="{{ $car->price }}"
-                            data-card-horsepower="{{ $car->horse_power }}">
-                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3" style="max-width: 90%;">
-                            <div class="card-body mt-3">
-                                <h5 class="card-title">{{ $car->name }}</h5>
-                                <p class="card-text">Precio: {{ round($car->price) }}</p>
-                                <p class="card-text">Marca: {{ $car->brand->name }}</p>
-                                <p class="card-text">Color: {{ $car->color->name }}</p>
-                                <div class="d-flex justify-content-between">
-                                    <p class="card-text">CV: {{ round($car->horse_power) }}</p>
-                                    @if ($car->sale)
-                                        <a href="#" class="btn ofer">Oferta</a>
-                                    @endif
-                                </div>
+            <div class="col-md-3 mb-4 cars-all">
+                <a href="{{ route('tech_sheet', $car->id) }}" style="display: block; text-decoration: none; color: inherit;">
+                    <div class="card"
+                        data-card-id="{{ $car->id }}"
+                        data-card-brand="{{ $car->brand->name }}"
+                        data-card-color="{{ $car->color->name }}"
+                        data-card-price="{{ $car->price }}"
+                        data-card-horsepower="{{ $car->horse_power }}">
+                        <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
+                        <div class="card-body mt-3">
+                            <h5 class="card-title">{{ $car->name }}</h5>
+                            <p class="card-text">Precio: {{ round($car->price) }}</p>
+                            <p class="card-text">Marca: {{ $car->brand->name }}</p>
+                            <p class="card-text">Color: {{ $car->color->name }}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">CV: {{ round($car->horse_power) }}</p>
+                                <a href="#" class="btn ofer">Oferta</a>
                             </div>
                         </div>
                     </div>
+                </a>
+            </div>
+            
             @endforeach
         </div>
     </div>
