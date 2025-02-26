@@ -47,11 +47,11 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <div class="d-flex justify-content-between mb-3">
                             <output id="precioOutput">0€</output>
-                            <span>120.000€</span>
+                            <span>1.200.000€</span>
                         </div>
                         <div class="d-flex align-items-center">
                             <label for="precioRange" class="form-label me-3">Precio*</label>
-                            <input type="range" class="form-range" min="0" max="120000" step="1000" id="precioRange" name="price" value="0" oninput="precioOutput.innerText = precioRange.value + '€'" style="flex-grow: 1;">
+                            <input type="range" class="form-range" min="0" max="1200000" step="1000" id="precioRange" name="price" value="0" oninput="precioOutput.innerText = precioRange.value + '€'" style="flex-grow: 1;">
                         </div>
                     </div>                                       
                     <div class="mb-3 bg-white p-3 rounded">
