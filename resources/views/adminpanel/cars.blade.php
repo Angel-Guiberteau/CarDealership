@@ -69,6 +69,7 @@
                     <td>{{ $car->sale ? 'Sí' : 'No' }}</td>
                     <td>{{ $car->description }}</td>
                     <td>{{ $car->main_image }}</td>
+                      
                     <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                     <td>@include('components.delete_button')</td>
                 </tr>
@@ -88,8 +89,8 @@
 
 @endsection
 
-@section('js')
+@push('js')
 <script src="{{ asset('js/dataTable.js') }}"></script>
 <script src="{{ asset('js/cars.js') }}"></script>
 <script src="{{ asset('js/sweetAlert.js') }}"></script>
-@endsection
+@endpush
