@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", function () {
         
-        document.getElementById("price_min").value = 5000;
-        document.getElementById("price_max").value = 100000;
-        document.getElementById("price_min_val").textContent = "5000";
-        document.getElementById("price_max_val").textContent = "100000";
+        document.getElementById("price_min").value = 20000;
+        document.getElementById("price_max").value = 1000000;
+        document.getElementById("price_min_val").textContent = "20000";
+        document.getElementById("price_max_val").textContent = "1000000";
         updateRange(
             document.getElementById("price_min"),
             document.getElementById("price_max"),

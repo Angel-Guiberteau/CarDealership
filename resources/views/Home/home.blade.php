@@ -38,12 +38,13 @@
                 <label class="form-label mt-2 me-4">Precio</label>
                 <div class="range-container">
                     <div class="range-values">
-                        <span id="price_min_val">5000</span> - 
-                        <span id="price_max_val">100000</span>
+                        <span id="price_min_val">20000</span> - 
+                        <span id="price_max_val">1000000</span>
                     </div>
                     <div class="slider-track"></div>
-                    <input type="range" id="price_min" min="5000" max="100000" step="1000" value="5000">
-                    <input type="range" id="price_max" min="5000" max="100000" step="1000" value="100000">
+                    <input type="range" id="price_min" min="20000" max="1000000" step="1000" value="20000">
+                    <input type="range" id="price_max" min="20000" max="1000000" step="1000" value="1000000">
+
                 </div>
             </div>
 
