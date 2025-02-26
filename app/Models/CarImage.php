@@ -19,7 +19,7 @@ class CarImage extends Model {
     {
         return self::create([
             'car_id' => $carId,  
-            'image' => $imagePath,  // Cambié 'image_path' a 'image'
+            'image' => $imagePath, 
         ]);
     }
 

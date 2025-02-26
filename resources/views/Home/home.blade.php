@@ -7,8 +7,8 @@
         <div class="d-flex p-2">
             <!-- Brand -->
             <div class="d-flex align-items-center me-5">
-                <label for="marca" class="form-label mt-2 me-4">Marca</label>
-                <select id="marca" class="form-select">
+                <label for="brand" class="form-label mt-2 me-4">Marca</label>
+                <select id="brand" class="form-select">
                     <option selected hidden disabled>Seleccione</option>
                     @foreach ($brands as $brand)
                         <option>{{ $brand->name }}</option>
@@ -18,8 +18,8 @@
 
             <!-- Model -->
             <div class="d-flex align-items-center me-5">
-                <label for="modelo" class="form-label mt-2 me-4">Modelo</label>
-                <input type="text" id="modelo" class="form-control" placeholder="Ej. Corolla">
+                <label for="model" class="form-label mt-2 me-4">Modelo</label>
+                <input type="text" id="model" class="form-control" placeholder="Ej. Corolla">
             </div>
 
             <!-- Color -->
@@ -38,12 +38,12 @@
                 <label class="form-label mt-2 me-4">Precio</label>
                 <div class="range-container">
                     <div class="range-values">
-                        <span id="precio_min_val">5000</span> - 
-                        <span id="precio_max_val">100000</span>
+                        <span id="price_min_val">5000</span> - 
+                        <span id="price_max_val">100000</span>
                     </div>
                     <div class="slider-track"></div>
-                    <input type="range" id="precio_min" min="5000" max="100000" step="1000" value="5000">
-                    <input type="range" id="precio_max" min="5000" max="100000" step="1000" value="100000">
+                    <input type="range" id="price_min" min="5000" max="100000" step="1000" value="5000">
+                    <input type="range" id="price_max" min="5000" max="100000" step="1000" value="100000">
                 </div>
             </div>
 
@@ -52,12 +52,12 @@
                 <label class="form-label mt-2 me-4">Potencia</label>
                 <div class="range-container">
                     <div class="range-values">
-                        <span id="potencia_min_val">50</span> - 
-                        <span id="potencia_max_val">1000</span>
+                        <span id="power_min_val">50</span> - 
+                        <span id="power_max_val">1000</span>
                     </div>
                     <div class="slider-track"></div>
-                    <input type="range" id="potencia_min" min="50" max="1000" step="10" value="50">
-                    <input type="range" id="potencia_max" min="50" max="1000" step="10" value="1000">
+                    <input type="range" id="power_min" min="50" max="1000" step="10" value="50">
+                    <input type="range" id="power_max" min="50" max="1000" step="10" value="1000">
                 </div>
             </div>
         </div>
@@ -70,13 +70,21 @@
 @endsection
 
 @section('content')
+    <div class="container-fluid p-0">
+        <h4 class="text-center mt-5 bg-softGold text-white p-3">Oferta</h4>
+    </div>
     <div class="container">
         <div class="row mt-5">
             @foreach ($cars as $car)
                 @if ($car->sale)
-                    <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
+                    <div class="col-md-3 mb-4 cars-offer">
+                        <div class="card"
+                            data-card-id="{{ $car->id }}"
+                            data-card-brand="{{ $car->brand->name }}"
+                            data-card-color="{{ $car->color->name }}"
+                            data-card-price="{{ $car->price }}"
+                            data-card-horsepower="{{ $car->horse_power }}">
+                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3" style="max-width: 90%;">
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
@@ -91,12 +99,20 @@
                     </div>
                 @endif
             @endforeach
-        <hr class="my-4">
+        </div>
+        <div class="container-fluid p-0">
+            <h4 class="text-center mt-5 bg-black text-white p-3">Todos los vehículos</h4>
+        </div>
         <div class="row mt-5">
             @foreach ($cars as $car)
-                    <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3">
+                    <div class="col-md-3 mb-4 cars-all">
+                        <div class="card"
+                            data-card-id="{{ $car->id }}"
+                            data-card-brand="{{ $car->brand->name }}"
+                            data-card-color="{{ $car->color->name }}"
+                            data-card-price="{{ $car->price }}"
+                            data-card-horsepower="{{ $car->horse_power }}">
+                            <img src="{{ asset("carstest/cordoba.jpeg") }}" class="mt-3 ms-3 me-3" style="max-width: 90%;">
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
@@ -118,4 +134,5 @@
 
 @push('js')
     <script src="{{ asset('js/sliderFilter.js') }}"></script>
+    <script src="{{ asset('js/filter.js') }}"></script>
 @endpush

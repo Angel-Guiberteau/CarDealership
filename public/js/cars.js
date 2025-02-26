@@ -62,18 +62,17 @@ document.addEventListener("DOMContentLoaded", function () {
         fileContainer.appendChild(newInputGroup);
     });
 
-    // Inicialización de Flatpickr para el campo de año (year) solo para seleccionar el año
     flatpickr("#year", {
-        enableTime: false,       // Desactiva la selección de hora
-        dateFormat: "Y",         // Solo se selecciona el año (Y es para solo año)
-        minDate: "1901-01-01",   // Asegura que no se pueda seleccionar un año menor a 1901
-        maxDate: new Date(),     // Asegura que no se pueda seleccionar un año mayor al actual
-        allowInput: true,        // Permite que el usuario también pueda escribir directamente el año
-        disableMobile: true,     // Desactiva el selector de móvil, ya que el calendario no es necesario
-        clickOpens: true,        // Abre el selector al hacer clic
-        locale: "es",            // Localización para formato de fecha en español
-        mode: "single",          // Establece que solo se selecciona un valor (el año)
-        monthSelectorType: "static",  // Desactiva la vista del mes
+        enableTime: false,       
+        dateFormat: "Y",         
+        minDate: "1901-01-01",   
+        maxDate: new Date(),     
+        allowInput: true,        
+        disableMobile: true,     
+        clickOpens: true,        
+        locale: "es",            
+        mode: "single",         
+        monthSelectorType: "static",  
     });
 
 });

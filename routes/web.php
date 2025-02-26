@@ -28,6 +28,8 @@ Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('
 
 Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typeDeleted');
 
+Route::get('/deleteColor/{id}', [ColorController::class, 'deleteColor'])->name('ColorDeleted');
+
 Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
     return CarController::deleteCar($id);
 })->name('deleteCar');
@@ -67,4 +69,5 @@ Route::get('/img/{main_image}', function ($main_image) {
     return Response::make($file, 200)->header('Content-Type', $type);
 })->name('image');
 
+Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
 

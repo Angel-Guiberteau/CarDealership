@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let minPercent = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
             let maxPercent = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
 
-            track.style.background = `linear-gradient(to right, #ccc ${minPercent}%, #C9A66B ${minPercent}%, #C9A66B ${maxPercent}%, #ccc ${maxPercent}%)`;
+            // Change the background of the track
+            track.style.background = `linear-gradient(to right, var(--slateGrey) ${minPercent}%, var(--softGold) ${minPercent}%, var(--softGold) ${maxPercent}%, var(--slateGrey) ${maxPercent}%)`;
 
             displayMin.textContent = minVal;
             displayMax.textContent = maxVal;
@@ -29,63 +30,55 @@ document.addEventListener("DOMContentLoaded", function () {
             updateTrack();
         });
 
-        updateTrack(); // Inicializar la barra
+        updateTrack();
     }
 
-    // Precio
-    let precioContainer = document.getElementById("precio_min").closest(".range-container");
+    // PRICE
+    let priceContainer = document.getElementById("price_min").closest(".range-container");
     updateRange(
-        document.getElementById("precio_min"),
-        document.getElementById("precio_max"),
-        document.getElementById("precio_min_val"),
-        document.getElementById("precio_max_val"),
-        precioContainer.querySelector(".slider-track")
+        document.getElementById("price_min"),
+        document.getElementById("price_max"),
+        document.getElementById("price_min_val"),
+        document.getElementById("price_max_val"),
+        priceContainer.querySelector(".slider-track")
     );
 
-    // Potencia
-    let potenciaContainer = document.getElementById("potencia_min").closest(".range-container");
+    // POWER
+    let powerContainer = document.getElementById("power_min").closest(".range-container");
     updateRange(
-        document.getElementById("potencia_min"),
-        document.getElementById("potencia_max"),
-        document.getElementById("potencia_min_val"),
-        document.getElementById("potencia_max_val"),
-        potenciaContainer.querySelector(".slider-track")
+        document.getElementById("power_min"),
+        document.getElementById("power_max"),
+        document.getElementById("power_min_val"),
+        document.getElementById("power_max_val"),
+        powerContainer.querySelector(".slider-track")
     );
 
-    // Botón Restablecer
+    // RESET SLIDERS VALUES
     const resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", function () {
-        // Restablecer selectores
-        document.getElementById("marca").selectedIndex = 0;
-        document.getElementById("color").selectedIndex = 0;
-
-        // Restablecer input de modelo
-        document.getElementById("modelo").value = "";
-
-        // Restablecer rangos de precio
-        document.getElementById("precio_min").value = 5000;
-        document.getElementById("precio_max").value = 100000;
-        document.getElementById("precio_min_val").textContent = "5000";
-        document.getElementById("precio_max_val").textContent = "100000";
+        
+        document.getElementById("price_min").value = 5000;
+        document.getElementById("price_max").value = 100000;
+        document.getElementById("price_min_val").textContent = "5000";
+        document.getElementById("price_max_val").textContent = "100000";
         updateRange(
-            document.getElementById("precio_min"),
-            document.getElementById("precio_max"),
-            document.getElementById("precio_min_val"),
-            document.getElementById("precio_max_val"),
-            precioContainer.querySelector(".slider-track")
+            document.getElementById("price_min"),
+            document.getElementById("price_max"),
+            document.getElementById("price_min_val"),
+            document.getElementById("price_max_val"),
+            priceContainer.querySelector(".slider-track")
         );
 
-        // Restablecer rangos de potencia
-        document.getElementById("potencia_min").value = 50;
-        document.getElementById("potencia_max").value = 1000;
-        document.getElementById("potencia_min_val").textContent = "50";
-        document.getElementById("potencia_max_val").textContent = "1000";
+        document.getElementById("power_min").value = 50;
+        document.getElementById("power_max").value = 1000;
+        document.getElementById("power_min_val").textContent = "50";
+        document.getElementById("power_max_val").textContent = "1000";
         updateRange(
-            document.getElementById("potencia_min"),
-            document.getElementById("potencia_max"),
-            document.getElementById("potencia_min_val"),
-            document.getElementById("potencia_max_val"),
-            potenciaContainer.querySelector(".slider-track")
+            document.getElementById("power_min"),
+            document.getElementById("power_max"),
+            document.getElementById("power_min_val"),
+            document.getElementById("power_max_val"),
+            powerContainer.querySelector(".slider-track")
         );
     });
 });
