@@ -10,6 +10,7 @@ use App\Http\Controllers\ColorController;
 use App\Models\Car;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Response;
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
@@ -45,11 +46,28 @@ Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brand
 
 Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 
+Route::post('/addCar', function (): RedirectResponse {
+    return CarController::addCar();
+})->name('addCar');
+
 // PUT
 
 Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
 
 Route::put('/updateType/', [TypeController::class, 'updateType'])->name('typeUpdated');
+
+Route::get('/img/{main_image}', function ($main_image) {
+    $path = storage_path('app/public/img/' . $main_image);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    $file = file_get_contents($path);
+    $type = mime_content_type($path);
+
+    return Response::make($file, 200)->header('Content-Type', $type);
+})->name('image');
 
 Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
 

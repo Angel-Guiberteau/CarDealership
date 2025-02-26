@@ -5,24 +5,24 @@
 @section('content')
 <div class="container mt-4">
     <div class="card p-3" style="max-width: 1000px; margin: auto;">
+        @foreach($cars as $car)
         <div class="gallery-container text-center">
             <div class="swiper mySwiper" style="width: 100%; height: 500px;">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide d-flex justify-content-center">
-                        <img src="{{ asset('carstest/cordoba.jpeg') }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 1">
+                        <img src="{{ asset('img/' . $car->main_image) }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 1">
                     </div>
                     <div class="swiper-slide d-flex justify-content-center">
-                        <img src="{{ asset('carstest/cordoba.jpeg') }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 2">
+                        <img src="{{ asset('img/' . $car->main_image) }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 2">
                     </div>
                     <div class="swiper-slide d-flex justify-content-center">
-                        <img src="{{ asset('carstest/cordoba.jpeg') }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 3">
+                        <img src="{{ asset('img/' . $car->main_image) }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car 3">
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
         </div>        
-        @foreach($cars as $car)
         <div class="car-info mt-3">
             <h5 class="bg-secondary text-white p-2">{{ $car->name }}</h5>
             <p><strong>Marca:</strong> {{ $car->brand_name }}</p>
