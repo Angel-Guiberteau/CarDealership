@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let minPercent = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
             let maxPercent = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
 
-            track.style.background = `linear-gradient(to right, #ccc ${minPercent}%, #C9A66B ${minPercent}%, #C9A66B ${maxPercent}%, #ccc ${maxPercent}%)`;
+            // Aplicar la paleta de colores correcta
+            track.style.background = `linear-gradient(to right, var(--slateGrey) ${minPercent}%, var(--softGold) ${minPercent}%, var(--softGold) ${maxPercent}%, var(--slateGrey) ${maxPercent}%)`;
 
             displayMin.textContent = minVal;
             displayMax.textContent = maxVal;

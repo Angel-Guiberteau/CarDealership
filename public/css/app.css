@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mochiy+Pop+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 :root {
-    --carbonBlack: #1C1C1C;
-    --perlWhite: #F9F9F9;
-    --titaniumGrey : #4A4A4A;
-    --champagneGold: #C9A66B;
-    --blueNight: #0D1B2A;
+    --midnightBlue: #2C3E50;  
+    --softIvory: #F4F4F4;  
+    --slateGrey: #6C7A89;
+    --softGold: #B89F7B;
+    --deepForest: #34495E;
     --errors: #D9534F;
 }
 
@@ -14,16 +12,17 @@ body, html {
     font-family: Josefin Sans;
     margin: 0;
     padding: 0;
+    color: var(--midnightBlue);
 }
 
 header {
-    background-color: var(--carbonBlack);
-    color: var(--perlWhite);
+    background-color: var(--midnightBlue);
+    color: var(--softIvory);
     padding: 1rem;
 }
 
 hr {
-    border: 2px solid var(--titaniumGrey);
+    border: 2px solid var(--slateGrey);
     opacity: 0.8;
 }
 
@@ -32,20 +31,20 @@ hr {
 /*  CLASS  */
 
 .filter {
-    background-color: var(--carbonBlack);
-    color: var(--perlWhite);
+    background-color: var(--midnightBlue);
+    color: var(--softIvory);
     padding: 1rem;
 }
 
 .resetFilter {
-    background-color: var(--perlWhite);
-    color: var(--carbonBlack);
+    background-color: var(--softIvory);
+    color: var(--midnightBlue);
     height: 40px;
 }
 
 .resetFilter:hover {
-    background-color: var(--titaniumGrey);
-    color: var(--perlWhite);
+    background-color: var(--slateGrey);
+    color: var(--softIvory);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -61,7 +60,7 @@ hr {
     top: -30px; 
     right: 0; 
     font-size: 13px;
-    color: var(--perlWhite);
+    color: var(--softIvory);
     text-align: right;
 }
 
@@ -69,7 +68,7 @@ hr {
 .slider-track {
     position: absolute;
     height: 5px;
-    background: #ccc;
+    background: var(--slateGrey); /* Cambiado a slateGrey */
     border-radius: 5px;
     width: 100%;
     top: 0;
@@ -101,13 +100,14 @@ hr {
     pointer-events: auto;
     position: relative;
     z-index: 2;
+    background: var(--softGold); /* Cambiado a softGold */
 }
 
 /* Firefox */
 .range-container input[type="range"]::-moz-range-thumb {
     width: 14px;
     height: 14px;
-    background: var(--champagneGold);
+    background: var(--softGold); /* Cambiado a softGold */
     border-radius: 50%;
     cursor: pointer;
     pointer-events: auto;
@@ -120,8 +120,8 @@ hr {
 }
 
 .ofer {
-    background-color: var(--champagneGold);
-    color: var(--carbonBlack);
+    background-color: var(--softGold); /* Cambiado a softGold */
+    color: var(--midnightBlue);
     border-radius: 10px;
     padding: 5px 30px;
     min-width: 80px;
@@ -130,13 +130,17 @@ hr {
 }
 
 .ofer:hover {
-    background-color: var(--titaniumGrey);
-    color: var(--perlWhite);
+    background-color: var(--slateGrey);
+    color: var(--softIvory);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.bg-champagne {
-    background-color: var(--champagneGold);
+.bg-softGold {
+    background-color: var(--softGold); /* Cambiado a softGold */
+}
+
+.bg-midnightBlue {
+    background-color: var(--midnightBlue);
 }
 
 /*  BOOTSTRAP  */
@@ -148,7 +152,7 @@ hr {
 /* ADMIN LAYOUT */
 
 #admin-panel{ 
-    background-color: var(--carbonBlack);
+    background-color: var(--midnightBlue);
 }
 
 .container-custom {
@@ -171,7 +175,7 @@ hr {
 
 .custom-select{
     background-color: #afb0b179;
-    color: #1C1C1C;
+    color: var(--midnightBlue);
     border-radius: 0px;
     font-weight: bold;
 }
@@ -198,23 +202,23 @@ hr {
 
 .active>.page-link, .page-link.active {
     color: #fff;
-    background-color: #1C1C1C;
-    border-color: #1C1C1C;
+    background-color: var(--midnightBlue);
+    border-color: var(--midnightBlue);
 }
 
 .page-link {
-    color: #1C1C1C;
+    color: var(--midnightBlue);
 }
 
 .page-link :hover {
     color: #fff;
-    background-color: #1C1C1C;
+    background-color: var(--midnightBlue);
 }
 
 /*  NAV  */
 
 .active {
-    background-color: #1C1C1C !important; 
+    background-color: var(--midnightBlue) !important; 
     color: white !important;
     font-weight: bold;
 }
