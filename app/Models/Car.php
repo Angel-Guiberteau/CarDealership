@@ -52,7 +52,7 @@ class Car extends Model {
                     'colors.name as color_name', 
                     'colors.hex as color_hex'
                 )
-                ->where('cars.id', 1)
+                ->where('cars.id', 15)
                 ->get();
 
     }

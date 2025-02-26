@@ -69,6 +69,7 @@
                     <td>{{ $car->sale ? 'Sí' : 'No' }}</td>
                     <td>{{ $car->description }}</td>
                     <td>{{ $car->main_image }}</td>
+                      
                     <td><button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit">Editar</button></td>
                     <td>@include('components.delete_button')</td>
                 </tr>

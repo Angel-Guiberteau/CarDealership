@@ -64,11 +64,11 @@ class CarController extends Controller
         $validatedData['sale'] = $request->has('offer') ? 1 : 0;
         $validatedData['name'] = $validatedData['model'];
 
-        $mainImageName = time() . '_main.' . $request->file('main_image')->extension();
+        $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();
 
         $request->file('main_image')->storeAs('img/'.$validatedData['model'], $mainImageName, 'public');
 
-        $mainImagePath = 'img/'.$validatedData['model'].'/'.$mainImageName;
+        $mainImagePath = $validatedData['model'].'/'.$mainImageName;
 
         $validatedData['main_image'] = $mainImagePath;
 
