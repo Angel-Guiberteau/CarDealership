@@ -71,7 +71,7 @@
 
 @section('content')
     <div class="container-fluid p-0">
-        <h4 class="text-center mt-5 bg-champagne text-white p-3">Oferta</h4>
+        <h4 class="text-center mt-5 bg-softGold text-white p-3">Oferta</h4>
     </div>
     <div class="container">
         <div class="row mt-5">
