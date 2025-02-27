@@ -24,7 +24,7 @@
 
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="model" class="form-label">Modelo <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="model" id="model" required>
+                        <input type="text" class="form-control" name="model" id="model" value="{{ $car->name }}" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
