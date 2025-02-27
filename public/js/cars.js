@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Flatpickr Inicializado para year-add");
     } else {
         console.log("Elemento year-add no encontrado");
-    }
+    }    
 });
 
 $(document).ready(function() {
