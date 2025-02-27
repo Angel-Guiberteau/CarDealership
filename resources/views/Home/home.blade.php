@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('filter')
-    <div class="container-fluid p-3 d-flex justify-content-around filter">
+    <div class="container-fluid p-3 d-flex justify-content-around filter sticky-top">
         <div class="d-flex p-2">
             <!-- Brand -->
             <div class="d-flex align-items-center me-5">
