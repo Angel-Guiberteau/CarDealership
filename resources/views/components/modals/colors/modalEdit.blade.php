@@ -11,10 +11,11 @@
                 <div class="modal-body">
                         <div class="mb-3 mt-3">
                             <input type="hidden" name="color_id" id="id">
+                            <label for="edit" class="form-label">Nombre de color <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="edit" name="name" placeholder="Color Seleccionado a Modificar">
                         </div>
                         <div class="mb-3">
-                            <label for="editColorHex" class="form-label">Selecciona un color</label>
+                            <label for="editColorHex" class="form-label">Selecciona un color <span class="text-danger">*</span></label>
                             <input type="color" name="hex" class="form-control form-control-color" id="editColorHex" value="#000000">
                         </div>
                 </div>

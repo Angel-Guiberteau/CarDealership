@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <label class="form-label">Nombre del modelo <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="model" placeholder="Nombre del modelo" required>
+                        <input type="text" class="form-control" id="model" name="model" placeholder="Nombre del modelo" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">

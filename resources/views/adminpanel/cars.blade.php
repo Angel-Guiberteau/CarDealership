@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid mt-4">
     <h2 class="text-white bg-dark p-4">Vehículos</h2>
-    
+
     <div class="mb-3 d-flex justify-content-between mt-4">
         <div>
             <label for="entries">Mostrar</label>
@@ -24,7 +24,7 @@
             <button class="btn bg-midnightBlue button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
         </div>
     </div>
-    
+
     <table id="infoTable" class="table text-center table-bordered custom-table">
         <thead class="table-light">
             <tr class="text-center">
@@ -38,7 +38,7 @@
                 <th>Oferta</th>
                 <th>Descripción</th>
                 <th>Archivos</th>
-                <th>Editor</th>
+                <th>Precio</th> <th>Editor</th>
                 <th>Eliminar</th>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Oferta"></th>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Descripción"></th>
                 <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Archivos"></th>
-                <th></th>
+                <th><input type="text" class="form-control form-control-sm search-column" placeholder="Buscar Precio"></th> <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -69,13 +69,14 @@
                     <td>{{ $car->sale ? 'Sí' : 'No' }}</td>
                     <td>{{ $car->description }}</td>
                     <td>{{ $car->main_image }}</td>
+                    <td>{{ $car->price }}€</td> 
                     <td>@include('components.editCar_button')</td>
                     <td>@include('components.deleteCar_button')</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    
+
     <div class="d-flex justify-content-between mt-3">
         <div id="tableInfo"></div>
         <div id="tablePagination" class="d-flex"></div>
@@ -89,7 +90,8 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('js/dataTable.js') }}"></script>
-<script src="{{ asset('js/cars.js') }}"></script>
-<script src="{{ asset('js/sweetAlert.js') }}"></script>
+    <script src="{{ asset('js/dataTable.js') }}"></script>
+    <script src="{{ asset('js/cars.js') }}"></script>
+    <script src="{{ asset('js/validateCars.js') }}"></script>
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
 @endpush

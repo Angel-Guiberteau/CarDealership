@@ -9,6 +9,7 @@
                 <form action="{{ route('addType') }}" method="POST" id="typeForm">
                     @csrf
                     <div class="mb-3 mt-3">
+                        <label for="input" class="form-label">Tipo de Coche <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="input" name="type" placeholder="Tipo de Coche *">
                     </div>
             </div>
