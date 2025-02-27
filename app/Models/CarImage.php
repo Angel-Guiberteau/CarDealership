@@ -17,6 +17,11 @@ class CarImage extends Model {
         return $this->belongsTo(Car::class, 'car_id');
     }
 
+    public static function updateImage(int $imageId, string $imageName): bool
+    {
+        return self::where('id', $imageId)->update(['image' => $imageName]);
+    }
+
     public static function storeImage(int $carId, string $imagePath): CarImage
     {
         return self::create([
@@ -40,6 +45,11 @@ class CarImage extends Model {
     public static function getSecondaryImagesByCarId(int $carId)
     {
         return self::where('car_id', $carId)->get();
+    }
+
+    public static function imageExists(int $imageId): bool
+    {
+        return self::where('id', $imageId)->exists();
     }
 
 }

@@ -168,10 +168,18 @@ class CarController extends Controller
         }
     
         if ($request->hasFile('secondary_images')) {
-            foreach ($request->file('secondary_images') as $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->storeAs('img/', $imageName, 'public');
-                CarImage::storeImage($id, $imageName);
+            foreach ($request->file('secondary_images') as $imageId => $image) {
+                if (CarImage::imageExists($imageId)) { 
+                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                    $image->storeAs('img/', $imageName, 'public');
+    
+                    
+                    CarImage::updateImage($imageId, $imageName);
+                } else { 
+                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                    $image->storeAs('img/', $imageName, 'public');
+                    CarImage::storeImage($id, $imageName);
+                }
             }
         }
     
