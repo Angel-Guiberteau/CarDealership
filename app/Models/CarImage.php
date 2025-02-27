@@ -25,15 +25,21 @@ class CarImage extends Model {
         ]);
     }
 
-    public static function deleteSecondaryImages(array $imageIds): JsonResponse
+    public static function deleteSecondaryImages(array $imageIds): void
     {
         if (is_array($imageIds)) {
-            foreach ($imageIds as $imageId) {
-                CarImage::where('id', $imageId)->delete();
-            }
+            CarImage::whereIn('id', $imageIds)->delete();
         }
+    }
 
-        return response()->json(['success' => true]);
+    public static function getImagesByIds(array $imageIds)
+    {
+        return self::whereIn('id', $imageIds)->get();
+    }
+
+    public static function getSecondaryImagesByCarId(int $carId)
+    {
+        return self::where('car_id', $carId)->get();
     }
 
 }
