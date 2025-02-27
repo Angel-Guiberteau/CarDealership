@@ -223,3 +223,14 @@ hr {
     font-weight: bold;
 }
 
+.navbar-toggler{
+    border: none;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav .nav-item {
+        margin-right: 0 !important;
+        text-align: center;
+    }
+}
+
