@@ -13,7 +13,7 @@
                     <input type="hidden" name="deleted_images" id="deleted_images" value="">
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="brand" class="form-label">Marca *</label>
+                        <label for="brand" class="form-label">Marca <span class="text-danger">*</span></label>
                         <select class="form-select" name="brand" id="brand" required>
                             <option disabled>Seleccionar Marca</option>
                             @foreach($brands as $brand)
@@ -23,17 +23,17 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="model" class="form-label">Modelo  *</label>
+                        <label for="model" class="form-label">Modelo <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="model" id="model" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="description" class="form-label">Descripción  *</label>
+                        <label for="description" class="form-label">Descripción</label>
                         <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="color" class="form-label">Color  *</label>
+                        <label for="color" class="form-label">Color <span class="text-danger">*</span></label>
                         <select class="form-select" name="color" id="color" required>
                             <option disabled>Seleccionar Color</option>
                             @foreach($colors as $color)
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="type_id" class="form-label">Tipo  *</label>
+                        <label for="type_id" class="form-label">Tipo <span class="text-danger">*</span></label>
                         <select class="form-select" name="type_id" id="type_id" required>
                             <option disabled>Seleccionar Tipo</option>
                             @foreach($types as $type)
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="year" class="form-label">Año  *</label>
+                        <label for="year" class="form-label">Año <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="year" id="year" required>
                     </div>
 
@@ -63,7 +63,7 @@
                             <span>120.000€</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label for="precioRangeEdit" class="form-label me-3">Precio*</label>
+                            <label for="precioRangeEdit" class="form-label me-3">Precio<span class="text-danger" style="white-space: nowrap;"> *</span></label>
                             <input type="range" class="form-range" min="0" max="120000" step="1000" id="precioRangeEdit" name="price" value="0" oninput="precioOutputEdit.innerText = precioRangeEdit.value + '€'" style="flex-grow: 1;">
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <span>1000CV</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label for="potenciaRangeEdit" class="form-label me-3">Potencia*</label>
+                            <label for="potenciaRangeEdit" class="form-label me-3">Potencia<span class="text-danger" style="white-space: nowrap;"> *</span></label>
                             <input type="range" class="form-range" min="0" max="1000" step="10" id="potenciaRangeEdit" name="horse_power" value="0" oninput="potenciaOutputEdit.innerText = potenciaRangeEdit.value + 'CV'" style="flex-grow: 1;">
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Imagen Principal</label>
+                        <label class="form-label">Imagen Principal <span class="text-danger">*</span></label>
                         <br>
                         <img src="" id="main_image_preview" class="img-fluid rounded mb-2" alt="Imagen Principal">
                         <input type="file" class="form-control" accept="image/*" name="main_image">
