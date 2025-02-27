@@ -11,6 +11,7 @@
                     @method('PUT')
                     <div class="mb-3 mt-3">
                         <input type="hidden" name="type_id" id="id">
+                        <label for="edit" class="form-label">Tipo de Coche <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="edit" name="type" placeholder="Tipo Seleccionado a Modificar">
                     </div>
             </div>

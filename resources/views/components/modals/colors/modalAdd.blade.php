@@ -9,10 +9,11 @@
                 @csrf
                 <div class="modal-body">
                         <div class="mb-3 mt-3">
+                            <label for="input" class="form-label">Nombre del color <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" id="input" placeholder="Nombre del color *">
                         </div>
                         <div class="mb-3">
-                            <label for="colorHex" class="form-label">Selecciona un color</label>
+                            <label for="colorHex" class="form-label">Selecciona un color <span class="text-danger">*</span></label>
                             <input type="color" name="hex" class="form-control form-control-color" id="colorHex" value="#000000">
                         </div>
                 </div>

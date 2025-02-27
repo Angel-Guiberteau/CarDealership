@@ -11,6 +11,7 @@
                     @method('PUT')
                     <div class="mb-3 mt-3">
                         <input type="hidden" name="brand_id" id="id">
+                        <label for="edit" class="form-label">Nombre de marca <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="edit" name="brand" placeholder="Marca Seleccionada Modificar">
                     </div>
             </div>
