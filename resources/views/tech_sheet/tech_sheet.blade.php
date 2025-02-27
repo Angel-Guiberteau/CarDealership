@@ -42,7 +42,10 @@
                     <strong>Precio:</strong>
                     {{ number_format($car->price, 2, ',', '.') }}€
                 </span>
-                <button class="btn btn-secondary">Reservar</button>
+                <div>
+                    <button class="btn btn-secondary">Reservar</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-primary">Volver</a>
+                </div>
             </div>
         @endforeach
     </div>
