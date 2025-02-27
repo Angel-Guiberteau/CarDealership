@@ -103,12 +103,12 @@ $(document).ready(function() {
                 if (car.images && car.images.length > 0) {
                     car.images.forEach(function(image) {
                         $('#secondary_images_container').append(
-                            '<div class="col-6 mb-3 position-relative text-center">' + 
-                            '   <div style="width: 150px; height: 100px; overflow: hidden; border-radius: 5px; margin: 0 auto;">' + 
+                            '<div class="col-6 mb-3 position-relative text-center">' +
+                            '   <div style="width: 150px; height: 100px; overflow: hidden; border-radius: 5px; margin: 0 auto;">' +
                             '       <img src="/img/' + image.image + '" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" alt="Imagen Secundaria">' +
                             '   </div>' +
-                            '   <button type="button" class="btn btn-danger remove-image mt-2" data-image-id="' + image.id + '" style="padding: 5px 10px; border-radius: 5px;">Eliminar</button>' + 
-                            '   <input type="file" class="form-control mt-2" accept="image/*" name="secondary_images[' + image.id + ']">' +
+                            '   <button type="button" class="btn btn-danger remove-image mt-2" data-image-id="' + image.id + '" style="padding: 5px 10px; border-radius: 5px;">Eliminar</button>' +
+                            '   <input type="file" class="form-control mt-2 replace-image" data-image-id="' + image.id + '" accept="image/*" name="secondary_images[' + image.id + ']">' +
                             '</div>'
                         );
                     });

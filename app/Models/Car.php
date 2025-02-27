@@ -69,6 +69,11 @@ class Car extends Model {
         return self::where('id', $id)->delete();
     }
 
+    public static function getCarById(int $id)
+    {
+        return self::find($id);
+    }
+
     public static function createCar(array $data): Car
     {
         return self::create([

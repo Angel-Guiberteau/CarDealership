@@ -17,6 +17,11 @@ class CarImage extends Model {
         return $this->belongsTo(Car::class, 'car_id');
     }
 
+    public static function updateImage(int $imageId, string $imageName): bool
+    {
+        return self::where('id', $imageId)->update(['image' => $imageName]);
+    }
+
     public static function storeImage(int $carId, string $imagePath): CarImage
     {
         return self::create([
@@ -25,15 +30,26 @@ class CarImage extends Model {
         ]);
     }
 
-    public static function deleteSecondaryImages(array $imageIds): JsonResponse
+    public static function deleteSecondaryImages(array $imageIds): void
     {
         if (is_array($imageIds)) {
-            foreach ($imageIds as $imageId) {
-                CarImage::where('id', $imageId)->delete();
-            }
+            CarImage::whereIn('id', $imageIds)->delete();
         }
+    }
 
-        return response()->json(['success' => true]);
+    public static function getImagesByIds(array $imageIds)
+    {
+        return self::whereIn('id', $imageIds)->get();
+    }
+
+    public static function getSecondaryImagesByCarId(int $carId)
+    {
+        return self::where('car_id', $carId)->get();
+    }
+
+    public static function imageExists(int $imageId): bool
+    {
+        return self::where('id', $imageId)->exists();
     }
 
 }

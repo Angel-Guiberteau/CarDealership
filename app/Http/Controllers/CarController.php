@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Js;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -38,14 +39,29 @@ class CarController extends Controller
     }
     
 
-    public static function deleteCar(int $id): RedirectResponse{
-        $car = Car::deleteCar($id);
+    public static function deleteCar(int $id): RedirectResponse
+    {
+        $car = Car::getCarById($id);
 
-        if ($car) {
-            return redirect()->route('admin')->with('success', 'Car deleted successfully');
+        if (!$car) {
+            return redirect()->route('admin')->with('error', 'Coche no encontrado.');
         }
 
-        return redirect()->route('admin')->with('error', 'Error deleting car');
+        if ($car->main_image) {
+            Storage::disk('public')->delete('img/' . $car->main_image);
+        }
+
+        $secondaryImages = CarImage::getSecondaryImagesByCarId($id);
+
+        foreach ($secondaryImages as $image) {
+            Storage::disk('public')->delete('img/' . $image->image);
+        }
+
+        if (Car::deleteCar($id)) {
+            return redirect()->route('admin')->with('success', 'Coche eliminado correctamente.');
+        }
+
+        return redirect()->route('admin')->with('error', 'Error al eliminar el coche.');
     }
 
     public static function addCar(): RedirectResponse
@@ -108,7 +124,7 @@ class CarController extends Controller
     {
         $request = request();
         $id = $request->input('car_id');
-
+    
         $validatedData = $request->validate([
             'brand' => 'required|exists:brands,id',
             'model' => 'required|string|max:20',
@@ -122,38 +138,51 @@ class CarController extends Controller
             'year' => 'required|digits:4|integer|min:1900|max:2099',
             'description' => 'nullable|string|max:255',
         ]);
-
+    
         $validatedData['sale'] = $request->has('sale') ? 1 : 0;
         $validatedData['name'] = $validatedData['model'];
-
+    
         if ($request->hasFile('main_image')) {
             $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();
             $request->file('main_image')->storeAs('img/', $mainImageName, 'public');
             $validatedData['main_image'] = $mainImageName;
         }
-
+    
         $updated = Car::updateCar($id, $validatedData);
-
+    
         if (!$updated) {
             return redirect()->route('admin')->with('error', 'Coche no encontrado o error al actualizar.');
         }
-
+    
         if ($request->has('deleted_images')) {
             $deletedImages = explode(',', $request->input('deleted_images'));
             $deletedImages = array_filter($deletedImages);
     
-            
+            $imagesToDelete = CarImage::getImagesByIds($deletedImages);
+    
             CarImage::deleteSecondaryImages($deletedImages);
-        }
-
-        if ($request->hasFile('secondary_images')) {
-            foreach ($request->file('secondary_images') as $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->storeAs('img/', $imageName, 'public');
-                CarImage::storeImage($id, $imageName);
+    
+            foreach ($imagesToDelete as $image) {
+                Storage::disk('public')->delete('img/' . $image->image);
             }
         }
-
+    
+        if ($request->hasFile('secondary_images')) {
+            foreach ($request->file('secondary_images') as $imageId => $image) {
+                if (CarImage::imageExists($imageId)) { 
+                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                    $image->storeAs('img/', $imageName, 'public');
+    
+                    
+                    CarImage::updateImage($imageId, $imageName);
+                } else { 
+                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                    $image->storeAs('img/', $imageName, 'public');
+                    CarImage::storeImage($id, $imageName);
+                }
+            }
+        }
+    
         return redirect()->route('admin')->with('success', 'Coche actualizado correctamente.');
     }
 
