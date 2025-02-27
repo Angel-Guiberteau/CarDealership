@@ -15,7 +15,7 @@ class CarImage extends Model {
         return $this->belongsTo(Car::class, 'car_id');
     }
 
-    public static function storeImage($carId, $imagePath)
+    public static function storeImage(int $carId, string $imagePath): CarImage
     {
         return self::create([
             'car_id' => $carId,  

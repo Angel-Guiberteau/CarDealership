@@ -28,7 +28,7 @@ class CarController extends Controller
                 ->with('types', Type::allTypes());
     }
 
-    public static function getTech($id): View {
+    public static function getTech(int $id): View {
         return view('tech_sheet.tech_sheet')
                 ->with('cars', Car::getTech($id));
     }

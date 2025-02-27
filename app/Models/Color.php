@@ -13,13 +13,13 @@ class Color extends Model {
     public static function allColors():Collection{
         return self::all();
     }
-    public static function addColor($data): bool{
+    public static function addColor(array $data): bool{
         return (bool) self::create([
             'name' => $data['name'],
             'hex' => $data['hex']
         ]);
     }
-    public static function findColor($id){
+    public static function findColor(int $id){
         return self::find($id);
     }
 

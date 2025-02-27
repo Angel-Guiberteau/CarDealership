@@ -42,7 +42,7 @@ class Car extends Model {
             ->get();
     }
 
-    public static function getTech($id): Collection {
+    public static function getTech(int $id): Collection {
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')

@@ -14,10 +14,6 @@ class Brand extends Model {
         return self::all();
     }
 
-    public static function brandExists(string $name): bool {
-        return self::where('name', $name)->exists();
-    }
-
     public static function createBrand(string $name): bool {
         return (bool) self::create(['name' => $name]);
     }
