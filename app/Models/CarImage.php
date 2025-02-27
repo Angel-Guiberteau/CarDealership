@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CarImage extends Model {
 
@@ -23,5 +25,15 @@ class CarImage extends Model {
         ]);
     }
 
+    public static function deleteSecondaryImages(array $imageIds): JsonResponse
+    {
+        if (is_array($imageIds)) {
+            foreach ($imageIds as $imageId) {
+                CarImage::where('id', $imageId)->delete();
+            }
+        }
+
+        return response()->json(['success' => true]);
+    }
 
 }
