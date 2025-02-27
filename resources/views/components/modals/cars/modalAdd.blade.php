@@ -7,8 +7,9 @@
             </div>
             <div class="modal-body">
                 <form id="vehiculoForm" action="{{ route('addCar') }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-                    @csrf                
+                    @csrf
                     <div class="mb-3 bg-white p-3 rounded">
+                        <label class="form-label">Marca <span class="text-danger">*</span></label>
                         <select class="form-select" name="brand" required>
                             <option selected disabled>Seleccionar Marca</option>
                             @foreach($brands as $brand)
@@ -17,14 +18,17 @@
                         </select>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <input type="text" class="form-control" name="model" placeholder="Nombre del modelo *" required>
+                        <label class="form-label">Nombre del modelo <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="model" placeholder="Nombre del modelo" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
+                        <label class="form-label">Descripción del vehículo</label>
                         <textarea class="form-control" name="description" rows="3" placeholder="Descripción del vehículo"></textarea>
                     </div>
-                    
+
                     <div class="mb-3 bg-white p-3 rounded">
+                        <label class="form-label">Color <span class="text-danger">*</span></label>
                         <select class="form-select" name="color" required>
                             <option selected disabled>Seleccionar Color</option>
                             @foreach($colors as $color)
@@ -33,6 +37,7 @@
                         </select>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
+                        <label class="form-label">Tipo <span class="text-danger">*</span></label>
                         <select class="form-select" name="type_id" required>
                             <option selected disabled>Seleccionar Tipo</option>
                             @foreach($types as $type)
@@ -41,26 +46,26 @@
                         </select>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="year" class="form-label">Año del vehículo *</label>
-                        <input type="text" class="form-control" name="year" id="year-add" placeholder="Seleccionar año" required>                    
-                    </div> 
+                        <label for="year" class="form-label">Año del vehículo <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="year" id="year-add" placeholder="Seleccionar año" required>
+                    </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <div class="d-flex justify-content-between mb-3">
                             <output id="precioOutput">0€</output>
                             <span>1.200.000€</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label for="precioRange" class="form-label me-3">Precio*</label>
+                            <label for="precioRange" class="form-label me-3">Precio<span class="text-danger" style="white-space: nowrap;"> *</span></label>
                             <input type="range" class="form-range" min="0" max="1200000" step="1000" id="precioRange" name="price" value="0" oninput="precioOutput.innerText = precioRange.value + '€'" style="flex-grow: 1;">
                         </div>
-                    </div>                                       
+                    </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <div class="d-flex justify-content-between mb-3">
                             <output id="potenciaOutput">0CV</output>
                             <span>1000CV</span>
                         </div>
                         <div class="d-flex align-items-center">
-                            <label for="potenciaRange" class="form-label me-3">Potencia*</label>
+                            <label for="potenciaRange" class="form-label me-3">Potencia<span class="text-danger" style="white-space: nowrap;"> *</span></label>
                             <input type="range" class="form-range" min="0" max="1000" step="10" id="potenciaRange" name="horse_power" value="0" oninput="potenciaOutput.innerText = potenciaRange.value + 'CV'" style="flex-grow: 1;">
                         </div>
                     </div>
@@ -69,7 +74,7 @@
                         <input class="form-check-input ms-auto" type="checkbox" name="sale" id="enOferta">
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label class="form-label">Adjuntar Imagen *</label>
+                        <label class="form-label">Adjuntar Imagen <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <input type="file" class="form-control" accept="image/*" name="main_image" id="imagenInput">
                             <label class="input-group-text" for="imagenInput">
