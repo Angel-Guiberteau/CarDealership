@@ -34,15 +34,20 @@ class Car extends Model {
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
-            ->select('cars.*', 
-                'brands.name as brand_name', 
-                'types.name as type_name', 
-                'colors.name as color_name', 
-                'colors.hex as color_hex')
+            ->leftJoin('cars_images', 'cars.id', '=', 'cars_images.car_id')
+            ->select(
+                'cars.*',
+                'brands.name as brand_name',
+                'types.name as type_name',
+                'colors.name as color_name',
+                'colors.hex as color_hex',
+                DB::raw('GROUP_CONCAT(cars_images.image SEPARATOR ", ") as secondary_images')
+            )
+            ->groupBy('cars.id')
             ->get();
     }
 
-    public static function getTech($id): Collection {
+    public static function getTech(int $id): Collection {
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
@@ -80,6 +85,25 @@ class Car extends Model {
         ]);
     }
 
+    public static function updateCar(int $id, array $data): bool
+    {
+        return self::where('id', $id)->update([
+            'brand_id' => $data['brand'],
+            'name' => $data['name'],
+            'color_id' => $data['color'],
+            'type_id' => $data['type_id'],
+            'price' => $data['price'],
+            'horse_power' => $data['horse_power'],
+            'sale' => $data['sale'],
+            'main_image' => $data['main_image'] ?? self::find($id)->main_image,
+            'year' => $data['year'],
+            'description' => $data['description'],
+        ]);
+    }
 
+    public static function findWithImages($id)
+    {
+        return self::with('images')->find($id);
+    }
 
 }

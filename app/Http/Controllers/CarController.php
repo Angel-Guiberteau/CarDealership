@@ -9,7 +9,11 @@ use App\Models\Color;
 use App\Models\Type;
 use App\Models\CarImage;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Js;
 
 class CarController extends Controller
 {
@@ -28,7 +32,7 @@ class CarController extends Controller
                 ->with('types', Type::allTypes());
     }
 
-    public static function getTech($id): View {
+    public static function getTech(int $id): View {
         return view('tech_sheet.tech_sheet')
                 ->with('cars', Car::getTech($id));
     }
@@ -92,6 +96,65 @@ class CarController extends Controller
         }
 
         return redirect()->route('admin')->with('success', 'Coche agregado correctamente.');
+    }
+
+    public static function getCar($id): JsonResponse
+    {
+        $car = Car::findWithImages($id);
+        return response()->json($car);
+    }
+
+    public static function updateCar(Request $request): RedirectResponse
+    {
+        $request = request();
+        $id = $request->input('car_id');
+
+        $validatedData = $request->validate([
+            'brand' => 'required|exists:brands,id',
+            'model' => 'required|string|max:20',
+            'color' => 'required|exists:colors,id',
+            'type_id' => 'required|exists:types,id',
+            'price' => 'required|numeric|min:0|max:120000',
+            'horse_power' => 'required|numeric|min:0|max:1000',
+            'sale' => 'nullable',
+            'main_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'secondary_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'year' => 'required|digits:4|integer|min:1900|max:2099',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $validatedData['sale'] = $request->has('sale') ? 1 : 0;
+        $validatedData['name'] = $validatedData['model'];
+
+        if ($request->hasFile('main_image')) {
+            $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();
+            $request->file('main_image')->storeAs('img/', $mainImageName, 'public');
+            $validatedData['main_image'] = $mainImageName;
+        }
+
+        $updated = Car::updateCar($id, $validatedData);
+
+        if (!$updated) {
+            return redirect()->route('admin')->with('error', 'Coche no encontrado o error al actualizar.');
+        }
+
+        if ($request->has('deleted_images')) {
+            $deletedImages = explode(',', $request->input('deleted_images'));
+            $deletedImages = array_filter($deletedImages);
+    
+            
+            CarImage::deleteSecondaryImages($deletedImages);
+        }
+
+        if ($request->hasFile('secondary_images')) {
+            foreach ($request->file('secondary_images') as $image) {
+                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                $image->storeAs('img/', $imageName, 'public');
+                CarImage::storeImage($id, $imageName);
+            }
+        }
+
+        return redirect()->route('admin')->with('success', 'Coche actualizado correctamente.');
     }
 
 }

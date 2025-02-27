@@ -35,7 +35,7 @@ class ColorController extends Controller
         return !empty($validated);
     }
 
-    public static function deleteColor($id): RedirectResponse {
+    public static function deleteColor(int $id): RedirectResponse {
         $color = Color::findColor($id);
         if ($color) {
             $color->delete();
