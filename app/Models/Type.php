@@ -12,13 +12,13 @@ class Type extends Model {
     public static function allTypes(): Collection{
         return self::all();
     }
-    public static function addType($data): bool{
+    public static function addType(string $data): bool{
         return (bool) self::create([
             'name' => $data
         ]);
     }
 
-    public static function findType($id){
+    public static function findType(int $id): Type | null{
         return self::find($id);
     }
 

@@ -27,24 +27,8 @@ class BrandController extends Controller {
         
         return back()->with('error', 'Error al crear la marca');
     }
-    
-    public static function validateBrand($brand): ?RedirectResponse {
-        if ($brand == null) {
-            return back()->with('error', 'La marca no puede estar vacía');
-        }
-    
-        if (!is_string($brand)) {
-            return back()->with('error', 'La marca debe ser un string');
-        }
-    
-        if (Brand::brandExists($brand)) {
-            return back()->with('error', 'La marca ya existe');
-        }
-    
-        return null;
-    }
 
-    public static function deleteBrand($id): RedirectResponse {
+    public static function deleteBrand(int $id): RedirectResponse {
         $brand = Brand::findBrand($id);
         if ($brand) {
             if(Brand::deleteBrand($id))
