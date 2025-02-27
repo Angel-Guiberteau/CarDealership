@@ -36,6 +36,8 @@ Route::get('/deleteCar/{id}', function (int $id): RedirectResponse {
 
 Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
 
+Route::get('/adminpanel/cars/{id}', [CarController::class, 'getCar'])->name('getCar');
+
 // POST
 
 Route::post('/addColor', [ColorController::class, 'addColor'])->name('addColor');
@@ -49,6 +51,8 @@ Route::post('/addCar', function (): RedirectResponse {
 })->name('addCar');
 
 // PUT
+
+Route::put('/updateCar', [CarController::class, 'updateCar'])->name('updateCar');
 
 Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
 

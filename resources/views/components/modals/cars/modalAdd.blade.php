@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="year" class="form-label">Año del vehículo *</label>
-                        <input type="text" class="form-control" name="year" id="year" placeholder="Seleccionar año" required>
+                        <input type="text" class="form-control" name="year" id="year-add" placeholder="Seleccionar año" required>                    
                     </div> 
                     <div class="mb-3 bg-white p-3 rounded">
                         <div class="d-flex justify-content-between mb-3">
