@@ -11,8 +11,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use App\Http\Requests\StoreCarRequest;
+
 
 class CarController extends Controller
 {
