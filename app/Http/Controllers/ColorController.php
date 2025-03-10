@@ -4,60 +4,93 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\UpdateColorRequest;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 use App\Models\Color;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Collection;
 
 class ColorController extends Controller {
 
-    private Color $colorModel;
+    public ?int $id = NULL;
+    public ?string $name = NULL;
+    public ?string $hex = NULL;
 
-    public function __construct() {
-        $this->colorModel = new Color();
-    }
-
-    public function index(): View {
-        return view('adminpanel.colors')
-                ->with('colors', $this->colorModel->allColors());
-    }
-    public function addColor(StoreColorRequest $request): RedirectResponse {
-        $color = $request->validated();
-
-        if ($this->colorModel->addColor($color)) {
-            return back()->with('success', 'Color creado correctamente');
+    public function __construct(?Color $color = null){
+        if ($color) {
+            $this->id = $color->id;
+            $this->name = $color->name;
+            $this->hex = $color->hex;
         }
-        return back()->with('error', 'Algo ha salido mal, no se pudo crear el color');
+    }
+
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function getName(): ?string {
+        return $this->name;
+    }
+
+    public function getHex(): ?string {
+        return $this->hex;
+    }
+
+    public function setId(int $id): void {
+        $this->id = $id;
+    }
+
+    public function setName(string $name): void {
+        $this->name = $name;
+    }
+
+    public function setHex(string $hex): void {
+        $this->hex = $hex;
+    }
+
+
+    public function index(): Collection {
+        return Color::allColors()->map(function($color){
+            return new ColorController($color);
+        });
+    }
+    
+    public function addColor(StoreColorRequest $request): Bool {
+        $validated = $request->validated();
+
+        $this->name = $validated['name'];
+        $this->hex = $validated['hex'];
+
+        return Color::addColor($this);
     }
 
 
     public function deleteColor(int $id): RedirectResponse {
-        $color = $this->colorModel->findColor($id);
-        if ($color) {
-            $color->delete();
-            return redirect()->route('colors')->with('success', 'Color eliminado con éxito.');
+
+        $color = Color::findColor($id);
+        
+        $this->id = $color->id;
+        $this->name = $color->name;
+        $this->hex = $color->hex;
+        
+        if(Color::deleteColor($this)){
+            return redirect()->back()->with('success', 'Color eliminado con éxito.');
         }
-        return redirect()->route('colors')->with('error', 'Error al eliminar el Color.');
+
+        return redirect()->back()->with('error', 'Error al eliminar el Color.');
+
     }
 
     public function updateColor(UpdateColorRequest $request): RedirectResponse {
-        $color = $request->validated();
+        $validated = $request->validated();
 
-        $id = $request['color_id'];
-        $name = $request['name'];
-        $hex = $request['hex'];
+        $this->id = $validated['color_id'];
+        $this->name = $validated['name'];
+        $this->hex = $validated['hex'];
 
-        $color = $this->colorModel->findColor($id);
-
-        if ($color) {
-            $updated = $this->colorModel->editingColor($name, $id, $hex);
-            if ($updated > 0) {
-                return redirect()->route('colors')->with('success', 'Color actualizado con éxito.');
-            } else {
-                return redirect()->route('colors')->with('info', 'No se realizaron cambios en el color.');
-            }
-        } else {
-            return redirect()->route('colors')->with('error', 'Color no encontrada.');
+        if(Color::editingColor($this)){
+            return redirect()->back()->with('success', 'Color actualizado con éxito.');
         }
+        
+        return redirect()->back()->with('info', 'No se realizaron cambios en el color.');
+
     }
 }
