@@ -10,24 +10,23 @@ class Brand extends Model {
     protected $table = 'brands';
     protected $fillable = ['name'];
 
-    public static function allBrands(): Collection{
-        return self::all();
+    public function allBrands(): Collection {
+        return $this->all();
     }
 
-    public static function createBrand(string $name): bool {
-        return (bool) self::create(['name' => $name]);
+    public function createBrand(string $name): bool {
+        return (bool) $this->create(['name' => $name]);
     }
 
-    public static function findBrand(int $id)
-    {
-        return self::find($id);
+    public function findBrand(int $id): Brand|null {
+        return $this->find($id);
     }
 
-    public static function editingBrand(string $name, int $id): int {
-        return self::where('id', $id)->update(['name' => $name]);
+    public function editingBrand(string $name, int $id): int {
+        return $this->where('id', $id)->update(['name' => $name]);
     }
 
-    public static function deleteBrand(int $id): int {
-        return self::destroy($id);
+    public function deleteBrand(int $id): int {
+        return $this->destroy($id);
     }
 }
