@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    public static function index(): View{
+    public function index(): View{
         return view('Home.home')
                 ->with('cars', Car::allCars())
                 ->with('brands', Brand::allBrands())
                 ->with('colors', Color::allColors());
     }
 
-    public static function listCars(): View{
+    public  function listCars(): View{
         return view('adminpanel.cars')
                 ->with('cars', Car::listCarsAdmin())
                 ->with('brands', Brand::allBrands())
@@ -33,13 +33,13 @@ class CarController extends Controller
                 ->with('types', Type::allTypes());
     }
 
-    public static function getTech(int $id): View {
+    public  function getTech(int $id): View {
         return view('tech_sheet.tech_sheet')
                 ->with('cars', Car::getTech($id));
     }
     
 
-    public static function deleteCar(int $id): RedirectResponse
+    public  function deleteCar(int $id): RedirectResponse
     {
         $car = Car::getCarById($id);
 
@@ -64,7 +64,7 @@ class CarController extends Controller
         return redirect()->route('admin')->with('error', 'Error al eliminar el coche.');
     }
 
-    public static function addCar(): RedirectResponse
+    public  function addCar(): RedirectResponse
     {
         $request = request();
 
@@ -114,13 +114,13 @@ class CarController extends Controller
         return redirect()->route('admin')->with('success', 'Coche agregado correctamente.');
     }
 
-    public static function getCar($id): JsonResponse
+    public  function getCar($id): JsonResponse
     {
         $car = Car::findWithImages($id);
         return response()->json($car);
     }
 
-    public static function updateCar(Request $request): RedirectResponse
+    public function updateCar(Request $request): RedirectResponse
     {
         $request = request();
         $id = $request->input('car_id');

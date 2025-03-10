@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Response;
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
-Route::get('/admin', [CarController::listCars()])->name('admin');
+Route::get('/admin', [CarController::class,'listCars'])->name('admin');
 
 Route::get('/brand', [BrandController::class,'index'])->name('brand');
 
@@ -28,7 +28,10 @@ Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typ
 
 Route::get('/deleteColor/{id}', [ColorController::class, 'deleteColor'])->name('ColorDeleted');
 
-Route::get('/deleteCar/{id}', [CarController::deleteCar($id)])->name('deleteCar');
+Route::get('/deleteCar/{id}', function ($id) { 
+    $controller = new CarController();
+    return $controller->deleteCar($id); 
+})->name('deleteCar');
 
 Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
 
@@ -42,7 +45,7 @@ Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brand
 
 Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 
-Route::post('/addCar', [CarController::addCar()])->name('addCar');
+Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
 
 // PUT
 
