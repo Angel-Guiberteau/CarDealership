@@ -9,20 +9,20 @@ class Type extends Model {
     protected $table = 'types';
     protected $fillable = ['name'];
 
-    public static function allTypes(): Collection{
+    public function allTypes(): Collection{
         return self::all();
     }
-    public static function addType(string $data): bool{
+    public function addType(string $data): bool{
         return (bool) self::create([
             'name' => $data
         ]);
     }
 
-    public static function findType(int $id): Type | null{
+    public function findType(int $id): Type | null{
         return self::find($id);
     }
 
-    public static function editingType(string $name, int $id): int {
+    public function editingType(string $name, int $id): int {
         return self::where('id', $id)->update(['name' => $name]);
     }
 }

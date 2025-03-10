@@ -17,11 +17,24 @@ use App\Http\Requests\StoreCarRequest;
 
 class CarController extends Controller
 {
-    private Car $carModel;
-    private Brand $brandModel;
-    private Color $colorModel;
-    private Type $typeModel;
-    private CarImage $carImageModel;
+    public Car $carModel;
+    public Brand $brandModel;
+    public Color $colorModel;
+    public Type $typeModel;
+    public CarImage $carImageModel;
+
+    //Properties 
+
+    public ?int $id = NULL;
+    public ?Brand $brand = NULL;
+    public ?Type $type = NULL;
+    public ?Color $color = NULL;
+    public ?string $name = NULL;
+    public ?int $year = NULL;
+    public ?float $horsepower = NULL;
+    public ?float $price = NULL;
+    public ?string $main_img = NULL;
+    public ?string $sale = NULL;
 
     public function __construct()
     {
@@ -32,24 +45,6 @@ class CarController extends Controller
         $this->carImageModel = new CarImage();
     }
 
-    public function index(): View
-    {
-        return view('Home.home', [
-            'cars' => $this->carModel->allCars(),
-            'brands' => $this->brandModel->allBrands(),
-            'colors' => $this->colorModel->allColors(),
-        ]);
-    }
-
-    public function listCars(): View
-    {
-        return view('adminpanel.cars', [
-            'cars' => $this->carModel->listCarsAdmin(),
-            'brands' => $this->brandModel->allBrands(),
-            'colors' => $this->colorModel->allColors(),
-            'types' => $this->typeModel->allTypes(),
-        ]);
-    }
 
     public function getTech(int $id): View
     {
@@ -176,4 +171,88 @@ class CarController extends Controller
 
         return redirect()->route('admin')->with('success', 'Coche actualizado correctamente.');
     }
+
+    // Getters and Setters
+
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void {
+        $this->id = $id;
+    }
+
+    public function getBrand(): ?Brand {
+        return $this->brand;
+    }
+
+    public function setBrand(Brand $brand): void {
+        $this->brand = $brand;
+    }
+
+    public function getType(): ?Type {
+        return $this->type;
+    }
+
+    public function setType(Type $type): void {
+        $this->type = $type;
+    }
+
+    public function getColor(): ?Color {
+        return $this->color;
+    }
+
+    public function setColor(Color $color): void {
+        $this->color = $color;
+    }
+
+    public function getName(): ?string {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void {
+        $this->name = $name;
+    }
+
+    public function getYear(): ?int {
+        return $this->year;
+    }
+
+    public function setYear(?int $year): void {
+        $this->year = $year;
+    }
+
+    public function getHorsepower(): ?float {
+        return $this->horsepower;
+    }
+
+    public function setHorsepower(?float $horsepower): void {
+        $this->horsepower = $horsepower;
+    }
+
+    public function getPrice(): ?float {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): void {
+        $this->price = $price;
+    }
+
+    public function getMainImg(): ?string {
+        return $this->main_img;
+    }
+
+    public function setMainImg(?string $main_img): void {
+        $this->main_img = $main_img;
+    }
+
+    public function getSale(): ?string {
+        return $this->sale;
+    }
+
+    public function setSale(?string $sale): void {
+        $this->sale = $sale;
+    }
+
+    
 }

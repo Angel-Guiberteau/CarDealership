@@ -8,13 +8,15 @@ use App\Http\Controllers\TypeController;
 
 use App\Http\Controllers\ColorController;
 
+use App\Http\Controllers\CarsController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 
 
-Route::get('/', [CarController::class,'index'])->name('home');
+Route::get('/', [CarsController::class,'index'])->name('home');
 
-Route::get('/admin', [CarController::class,'listCars'])->name('admin');
+Route::get('/admin', [CarsController::class,'listCars'])->name('admin');
 
 Route::get('/brand', [BrandController::class,'index'])->name('brand');
 

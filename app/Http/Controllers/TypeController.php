@@ -6,38 +6,37 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
 
 class TypeController extends Controller
 {
-    public static function index():View {
+
+    private Type $type;
+    public int $id;
+    public 
+    public function __construct(){
+        $this->type = new Type;
+    }
+
+    public function index():View {
         return view('adminpanel.types')
-                ->with('types', Type::allTypes());
+                ->with('types', $this->type->allTypes());
     }
 
-    public static function addType(): RedirectResponse {
-        $request = request();
+    public function addType(StoreTypeRequest $request): RedirectResponse {
+        $request = $request->validated();
 
-        $type = $request->input('type');
+        $type = $request['type'];
 
-        if (self::validateRequestAdd($request)) {
-            if (Type::addType($type)) {
-                return back()->with('success', 'Tipo creado correctamente');
-            }
-            return back()->with('error', 'Algo ha salido mal, no se pudo crear el tipo');
+        if ($this->type->addType($type)) {
+            return back()->with('success', 'Tipo creado correctamente');
         }
-        return back()->with('error', 'Validación fallida, no se pudo crear el tipo');
+        return back()->with('error', 'Algo ha salido mal, no se pudo crear el tipo');
     }
 
-    private static function validateRequestAdd(Request $request): bool {
-        $validated = $request->validate([
-            'type' => 'required|string|max:20',
-        ]);
-
-        return !empty($validated);
-    }
-
-    public static function deleteType(int $id): RedirectResponse {
-        $type = Type::findType($id);
+    public function deleteType(int $id): RedirectResponse {
+        $type = $this->type->findType($id);
         if ($type) {
             $type->delete();
             return redirect()->route('types')->with('success', 'Tipo eliminado con éxito.');
@@ -45,19 +44,15 @@ class TypeController extends Controller
         return redirect()->route('types')->with('error', 'Error al eliminar el tipo.');
     }
 
-    public static function updateType(): RedirectResponse {
-        $request = request();
+    public function updateType(UpdateTypeRequest $request): RedirectResponse {
+        $request = $request->validated();
 
-        $request->validate([
-            'type' => 'required|string|max:20',
-        ]);
+        $id = $request['type_id'];
 
-        $id = $request->input('type_id');
-
-        $type = Type::findType($id);
+        $type = $this->type->findType($id);
 
         if ($type) {
-            $updated = Type::editingType($request->input('type'), $id);
+            $updated = $this->type->editingType($request['type'], $id);
             if ($updated > 0) {
                 return redirect()->route('types')->with('success', 'Tipo actualizado con éxito.');
             } else {
