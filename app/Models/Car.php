@@ -26,11 +26,11 @@ class Car extends Model {
         return $this->hasMany(CarImage::class, 'car_id');
     }
 
-    public static function allCars(): Collection{
+    public function allCars(): Collection{
         return self::with(['brand', 'color'])->get();
     }
 
-    public static function listCarsAdmin(): Collection{
+    public function listCarsAdmin(): Collection{
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
@@ -47,7 +47,7 @@ class Car extends Model {
             ->get();
     }
 
-    public static function getTech(int $id): Collection {
+    public function getTech(int $id): Collection {
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
@@ -65,16 +65,16 @@ class Car extends Model {
             ->get();
     }
 
-    public static function deleteCar(int $id): bool{
+    public function deleteCar(int $id): bool{
         return self::where('id', $id)->delete();
     }
 
-    public static function getCarById(int $id)
+    public function getCarById(int $id)
     {
         return self::find($id);
     }
 
-    public static function createCar(array $data): Car
+    public function createCar(array $data): Car
     {
         return self::create([
             'brand_id' => $data['brand'],
@@ -90,7 +90,7 @@ class Car extends Model {
         ]);
     }
 
-    public static function updateCar(int $id, array $data): bool
+    public function updateCar(int $id, array $data): bool
     {
         return self::where('id', $id)->update([
             'brand_id' => $data['brand'],
@@ -106,7 +106,7 @@ class Car extends Model {
         ]);
     }
 
-    public static function findWithImages($id)
+    public function findWithImages($id)
     {
         return self::with('images')->find($id);
     }
