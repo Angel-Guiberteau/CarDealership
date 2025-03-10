@@ -9,8 +9,8 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ColorController;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Response;
+
 
 Route::get('/', [CarController::class,'index'])->name('home');
 
@@ -45,6 +45,7 @@ Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brand
 
 Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
 
+Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
 Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
 
 // PUT
