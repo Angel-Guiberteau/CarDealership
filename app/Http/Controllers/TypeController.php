@@ -24,27 +24,19 @@ class TypeController extends Controller
     }
     
     public function setId($id){
-
         $this->id = $id;
-
     }
 
     public function getId(){
-
         return $this->id;
-
     }
 
     public function setName($name){
-
         $this->name = $name;
-
     }
     
     public function getName(){
-
         return $this->name;
-
     }
     
     public function index():Collection {
@@ -61,15 +53,14 @@ class TypeController extends Controller
 
         $this->name = $validated['type'];
 
-        if (Type::addType($this)) {
+        if (Type::addType($this)) 
             return redirect()->back()->with('success', 'Tipo creado correctamente');
-        }
-
+        
         return redirect()->back()->with('error', 'Algo ha salido mal, no se pudo crear el tipo');
 
     }
 
-    public function deleteType(int $id): RedirectResponse{
+    public function deleteType(int $id): RedirectResponse {
 
         $type = Type::findType($id);
 
@@ -90,9 +81,9 @@ class TypeController extends Controller
         $this->id = $validated['type_id'];
         $this->name = $validated['type'];
         
-        if (Type::editingType($this)) {
+        if (Type::editingType($this)) 
             return redirect()->back()->with('success', 'Tipo actualizado con éxito.');
-        }
+        
         return redirect()->back()->with('error', 'Error al actualizar el tipo.');
         
     }

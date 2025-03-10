@@ -14,9 +14,11 @@ class Type extends Model {
         return self::all();
     }
     public static function addType(TypeController $request): bool{
+
         return (bool) self::create([
             'name' => $request->name
         ]);
+
     }
 
     public static function findType(int $id): Type | null{
@@ -29,8 +31,6 @@ class Type extends Model {
     
 
     public static function deleteType(TypeController $request): bool {
-
        return self::where('id', $request->id)->delete();
-
     }
 }

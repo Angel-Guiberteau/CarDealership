@@ -15,11 +15,13 @@ class ColorController extends Controller {
     public ?string $hex = NULL;
 
     public function __construct(?Color $color = null){
+
         if ($color) {
             $this->id = $color->id;
             $this->name = $color->name;
             $this->hex = $color->hex;
         }
+
     }
 
     public function getId(): ?int {
@@ -48,18 +50,25 @@ class ColorController extends Controller {
 
 
     public function index(): Collection {
+
         return Color::allColors()->map(function($color){
             return new ColorController($color);
         });
+
     }
     
-    public function addColor(StoreColorRequest $request): Bool {
+    public function addColor(StoreColorRequest $request): RedirectResponse {
+
         $validated = $request->validated();
 
         $this->name = $validated['name'];
         $this->hex = $validated['hex'];
 
-        return Color::addColor($this);
+        if (Color::addColor($this)) 
+            return redirect()->back()->with('success', 'Color creado correctamente');
+        
+        return redirect()->back()->with('error', 'Error al crear el color');
+
     }
 
 
@@ -71,24 +80,23 @@ class ColorController extends Controller {
         $this->name = $color->name;
         $this->hex = $color->hex;
         
-        if(Color::deleteColor($this)){
+        if(Color::deleteColor($this))
             return redirect()->back()->with('success', 'Color eliminado con éxito.');
-        }
-
+        
         return redirect()->back()->with('error', 'Error al eliminar el Color.');
 
     }
 
     public function updateColor(UpdateColorRequest $request): RedirectResponse {
+        
         $validated = $request->validated();
 
         $this->id = $validated['color_id'];
         $this->name = $validated['name'];
         $this->hex = $validated['hex'];
 
-        if(Color::editingColor($this)){
+        if(Color::editingColor($this))
             return redirect()->back()->with('success', 'Color actualizado con éxito.');
-        }
         
         return redirect()->back()->with('info', 'No se realizaron cambios en el color.');
 

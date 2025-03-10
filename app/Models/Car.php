@@ -31,6 +31,7 @@ class Car extends Model {
     }
 
     public function listCarsAdmin(): Collection{
+
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
@@ -45,9 +46,11 @@ class Car extends Model {
             )
             ->groupBy('cars.id')
             ->get();
+
     }
 
     public function getTech(int $id): Collection {
+
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
             ->join('colors', 'cars.color_id', '=', 'colors.id')
@@ -63,6 +66,7 @@ class Car extends Model {
             ->where('cars.id', $id)
             ->groupBy('cars.id', 'brands.name', 'types.name', 'colors.name', 'colors.hex') 
             ->get();
+
     }
 
     public function deleteCar(int $id): bool{
@@ -76,6 +80,7 @@ class Car extends Model {
 
     public function createCar(array $data): Car
     {
+
         return self::create([
             'brand_id' => $data['brand'],
             'name' => $data['model'],
@@ -88,10 +93,12 @@ class Car extends Model {
             'year' => $data['year'], 
             'description' => $data['description'], 
         ]);
+
     }
 
     public function updateCar(int $id, array $data): bool
     {
+
         return self::where('id', $id)->update([
             'brand_id' => $data['brand'],
             'name' => $data['name'],
@@ -104,6 +111,7 @@ class Car extends Model {
             'year' => $data['year'],
             'description' => $data['description'],
         ]);
+        
     }
 
     public function findWithImages($id)

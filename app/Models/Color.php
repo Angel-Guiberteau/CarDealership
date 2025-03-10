@@ -16,10 +16,12 @@ class Color extends Model {
     }
 
     public static function addColor(ColorController $request): bool{
+
         return (bool) self::create([
             'name' => $request->name,
             'hex' => $request->hex
         ]);
+
     }
 
     public static function findColor(int $id): Color | null {
@@ -27,10 +29,12 @@ class Color extends Model {
     }
 
     public static function editingColor(ColorController $request): Bool {
+
         return self::where('id', $request->id)->update([
             'name' => $request->name,
             'hex' => $request->hex
         ]);
+        
     }
 
     public static function deleteColor(ColorController $request): Bool {

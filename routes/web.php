@@ -20,15 +20,17 @@ use App\Http\Requests\StoreBrandRequest;
 
 Route::get('/', [CarsController::class,'index'])->name('home');
 
-// CARS
+// ------------------CARS------------------
 
 Route::get('/admin', [CarsController::class,'listCars'])->name('admin');
 
-// CAR
+// ------------------CAR------------------
 
 Route::get('/deleteCar/{id}', function ($id) { 
+
     $controller = new CarController();
     return $controller->deleteCar($id); 
+
 })->name('deleteCar');
 
 Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
@@ -40,7 +42,7 @@ Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sh
 
 Route::get('/adminpanel/cars/{id}', [CarController::class, 'getCar'])->name('getCar');
 
-// COLORS
+// ------------------COLORS------------------
 
 Route::get('/colors', function () { 
 
@@ -59,19 +61,15 @@ Route::get('/deleteColor/{id}', function ($id) {
 })->name('colorDeleted');
 
 Route::post('/addColor', function (StoreColorRequest $request) { 
-    $controller = new ColorController();
-    $color = $controller->addColor($request);
 
-    if ($color) {
-        return redirect()->back()->with('success', 'Color creado correctamente');
-    }
-    return redirect()->back()->with('error', 'Error al crear el color');
-    
+    $controller = new ColorController();
+    return $controller->addColor($request);
+
 })->name('addColor');
 
 Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
 
-// BRAND
+// ------------------BRAND------------------
 
 Route::get('/brand', function () { 
 
@@ -102,7 +100,7 @@ Route::put('/updateBrand/', function (UpdateBrandRequest $request) {
 
 })->name('brandUpdated');
 
-// TYPES
+// ------------------TYPES------------------
 
 Route::get('/types', function () { 
 
@@ -134,7 +132,7 @@ Route::put('/updateType/', function (UpdateTypeRequest $request) {
 
 })->name('typeUpdated');
 
-// IMAGES
+// ------------------IMAGES------------------
 
 Route::get('/img/{main_image}', function ($main_image) {
     $path = storage_path('app/public/img/' . $main_image);

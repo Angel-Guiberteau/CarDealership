@@ -22,27 +22,19 @@ class BrandController extends Controller {
     }
 
     public function getId(): ?int {
-        
         return $this->id;
-
     }
 
     public function getName(): ?string {
-
         return $this->name;
-
     }
 
     public function setId(int $id): void {
-
         $this->id = $id;
-
     }
 
     public function setName(string $name): void {
-        
         $this->name = $name;
-        
     }
     
     public function index() {
@@ -56,6 +48,7 @@ class BrandController extends Controller {
     public function createBrand(StoreBrandRequest $request): RedirectResponse {
         
         $validated = $request->validated();
+        
         $this->name = $validated['brand'];
 
         if (Brand::createBrand($this))
@@ -86,9 +79,9 @@ class BrandController extends Controller {
         $this->id = $validated['brand_id'];
         $this->name = $validated['brand'];
 
-        if(Brand::editingBrand($this)){
+        if(Brand::editingBrand($this))
             return redirect()->back()->with('success', 'Marca actualizada con éxito.');
-        }
+        
         return redirect()->back()->with('info', 'Error al realizar cambios en el Marca.');
 
     }
