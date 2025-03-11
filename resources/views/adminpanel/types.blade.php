@@ -1,6 +1,6 @@
 @extends('admin_layout')
 
-@section('title', 'cars types')
+@section('title', 'Types')
 
 @section('admin_active', 'active')
 
