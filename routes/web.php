@@ -18,11 +18,49 @@ use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\StoreBrandRequest;
 
-Route::get('/', [CarsController::class,'index'])->name('home');
+
+Route::get('/', function () { 
+
+    $carController = new CarsController('index');
+
+    $cars = $carController->checkType();
+
+    $brandController = new BrandController();
+    $colorController = new ColorController();
+
+    $brands = $brandController->index();
+    $colors = $colorController->index();
+
+    return view('Home.home')
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('cars', $cars);
+
+})->name('home');
 
 // ------------------CARS------------------
 
-Route::get('/admin', [CarsController::class,'listCars'])->name('admin');
+Route::get('/admin', function () { 
+
+    $carController = new CarsController('listCars');
+
+    $cars = $carController->checkType();
+
+    $brandController = new BrandController();
+    $colorController = new ColorController();
+    $typeController = new TypeController();
+
+    $brands = $brandController->index();
+    $colors = $colorController->index();
+    $types = $typeController->index();
+
+    return view('adminpanel.cars')
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('types', $types)
+            ->with('cars', $cars);
+
+})->name('admin');
 
 // ------------------CAR------------------
 
@@ -48,7 +86,9 @@ Route::get('/colors', function () {
 
     $controller = new ColorController();
     $colors = $controller->index();
-    return view('adminpanel.colors')->with('colors', $colors);
+
+    return view('adminpanel.colors')
+            ->with('colors', $colors);
     
 })->name('colors');
 

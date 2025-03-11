@@ -7,30 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
-
 class Car extends Model {
     
     protected $table = 'cars';
-    protected $fillable = ['name', 'brand_id', 'type_id', 'color_id', 'price', 'horse_power', 'sale','year','description', 'main_image'];
+    protected $fillable = ['name', 'brand_id', 'type_id', 'color_id', 'price', 'horse_power', 'sale', 'year', 'description', 'main_image'];
 
-    public function brand(): BelongsTo{
+    public function brand(): BelongsTo {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
-
-    public function color(): BelongsTo{
+    
+    public function color(): BelongsTo {
         return $this->belongsTo(Color::class, 'color_id');
     }
-
-    public function images(): HasMany
-    {
+    
+    public function images(): HasMany {
         return $this->hasMany(CarImage::class, 'car_id');
     }
 
-    public function allCars(): Collection{
-        return self::with(['brand', 'color'])->get();
+    public function type(): BelongsTo {
+        return $this->belongsTo(Type::class, 'type_id');
     }
+    
+    
+    public static function allCars(): Collection {
+        return self::query()->with(['brand', 'color', 'type'])->get();
+    }
+    
+    
 
-    public function listCarsAdmin(): Collection{
+    public static function listCarsAdmin(): Collection{
 
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
@@ -49,7 +54,7 @@ class Car extends Model {
 
     }
 
-    public function getTech(int $id): Collection {
+    public static function getTech(int $id): Collection {
 
         return self::join('brands', 'cars.brand_id', '=', 'brands.id')
             ->join('types', 'cars.type_id', '=', 'types.id')
@@ -69,16 +74,16 @@ class Car extends Model {
 
     }
 
-    public function deleteCar(int $id): bool{
+    public static function deleteCar(int $id): bool{
         return self::where('id', $id)->delete();
     }
 
-    public function getCarById(int $id)
+    public static function getCarById(int $id)
     {
         return self::find($id);
     }
 
-    public function createCar(array $data): Car
+    public static function createCar(array $data): Car
     {
 
         return self::create([
@@ -96,7 +101,7 @@ class Car extends Model {
 
     }
 
-    public function updateCar(int $id, array $data): bool
+    public static function updateCar(int $id, array $data): bool
     {
 
         return self::where('id', $id)->update([
@@ -114,7 +119,7 @@ class Car extends Model {
         
     }
 
-    public function findWithImages($id)
+    public static function findWithImages($id)
     {
         return self::with('images')->find($id);
     }

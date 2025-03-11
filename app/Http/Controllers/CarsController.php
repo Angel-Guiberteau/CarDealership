@@ -2,23 +2,51 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Color;
+use App\Models\Type;
+use App\Models\CarImage;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Symfony\Component\Routing\Loader\Configurator\CollectionConfigurator;
 
-class CarsController extends Controller
-{
-    public function index(): View
+class CarsController extends Controller {
+    
+    public ?string $type = NULL; 
+    
+    public function __construct(?string $type = NULL) {
+        
+        $this->type = $type;
+
+    }
+
+    public function checkType(){
+
+        if ($this->type == 'listCars') {
+            return $this->listCars();
+        }
+
+        if ($this->type == 'index') {
+            return $this->index();
+        }
+
+        if ($this->type == 'offert') {
+            
+        }
+
+    }
+
+    public function index(): Collection
     {
 
-        $carController = new CarController();
-
-        $brands = $carController->brandModel->allBrands();
-        $colors = $carController->colorModel->allColors();
+        $brands = Brand::allBrands();
+        $colors = Color::allColors();
         
-        $cars = $carController->carModel->allCars()->map(function ($car): CarController {
+        $cars = Car::allCars()->map(function ($car): CarController {
+
             $carController = new CarController();
             
             $carController->setId($car->id);
@@ -27,29 +55,42 @@ class CarsController extends Controller
             $carController->setColor($car->color);
             $carController->setName($car->name);
             $carController->setYear($car->year);
-            $carController->setHorsepower($car->horsepower);
+            $carController->setHorsepower($car->horse_power);
             $carController->setPrice($car->price);
-            $carController->setMainImg($car->main_img);
+            $carController->setMainImg($car->main_image);
             $carController->setSale($car->sale);
+            $carController->setDescription($car->description);
+
             return $carController;
+
         });
-
-
-        return view('home.home')
-                    ->with('cars', $cars)
-                    ->with('brands', $brands)
-                    ->with('colors', $colors);
+    
+        return $cars;
     }
 
-    public function listCars(): View
+    public function listCars(): Collection
     {
-        $carController = new CarController();
+        
+        $cars = Car::allCars()->map(function ($car): CarController {
 
-        return view('adminpanel.cars', [
-            'cars' => $carController->carModel->listCarsAdmin(),
-            'brands' => $carController->brandModel->allBrands(),
-            'colors' => $carController->colorModel->allColors(),
-            'types' => $carController->typeModel->allTypes(),
-        ]);
+            $carController = new CarController();
+            
+            $carController->setId($car->id);
+            $carController->setBrand($car->brand);
+            $carController->setType($car->type);
+            $carController->setColor($car->color);
+            $carController->setName($car->name);
+            $carController->setYear($car->year);
+            $carController->setHorsepower($car->horse_power);
+            $carController->setPrice($car->price);
+            $carController->setMainImg($car->main_image);
+            $carController->setSale($car->sale);
+            $carController->setDescription($car->description);
+
+            return $carController;
+
+        });
+
+        return $cars;
     }
 }

@@ -16,7 +16,6 @@ class Color extends Model {
     }
 
     public static function addColor(ColorController $request): bool{
-
         return (bool) self::create([
             'name' => $request->name,
             'hex' => $request->hex
