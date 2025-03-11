@@ -4,21 +4,21 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card p-3" style="max-width: 1000px; margin: auto;">
+    <div class="card p-3">
         @foreach($cars as $car)
             @php 
                 $images = $car->images ? explode(';', $car->images) : [];
             @endphp
             <div class="gallery-container text-center">
-                <div class="swiper mySwiper" style="width: 100%; height: 500px;">
+                <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide d-flex justify-content-center">
-                            <img src="{{ asset('img/' . $car->main_image) }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Main Image">
+                            <img src="{{ asset('img/' . $car->main_image) }}" class="img-fluid" alt="Main Image">
                         </div>
                         @foreach($images as $image)
                             @if(!empty(trim($image)))
                                 <div class="swiper-slide d-flex justify-content-center">
-                                    <img src="{{ asset('img/' . trim($image)) }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="Car Image">
+                                    <img src="{{ asset('img/' . trim($image)) }}" class="img-fluid" alt="Car Image">
                                 </div>
                             @endif
                         @endforeach
