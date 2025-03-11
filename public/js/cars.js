@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll('.btn-delete').forEach(button => {
+        
         button.addEventListener('click', function (e) {
             const taskId = this.getAttribute('data-car-id');
 

@@ -23,7 +23,7 @@ class CarsController extends Controller {
 
     }
 
-    public function checkType(){
+    public function checkType(): Collection{
 
         if ($this->type == 'listCars') {
             return $this->listCars();

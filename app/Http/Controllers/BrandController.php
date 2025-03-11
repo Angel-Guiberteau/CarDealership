@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreBrandRequest;
+use Illuminate\Support\Collection;
 
 class BrandController extends Controller {
 
@@ -37,7 +38,7 @@ class BrandController extends Controller {
         $this->name = $name;
     }
     
-    public function index() {
+    public function index(): Collection {
         
         return Brand::allBrands()->map(function($brand): BrandController{
             return new BrandController($brand);
@@ -52,9 +53,9 @@ class BrandController extends Controller {
         $this->name = $validated['brand'];
 
         if (Brand::createBrand($this))
-            return back()->with('success', 'Marca creada con éxito');
+            return redirect()->back()->with('success', 'Marca creada con éxito');
         
-        return back()->with('error', 'Error al crear la marca');
+        return redirect()->back()->with('error', 'Error al crear la marca');
 
     }
 
