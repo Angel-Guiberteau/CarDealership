@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\TypeController;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,17 +13,24 @@ class Type extends Model {
     public static function allTypes(): Collection{
         return self::all();
     }
-    public static function addType(string $data): bool{
+    public static function addType(TypeController $request): bool{
+
         return (bool) self::create([
-            'name' => $data
+            'name' => $request->name
         ]);
+
     }
 
     public static function findType(int $id): Type | null{
         return self::find($id);
     }
 
-    public static function editingType(string $name, int $id): int {
-        return self::where('id', $id)->update(['name' => $name]);
+    public static function editingType(TypeController $request): bool {
+        return self::where('id', $request->id)->update(['name' => $request->name]);
+    }
+    
+
+    public static function deleteType(TypeController $request): bool {
+       return self::where('id', $request->id)->delete();
     }
 }

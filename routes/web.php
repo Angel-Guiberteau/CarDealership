@@ -8,53 +8,131 @@ use App\Http\Controllers\TypeController;
 
 use App\Http\Controllers\ColorController;
 
+use App\Http\Controllers\CarsController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
+use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
+use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Requests\StoreColorRequest;
+use App\Http\Requests\StoreBrandRequest;
 
+Route::get('/', [CarsController::class,'index'])->name('home');
 
-Route::get('/', [CarController::class,'index'])->name('home');
+// ------------------CARS------------------
 
-Route::get('/admin', [CarController::class,'listCars'])->name('admin');
+Route::get('/admin', [CarsController::class,'listCars'])->name('admin');
 
-Route::get('/brand', [BrandController::class,'index'])->name('brand');
-
-Route::get('/types', [TypeController::class,'index'])->name('types');
-
-Route::get('/colors', [ColorController::class,'index'])->name('colors');
-
-Route::get('/deleteBrand/{id}', [BrandController::class, 'deleteBrand'])->name('brandDeleted');
-
-Route::get('/deleteType/{id}', [TypeController::class, 'deleteType'])->name('typeDeleted');
-
-Route::get('/deleteColor/{id}', [ColorController::class, 'deleteColor'])->name('ColorDeleted');
+// ------------------CAR------------------
 
 Route::get('/deleteCar/{id}', function ($id) { 
+
     $controller = new CarController();
     return $controller->deleteCar($id); 
+
 })->name('deleteCar');
+
+Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
+
+Route::put('/updateCar', [CarController::class, 'updateCar'])->name('updateCar');
+
 
 Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
 
 Route::get('/adminpanel/cars/{id}', [CarController::class, 'getCar'])->name('getCar');
 
-// POST
+// ------------------COLORS------------------
 
-Route::post('/addColor', [ColorController::class, 'addColor'])->name('addColor');
+Route::get('/colors', function () { 
 
-Route::post('/createBrand', [BrandController::class,'createBrand'])->name('brandCreated');
+    $controller = new ColorController();
+    $colors = $controller->index();
+    return view('adminpanel.colors')->with('colors', $colors);
+    
+})->name('colors');
 
-Route::post('/addType', [TypeController::class, 'addType'])->name('addType');
+Route::get('/deleteColor/{id}', function ($id) { 
 
-Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
-Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
+    $controller = new ColorController();
 
-// PUT
+    return $controller->deleteColor($id);
 
-Route::put('/updateCar', [CarController::class, 'updateCar'])->name('updateCar');
+})->name('colorDeleted');
 
-Route::put('/updateBrand/', [BrandController::class, 'updateBrand'])->name('brandUpdated');
+Route::post('/addColor', function (StoreColorRequest $request) { 
 
-Route::put('/updateType/', [TypeController::class, 'updateType'])->name('typeUpdated');
+    $controller = new ColorController();
+    return $controller->addColor($request);
+
+})->name('addColor');
+
+Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
+
+// ------------------BRAND------------------
+
+Route::get('/brand', function () { 
+
+    $controller = new BrandController();
+    $brands = $controller->index();
+    return view('adminpanel.brand')->with('brands', $brands);
+    
+})->name('brand');
+
+Route::get('/deleteBrand/{id}', function ($id) { 
+
+    $controller = new BrandController();
+    return $controller->deleteBrand($id);
+
+})->name('brandDeleted');
+
+Route::post('/createBrand', function (StoreBrandRequest $request){ 
+    
+    $controller = new BrandController();
+    return $controller->createBrand($request);
+
+})->name('brandCreated');
+
+Route::put('/updateBrand/', function (UpdateBrandRequest $request) { 
+
+    $controller = new BrandController();
+    return $controller->updateBrand($request);   
+
+})->name('brandUpdated');
+
+// ------------------TYPES------------------
+
+Route::get('/types', function () { 
+
+    $controller = new TypeController();
+    $types = $controller->index();
+    return view('adminpanel.types')->with('types', $types);
+    
+})->name('types');
+
+Route::post('/addType', function (StoreTypeRequest $request){ 
+    
+    $controller = new TypeController();
+    return $controller->addType($request);
+
+})->name('addType');
+
+Route::get('/deleteType/{id}', function ($id) { 
+
+    $controller = new TypeController();
+    return $controller->deleteType($id);
+
+})->name('typeDeleted');
+
+
+Route::put('/updateType/', function (UpdateTypeRequest $request) { 
+
+    $controller = new TypeController();
+    return $controller->updateType($request);   
+
+})->name('typeUpdated');
+
+// ------------------IMAGES------------------
 
 Route::get('/img/{main_image}', function ($main_image) {
     $path = storage_path('app/public/img/' . $main_image);
@@ -69,5 +147,4 @@ Route::get('/img/{main_image}', function ($main_image) {
     return Response::make($file, 200)->header('Content-Type', $type);
 })->name('image');
 
-Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colorUpdated');
 
