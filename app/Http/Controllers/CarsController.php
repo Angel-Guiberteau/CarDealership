@@ -29,21 +29,13 @@ class CarsController extends Controller {
             return $this->listCars();
         }
 
-        if ($this->type == 'index') {
-            return $this->index();
-        }
+        return $this->index();
 
-        if ($this->type == 'offert') {
-            
-        }
 
     }
 
     public function index(): Collection
     {
-
-        $brands = Brand::allBrands();
-        $colors = Color::allColors();
         
         $cars = Car::allCars()->map(function ($car): CarController {
 

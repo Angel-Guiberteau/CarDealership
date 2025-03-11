@@ -17,11 +17,12 @@ use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\StoreBrandRequest;
-
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 
 Route::get('/', function () { 
 
-    $carController = new CarsController('index');
+    $carController = new CarsController();
 
     $cars = $carController->checkType();
 
@@ -67,18 +68,46 @@ Route::get('/admin', function () {
 Route::get('/deleteCar/{id}', function ($id) { 
 
     $controller = new CarController();
+
     return $controller->deleteCar($id); 
 
 })->name('deleteCar');
 
-Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
+Route::post('/addCar', function (StoreCarRequest $request) { 
 
-Route::put('/updateCar', [CarController::class, 'updateCar'])->name('updateCar');
+    $controller = new CarController();
+
+    return $controller->addCar($request); 
+
+})->name('addCar');
 
 
-Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
+Route::put('/updateCar', function (UpdateCarRequest $request) { 
 
-Route::get('/adminpanel/cars/{id}', [CarController::class, 'getCar'])->name('getCar');
+    $controller = new CarController();
+
+    return $controller->updateCar($request); 
+
+})->name('updateCar');
+
+//Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
+
+Route::get('/tech-sheet/{id}', function ($id) { 
+
+    $controller = new CarController();
+
+    return $controller->getTech($id); 
+
+})->name('tech_sheet');
+
+
+Route::get('/adminpanel/cars/{id}', function ($id) { 
+
+    $controller = new CarController();
+
+    return $controller->getCar($id); 
+
+})->name('getCar');
 
 // ------------------COLORS------------------
 

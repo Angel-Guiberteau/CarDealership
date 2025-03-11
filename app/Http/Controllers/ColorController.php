@@ -67,6 +67,7 @@ class ColorController extends Controller {
 
 
     public function deleteColor(int $id): RedirectResponse {
+        
         $color = Color::findColor($id);
         
         $this->id = $color->id;

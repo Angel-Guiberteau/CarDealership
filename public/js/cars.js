@@ -90,6 +90,7 @@ $(document).ready(function() {
                 console.log(car);
                 console.log('Año recibido:', car.year);
 
+                $('#model').val(' ');
                 $('#model').val(car.name);
                 $('#description').val(car.description);
 
