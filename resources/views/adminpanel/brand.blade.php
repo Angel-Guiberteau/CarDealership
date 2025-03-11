@@ -81,6 +81,6 @@
 
 <script src="{{ asset('js/dataTable.js') }}"></script>
 <script src="{{ asset('js/sweetAlert.js') }}"></script>
-<script src="{{ asset('js/edit.js') }}"></script>
-
+<script type="module" src="{{ asset('js/initValidations.js') }}"></script>
+    
 @endpush

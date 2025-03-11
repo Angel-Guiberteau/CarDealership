@@ -13,6 +13,7 @@
                             <input type="hidden" name="color_id" id="id">
                             <label for="edit" class="form-label">Nombre de color <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="edit" name="name" placeholder="Color Seleccionado a Modificar">
+                            <div id="errorEdit" class="invalid-feedback" style="display: none;"></div>
                         </div>
                         <div class="mb-3">
                             <label for="editColorHex" class="form-label">Selecciona un color <span class="text-danger">*</span></label>

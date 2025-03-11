@@ -5,6 +5,7 @@
 @section('admin_active', 'active')
 
 @section('content')
+
     <div class="container-fluid mt-4">
         <h2 class="text-white bg-dark p-4">Colores</h2>
         <div class="mb-3 d-flex justify-content-between mt-4">
@@ -76,11 +77,15 @@
     @include('components.modals.colors.modalAdd')
     @include('components.modals.colors.modalEdit')
     @include('components.validations.sweet_alert')
+
+   
+
 @endsection
 
 @push('js')
+
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
     <script src="{{ asset('js/dataTable.js') }}"></script>
-    <script src="{{ asset('js/validateAddColor.js') }}"></script>
-    <script src="{{ asset('js/edit.js') }}"></script>
+    <script type="module" src="{{ asset('js/initValidations.js') }}"></script>
+       
 @endpush

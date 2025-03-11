@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     const form = document.getElementById("vehiculoForm");
-    const modelInput = document.getElementById("model");
+    const modelInput = document.getElementById("modelo");
     const yearInput = document.getElementById("year-add");
     const imageInput = document.getElementById("imagenInput");
     const submitButton = form.querySelector("button[type='submit']");
-    const VALID_NAME_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/; // regex to allow letters, numbers, and spaces
+    const VALID_NAME_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/; 
     const VALID_YEAR_REGEX = /^(19|20)\d{2}$/;
 
     submitButton.disabled = true;

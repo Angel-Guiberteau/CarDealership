@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="model" class="form-label">Modelo <span class="text-danger">*</span></label>
+                        <label for="modelo" class="form-label">Modelo <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="model" id="modelo" required>
                     </div>
 
