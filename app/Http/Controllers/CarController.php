@@ -194,7 +194,7 @@ class CarController extends Controller
         return $this->type;
     }
 
-    public function setType(Type $type): void {
+    public function setType(?Type $type): void {
         $this->type = $type;
     }
 
