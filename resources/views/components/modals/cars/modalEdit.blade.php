@@ -15,7 +15,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="brand" class="form-label">Marca <span class="text-danger">*</span></label>
                         <select class="form-select" name="brand" id="brand" required>
-                            <option disabled>Seleccionar Marca</option>
+                            <option disabled hidden selected>Seleccionar Marca</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
@@ -35,7 +35,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="color" class="form-label">Color <span class="text-danger">*</span></label>
                         <select class="form-select" name="color" id="color" required>
-                            <option disabled>Seleccionar Color</option>
+                            <option disabled hidden selected>Seleccionar Color</option>
                             @foreach($colors as $color)
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
                             @endforeach
@@ -45,7 +45,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="type_id" class="form-label">Tipo <span class="text-danger">*</span></label>
                         <select class="form-select" name="type_id" id="type_id" required>
-                            <option disabled>Seleccionar Tipo</option>
+                            <option disabled hidden selected>Seleccionar Tipo</option>
                             @foreach($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach

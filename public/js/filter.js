@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     let cars = document.querySelectorAll(".col-md-3");
 
     let brandFilter = document.getElementById("brand");
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset");
 
     function filterCars() {
+
         let brand = brandFilter.value;
         let model = modelFilter.value.toLowerCase();
         let color = colorFilter.value;
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let hpMax = parseInt(hpMaxFilter.value);
 
         cars.forEach(car => {
+
             let card = car.querySelector(".card");
             let carBrand = card.getAttribute("data-card-brand");
             let carModel = card.querySelector(".card-title").innerText.toLowerCase();
@@ -50,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     hpMaxFilter.addEventListener("input", filterCars);
 
     resetButton.addEventListener("click", function () {
+
         brandFilter.value = "Seleccione";
         modelFilter.value = "";
         colorFilter.value = "Seleccione";
@@ -59,5 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
         hpMaxFilter.value = hpMaxFilter.max;
 
         cars.forEach(car => car.style.display = "block");
+        
     });
 });

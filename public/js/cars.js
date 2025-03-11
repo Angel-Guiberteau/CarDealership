@@ -26,9 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 },
             }).then(function (result) {
+
                 if (result) {
                     window.location.href = '/deleteCar/' + taskId;
                 }
+
             });
         });
     });
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const fileContainer = buttonAddImage.closest(".mb-3").querySelector(".input-group");
 
     buttonAddImage.addEventListener("click", function () {
+
         const newInputGroup = document.createElement("div");
         newInputGroup.classList.add("input-group", "mt-2");
 
@@ -61,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (document.getElementById('year')) {
+
         flatpickr("#year", {
             enableTime: false,
             dateFormat: "Y",    
@@ -74,19 +78,25 @@ document.addEventListener("DOMContentLoaded", function () {
             monthSelectorType: "static", 
             yearSelector: true  
         });
+
     } else {
+
         console.log("Elemento year no encontrado");
+
     }
     
     
 });
 
 $(document).ready(function() {
+
     $('.edit-button').click(function() {
+
         var carId = $(this).data('id');
         $('#car_id').val(carId);
 
         $.ajax({
+
             url: '/adminpanel/cars/' + carId,
             type: 'GET',
             success: function(car) {
@@ -145,9 +155,12 @@ $(document).ready(function() {
 
                 $('#car_id').val(carId);
                 $('#deleted_images').val('');
+
             },
             error: function(error) {
+
                 console.error('Error al cargar los datos del coche:', error);
+
             }
         });
     });
@@ -163,11 +176,13 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.remove-image', function() {
+
         var imageId = $(this).data('image-id');
         if (imageId) {
             var deletedImages = $('#deleted_images').val();
             $('#deleted_images').val(deletedImages + (deletedImages ? ',' : '') + imageId);
         }
         $(this).closest('.col-6').remove();
+        
     });
 });
