@@ -54,7 +54,7 @@
 
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="year" class="form-label">Año <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="year" id="year" required>
+                        <input type="text" class="form-control edityear" name="year" id="year" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">

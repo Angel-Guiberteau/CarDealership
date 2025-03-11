@@ -92,6 +92,6 @@
 @push('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/cars.js') }}"></script>
-    <script src="{{ asset('js/validateCars.js') }}"></script>
+    <script type="module" src="{{ asset('js/initValidationsCar.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
 @endpush

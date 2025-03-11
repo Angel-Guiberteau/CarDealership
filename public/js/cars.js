@@ -59,23 +59,26 @@ document.addEventListener("DOMContentLoaded", function () {
         fileContainer.appendChild(newInputGroup);
     });
 
-    if (document.getElementById('year-add')) {
-        flatpickr("#year-add", {
+    if (document.getElementById('year')) {
+        flatpickr("#year", {
             enableTime: false,
-            dateFormat: "Y",
-            minDate: "1901-01-01",
+            dateFormat: "Y",    
+            minDate: "1800-01-01",
             maxDate: new Date(),
-            allowInput: true,
-            disableMobile: true,
-            clickOpens: true,
-            locale: "es",
-            mode: "single",
-            monthSelectorType: "static",
+            allowInput: false,  
+            disableMobile: true, 
+            clickOpens: true,    
+            locale: "es",  
+            mode: "single",      
+            monthSelectorType: "static", 
+            yearSelector: true  
         });
-        console.log("Flatpickr Inicializado para year-add");
+        console.log("Flatpickr Inicializado para year");
     } else {
-        console.log("Elemento year-add no encontrado");
-    }    
+        console.log("Elemento year no encontrado");
+    }
+    
+    
 });
 
 $(document).ready(function() {
@@ -92,7 +95,6 @@ $(document).ready(function() {
 
                 $('#modelo').val(car.name);
                 $('#description').val(car.description);
-
                 $('#brand').val(car.brand_id);
                 $('#color').val(car.color_id);
                 $('#type_id').val(car.type_id);
@@ -120,7 +122,30 @@ $(document).ready(function() {
                 $('#potenciaOutputEdit').text(car.horse_power + 'CV');
                 $('#enOfertaEdit').prop('checked', car.sale);
 
-                $('#year').val(car.year);
+                $('.edityear').val(car.year);
+
+                if (!$(".edityear").data("flatpickr")) {
+                    flatpickr(".edityear", {
+                        enableTime: false,
+                        dateFormat: "Y", 
+                        minDate: "1901-01-01",
+                        maxDate: new Date(),
+                        allowInput: false, 
+                        disableMobile: true,
+                        clickOpens: true,
+                        locale: "es",
+                        mode: "single",
+                        monthSelectorType: "static",
+                        yearSelector: true 
+                    });
+                    console.log("Flatpickr inicializado para el campo de año del modal de edición.");
+                }
+
+                var flatpickrInstance = $(".edityear").data("flatpickr");
+                if (flatpickrInstance) {
+                    flatpickrInstance.setDate(car.year);
+                }
+
                 $('#car_id').val(carId);
                 $('#deleted_images').val('');
             },
