@@ -4,34 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\ColorController;
 
 class Color extends Model {
 
     protected $table = 'colors';
     protected $fillable = ['name', 'hex'];
 
-    public function allColors(): Collection{
+    public static function allColors():Collection{
         return self::all();
     }
-    public function addColor(array $data): bool{
-        return (bool) $this->create([
-            'name' => $data['name'],
-            'hex' => $data['hex']
+
+    public static function addColor(ColorController $request): bool{
+
+        return (bool) self::create([
+            'name' => $request->name,
+            'hex' => $request->hex
         ]);
+
     }
-    public function findColor(int $id){
+
+    public static function findColor(int $id): Color | null {
         return self::find($id);
     }
 
-    public function editingColor(string $name, int $id, string $hex): int {
-        $color = self::find($id);
+    public static function editingColor(ColorController $request): Bool {
 
-        if($color->name != $name)
-            $color->name = $name;
+        return self::where('id', $request->id)->update([
+            'name' => $request->name,
+            'hex' => $request->hex
+        ]);
+        
+    }
 
-        if($color->hex != $hex)
-            $color->hex = $hex;
-
-        return $color->update();
+    public static function deleteColor(ColorController $request): Bool {
+        return self::where('id', $request->id)->delete();
     }
 }
