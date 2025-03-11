@@ -61,9 +61,9 @@
                 <tr class="align-middle">
                     <td>{{ $car->id }}</td>
                     <td>{{ $car->name }}</td>
-                    <td>{{ $car->brand_name }}</td>
-                    <td>{{ $car->type_name }}</td>
-                    <td>{{ $car->color_name }}</td>
+                    <td>{{ $car->brand->name }}</td>
+                    <td>{{ $car->type->name }}</td>
+                    <td>{{ $car->color->name }}</td>
                     <td>{{ $car->horse_power }} CV</td>
                     <td>{{ $car->year }}</td>
                     <td>{{ $car->sale ? 'Sí' : 'No' }}</td>

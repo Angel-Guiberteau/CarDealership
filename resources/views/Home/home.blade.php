@@ -85,15 +85,15 @@
                             data-card-brand="{{ $car->brand->name }}"
                             data-card-color="{{ $car->color->name }}"
                             data-card-price="{{ $car->price }}"
-                            data-card-horsepower="{{ $car->horsepower }}">
-                            <img src="{{ asset('img/'.$car->main_img) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
+                            data-card-horsepower="{{ $car->horse_power }}">
+                            <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
                                 <p class="card-text">Marca: {{ $car->brand->name }}</p>
                                 <p class="card-text">Color: {{ $car->color->name }}</p>
                                 <div class="d-flex justify-content-between">
-                                    <p class="card-text">CV: {{ round($car->horsepower) }}</p>
+                                    <p class="card-text">CV: {{ round($car->horse_power) }}</p>
                                     <a href="#" class="btn ofer">Oferta</a>
                                 </div>
                             </div>
@@ -116,15 +116,15 @@
                         data-card-brand="{{ $car->brand->name }}"
                         data-card-color="{{ $car->color->name }}"
                         data-card-price="{{ $car->price }}"
-                        data-card-horsepower="{{ $car->horsepower }}">
-                        <img src="{{ asset('img/'.$car->main_img) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
+                        data-card-horsepower="{{ $car->horse_power }}">
+                        <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
                         <div class="card-body mt-3">
                             <h5 class="card-title">{{ $car->name }}</h5>
                             <p class="card-text">Precio: {{ round($car->price) }}</p>
                             <p class="card-text">Marca: {{ $car->brand->name }}</p>
                             <p class="card-text">Color: {{ $car->color->name }}</p>
                             <div class="d-flex justify-content-between">
-                                <p class="card-text">CV: {{ round($car->horsepower) }}</p>
+                                <p class="card-text">CV: {{ round($car->horse_power) }}</p>
                                 @if ($car->sale)
                                     <a href="#" class="btn ofer">Oferta</a>
                                 @endif

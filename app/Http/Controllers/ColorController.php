@@ -15,13 +15,11 @@ class ColorController extends Controller {
     public ?string $hex = NULL;
 
     public function __construct(?Color $color = null){
-
         if ($color) {
             $this->id = $color->id;
             $this->name = $color->name;
             $this->hex = $color->hex;
         }
-
     }
 
     public function getId(): ?int {
@@ -50,15 +48,12 @@ class ColorController extends Controller {
 
 
     public function index(): Collection {
-
         return Color::allColors()->map(function($color){
             return new ColorController($color);
         });
-
     }
     
     public function addColor(StoreColorRequest $request): RedirectResponse {
-
         $validated = $request->validated();
 
         $this->name = $validated['name'];
@@ -68,12 +63,11 @@ class ColorController extends Controller {
             return redirect()->back()->with('success', 'Color creado correctamente');
         
         return redirect()->back()->with('error', 'Error al crear el color');
-
     }
 
 
     public function deleteColor(int $id): RedirectResponse {
-
+        
         $color = Color::findColor($id);
         
         $this->id = $color->id;
