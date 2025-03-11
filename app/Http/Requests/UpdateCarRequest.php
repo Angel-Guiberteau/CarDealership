@@ -9,6 +9,7 @@ class UpdateCarRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'car_id' => 'required|exists:cars,id',
             'brand' => 'required|exists:brands,id',
             'model' => 'required|string|max:20',
             'color' => 'required|exists:colors,id',

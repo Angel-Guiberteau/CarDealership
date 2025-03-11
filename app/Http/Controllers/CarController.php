@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UpdateCarRequest;
 use App\Http\Requests\StoreCarRequest;
+use Illuminate\Support\Collection;
 
 
 class CarController extends Controller
@@ -31,49 +32,85 @@ class CarController extends Controller
     public ?Color $color = NULL;
     public ?string $name = NULL;
     public ?int $year = NULL;
-    public ?float $horsepower = NULL;
+    public ?float $horse_power = NULL;
     public ?float $price = NULL;
-    public ?string $main_img = NULL;
+    public ?string $main_image = NULL;
     public ?string $sale = NULL;
 
-    public function __construct()
-    {
-        $this->carModel = new Car();
-        $this->brandModel = new Brand();
-        $this->colorModel = new Color();
-        $this->typeModel = new Type();
-        $this->carImageModel = new CarImage();
+    public ?string $secondaryImage = NULL;
+
+    public ?array $secondaryImageDeleted = NULL;
+
+    public ?Collection $collection = NULL;
+
+    public ?int $secondartImageId = NULL;
+
+    public ?string $description = NULL;
+
+    public ?int $brand_id = NULL;
+
+    public ?int $color_id = NULL;
+
+    public ?int $type_id = NULL;
+
+    public function __construct() {
+
     }
 
+    public function getTech(int $id): View {
 
-    public function getTech(int $id): View
-    {
+        $car = Car::getCarById($id);
+
+        $this->id = $car->id;
+        $this->brand_id = $car->brand_id;
+        $this->name = $car->name;
+        $this->color_id = $car->color_id;
+        $this->type_id = $car->type_id;
+        $this->price = $car->price;
+        $this->horse_power = $car->horse_power;
+        $this->sale = $car->sale;
+        $this->year = $car->year;
+        $this->description = $car->description;
+        $this->main_image = $car->main_image;
+
         return view('tech_sheet.tech_sheet', [
-            'cars' => $this->carModel->getTech($id),
+            'cars' => Car::getTech($this),
         ]);
+
     }
 
-    public function deleteCar(int $id): RedirectResponse
-    {
-        $car = $this->carModel->getCarById($id);
+    public function deleteCar(int $id): RedirectResponse {
+
+        $car = Car::getCarById($id);
+
+        $this->id = $car->id;
+        $this->brand_id = $car->brand_id;
+        $this->name = $car->name;
+        $this->color_id = $car->color_id;
+        $this->type_id = $car->type_id;
+        $this->price = $car->price;
+        $this->horse_power = $car->horse_power;
+        $this->sale = $car->sale;
+        $this->year = $car->year;
+        $this->description = $car->description;
+        $this->main_image = $car->main_image;
+        
 
         if (!$car) {
             return redirect()->route('admin')->with('error', 'Coche no encontrado.');
         }
 
-        // Delete main image
-        if ($car->main_image) {
-            Storage::disk('public')->delete('img/' . $car->main_image);
+        if ($this->main_image) {
+            Storage::disk('public')->delete('img/' . $this->main_image);
         }
 
-        // Delete secondary images
-        $secondaryImages = $this->carImageModel->getSecondaryImagesByCarId($id);
-        foreach ($secondaryImages as $image) {
+        $this->collection = CarImage::getSecondaryImagesByCarId($this);
+
+        foreach ($this->collection as $image) {
             Storage::disk('public')->delete('img/' . $image->image);
         }
 
-        // Delete car
-        if ($this->carModel->deleteCar($id)) {
+        if (Car::deleteCar($this)) {
             return redirect()->route('admin')->with('success', 'Coche eliminado correctamente.');
         }
 
@@ -83,88 +120,131 @@ class CarController extends Controller
     public function addCar(StoreCarRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
+        
+        $this->brand_id = $validatedData['brand'];
+        $this->name = $validatedData['model'];
+        $this->color_id = $validatedData['color'];
+        $this->type_id = $validatedData['type_id'];
+        $this->price = $validatedData['price'];
+        $this->horse_power = $validatedData['horse_power'];
+        $this->sale = $request->has('sale') ? 1 : 0;
+        $this->year = $validatedData['year'];
+        $this->description = $validatedData['description'];
 
-        $validatedData['sale'] = $request->has('sale') ? 1 : 0;
-        $validatedData['name'] = $validatedData['model'];
-
-        // Process main image
         if ($request->hasFile('main_image')) {
-            $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();
-            $request->file('main_image')->storeAs('img/', $mainImageName, 'public');
-            $validatedData['main_image'] = $mainImageName;
+
+            $this->main_image = 'main_' . time() . '.' . $request->file('main_image')->extension();
+            $request->file('main_image')->storeAs('img/', $this->main_image, 'public');
+
         }
 
-        $car = $this->carModel->createCar($validatedData);
+        $car = Car::createCar($this);
 
         if (!$car) {
             return redirect()->route('admin')->with('error', 'Error al agregar el coche.');
         }
 
-        // Handle secondary images
         if ($request->hasFile('secondary_images')) {
             foreach ($request->file('secondary_images') as $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->storeAs('img/', $imageName, 'public');
 
-                $this->carImageModel->storeImage($car->id, $imageName);
+                $this->secondaryImage = time() . '_' . uniqid() . '.' . $image->extension();
+                $image->storeAs('img/', $this->secondaryImage, 'public');
+
+                $carImage = new CarImage();
+                $carImage->car_id = $car->id;
+                $carImage->image = $this->secondaryImage;
+                
+                CarImage::storeImage($carImage);
             }
         }
 
         return redirect()->route('admin')->with('success', 'Coche agregado correctamente.');
     }
 
-    public function getCar(int $id): JsonResponse
-    {
-        $car = $this->carModel->findWithImages($id);
+    public function getCar(int $id): JsonResponse {
+
+        $car = Car::findWithImages($id);
+
+        // dd($car);
+
+        $this->id = $car->id;
+        $this->brand_id = $car->brand_id;
+        $this->name = $car->name;
+        $this->color_id = $car->color_id;
+        $this->type_id = $car->type_id;
+        $this->price = $car->price;
+        $this->horse_power = $car->horse_power;
+        $this->sale = $car->sale;
+        $this->year = $car->year;
+        $this->description = $car->description;
+        $this->main_image = $car->main_image;
+        $this->collection = $car->images;
+    
+
         return response()->json($car);
+
     }
 
-    public function updateCar(UpdateCarRequest $request): RedirectResponse
-    {
-        $validatedData = $request->validated();
-        $id = $request->input('car_id');
-        $validatedData['sale'] = $request->has('sale') ? 1 : 0;
-        $validatedData['name'] = $validatedData['model'];
+    public function updateCar(UpdateCarRequest $request): RedirectResponse {
 
-        // Process main image if provided
+        $validatedData = $request->validated();
+
+        $this->id = $validatedData['car_id'];
+        $this->brand_id = $validatedData['brand'];
+        $this->name = $validatedData['model'];
+        $this->color_id = $validatedData['color'];
+        $this->type_id = $validatedData['type_id'];
+        $this->price = $validatedData['price'];
+        $this->horse_power = $validatedData['horse_power'];
+        $this->sale = $request->has('sale') ? 1 : 0;
+        $this->year = $validatedData['year'];
+        $this->description = $validatedData['description'];
+
         if ($request->hasFile('main_image')) {
-            $mainImageName = 'main_' . time() . '.' . $request->file('main_image')->extension();
-            $request->file('main_image')->storeAs('img/', $mainImageName, 'public');
-            $validatedData['main_image'] = $mainImageName;
+
+            $this->main_image = 'main_' . time() . '.' . $request->file('main_image')->extension();
+            $request->file('main_image')->storeAs('img/', $this->main_image, 'public');
+
         }
 
-        // Update car information
-        $updated = $this->carModel->updateCar($id, $validatedData);
+        $updated = Car::updateCar($this);
 
         if (!$updated) {
             return redirect()->route('admin')->with('error', 'Coche no encontrado o error al actualizar.');
         }
 
-        // Handle deleted images
         if ($request->has('deleted_images')) {
-            $deletedImages = explode(',', $request->input('deleted_images'));
-            $deletedImages = array_filter($deletedImages);
 
-            // Get and delete images from storage
-            $imagesToDelete = $this->carImageModel->getImagesByIds($deletedImages);
-            $this->carImageModel->deleteSecondaryImages($deletedImages);
+            $deletedImages = explode(',', $request->input('deleted_images'));
+            $this->secondaryImageDeleted = array_filter($deletedImages);
+
+            $imagesToDelete = CarImage::getImagesByIds($this);
+            CarImage::deleteSecondaryImages($this);
 
             foreach ($imagesToDelete as $image) {
                 Storage::disk('public')->delete('img/' . $image->image);
             }
+            
         }
 
-        // Handle secondary images
         if ($request->hasFile('secondary_images')) {
             foreach ($request->file('secondary_images') as $imageId => $image) {
-                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->storeAs('img/', $imageName, 'public');
 
-                // Update or store secondary images
-                if ($this->carImageModel->imageExists($imageId)) {
-                    $this->carImageModel->updateImage($imageId, $imageName);
+                $this->secondartImageId = $imageId;
+                $this->secondaryImage = time() . '_' . uniqid() . '.' . $image->extension();
+                $image->storeAs('img/', $this->secondaryImage, 'public');
+
+                $carImage = new CarImage();
+                $carImage->car_id = $this->id;
+                $carImage->image = $this->secondaryImage;
+
+                if (CarImage::imageExists($carImage)) {
+
+                    CarImage::updateImage($carImage);
+
                 } else {
-                    $this->carImageModel->storeImage($id, $imageName);
+
+                    CarImage::storeImage($carImage);
                 }
             }
         }
@@ -223,11 +303,11 @@ class CarController extends Controller
     }
 
     public function getHorsepower(): ?float {
-        return $this->horsepower;
+        return $this->horse_power;
     }
 
     public function setHorsepower(?float $horsepower): void {
-        $this->horsepower = $horsepower;
+        $this->horse_power = $horsepower;
     }
 
     public function getPrice(): ?float {
@@ -239,11 +319,11 @@ class CarController extends Controller
     }
 
     public function getMainImg(): ?string {
-        return $this->main_img;
+        return $this->main_image;
     }
 
-    public function setMainImg(?string $main_img): void {
-        $this->main_img = $main_img;
+    public function setMainImg(?string $main_image): void {
+        $this->main_image = $main_image;
     }
 
     public function getSale(): ?string {
@@ -254,5 +334,11 @@ class CarController extends Controller
         $this->sale = $sale;
     }
 
-    
+    public function getDescription(): ?string {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void {
+        $this->description = $description;
+    }
 }

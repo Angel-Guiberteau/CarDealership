@@ -17,30 +17,97 @@ use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 
-Route::get('/', [CarsController::class,'index'])->name('home');
+Route::get('/', function () { 
+
+    $carController = new CarsController();
+
+    $cars = $carController->checkType();
+
+    $brandController = new BrandController();
+    $colorController = new ColorController();
+
+    $brands = $brandController->index();
+    $colors = $colorController->index();
+
+    return view('Home.home')
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('cars', $cars);
+
+})->name('home');
 
 // ------------------CARS------------------
 
-Route::get('/admin', [CarsController::class,'listCars'])->name('admin');
+Route::get('/admin', function () { 
+
+    $carController = new CarsController('listCars');
+
+    $cars = $carController->checkType();
+
+    $brandController = new BrandController();
+    $colorController = new ColorController();
+    $typeController = new TypeController();
+
+    $brands = $brandController->index();
+    $colors = $colorController->index();
+    $types = $typeController->index();
+
+    return view('adminpanel.cars')
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('types', $types)
+            ->with('cars', $cars);
+
+})->name('admin');
 
 // ------------------CAR------------------
 
 Route::get('/deleteCar/{id}', function ($id) { 
 
     $controller = new CarController();
+
     return $controller->deleteCar($id); 
 
 })->name('deleteCar');
 
-Route::post('/addCar', [CarController::class, 'addCar'])->name('addCar');
+Route::post('/addCar', function (StoreCarRequest $request) { 
 
-Route::put('/updateCar', [CarController::class, 'updateCar'])->name('updateCar');
+    $controller = new CarController();
+
+    return $controller->addCar($request); 
+
+})->name('addCar');
 
 
-Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
+Route::put('/updateCar', function (UpdateCarRequest $request) { 
 
-Route::get('/adminpanel/cars/{id}', [CarController::class, 'getCar'])->name('getCar');
+    $controller = new CarController();
+
+    return $controller->updateCar($request); 
+
+})->name('updateCar');
+
+//Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
+
+Route::get('/tech-sheet/{id}', function ($id) { 
+
+    $controller = new CarController();
+
+    return $controller->getTech($id); 
+
+})->name('tech_sheet');
+
+
+Route::get('/adminpanel/cars/{id}', function ($id) { 
+
+    $controller = new CarController();
+
+    return $controller->getCar($id); 
+
+})->name('getCar');
 
 // ------------------COLORS------------------
 
@@ -48,7 +115,9 @@ Route::get('/colors', function () {
 
     $controller = new ColorController();
     $colors = $controller->index();
-    return view('adminpanel.colors')->with('colors', $colors);
+
+    return view('adminpanel.colors')
+            ->with('colors', $colors);
     
 })->name('colors');
 
