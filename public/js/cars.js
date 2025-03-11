@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
             monthSelectorType: "static", 
             yearSelector: true  
         });
-        console.log("Flatpickr Inicializado para year");
     } else {
         console.log("Elemento year no encontrado");
     }
@@ -91,8 +90,6 @@ $(document).ready(function() {
             url: '/adminpanel/cars/' + carId,
             type: 'GET',
             success: function(car) {
-                console.log(car);
-                console.log('Año recibido:', car.year);
 
                 $('#modelo').val(car.name);
                 $('#description').val(car.description);
@@ -139,7 +136,6 @@ $(document).ready(function() {
                         monthSelectorType: "static",
                         yearSelector: true 
                     });
-                    console.log("Flatpickr inicializado para el campo de año del modal de edición.");
                 }
 
                 var flatpickrInstance = $(".edityear").data("flatpickr");
@@ -157,13 +153,13 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#addImageButton', function() {
-        console.log('Botón "+" clickeado.');
 
         var newInputGroup = $('<div class="col-6 mb-3">' +
             '<input type="file" class="form-control" accept="image/*" name="secondary_images[]">' +
             '<button type="button" class="btn btn-danger remove-image">Eliminar</button>' +
             '</div>');
         $('#secondary_images_container').append(newInputGroup);
+        
     });
 
     $(document).on('click', '.remove-image', function() {

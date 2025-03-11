@@ -5,9 +5,6 @@ namespace App\Models;
 use App\Http\Controllers\CarController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class CarImage extends Model {
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreTypeRequest;

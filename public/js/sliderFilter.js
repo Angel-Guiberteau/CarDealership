@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let minPercent = ((minVal - rangeMin) / (rangeMax - rangeMin)) * 100;
             let maxPercent = ((maxVal - rangeMin) / (rangeMax - rangeMin)) * 100;
 
-            // Change the background of the track
             track.style.background = `linear-gradient(to right, var(--slateGrey) ${minPercent}%, var(--softGold) ${minPercent}%, var(--softGold) ${maxPercent}%, var(--slateGrey) ${maxPercent}%)`;
 
             displayMin.textContent = minVal;
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateTrack();
     }
 
-    // PRICE
     let priceContainer = document.getElementById("price_min").closest(".range-container");
     updateRange(
         document.getElementById("price_min"),
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
         priceContainer.querySelector(".slider-track")
     );
 
-    // POWER
     let powerContainer = document.getElementById("power_min").closest(".range-container");
     updateRange(
         document.getElementById("power_min"),
@@ -53,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         powerContainer.querySelector(".slider-track")
     );
 
-    // RESET SLIDERS VALUES
     const resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", function () {
         
