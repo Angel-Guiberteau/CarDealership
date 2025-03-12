@@ -97,7 +97,7 @@ class CarController extends Controller
         
 
         if (!$car) {
-            return redirect()->route('admin')->with('error', 'Coche no encontrado.');
+            return redirect()->back()->with('error', 'Coche no encontrado.');
         }
 
         if ($this->main_image) {
@@ -111,10 +111,10 @@ class CarController extends Controller
         }
 
         if (Car::deleteCar($this)) {
-            return redirect()->route('admin')->with('success', 'Coche eliminado correctamente.');
+            return redirect()->back()->with('success', 'Coche eliminado correctamente.');
         }
 
-        return redirect()->route('admin')->with('error', 'Error al eliminar el coche.');
+        return redirect()->back()->with('error', 'Error al eliminar el coche.');
     }
 
     public function addCar(StoreCarRequest $request): RedirectResponse
@@ -158,14 +158,12 @@ class CarController extends Controller
             }
         }
 
-        return redirect()->route('admin')->with('success', 'Coche agregado correctamente.');
+        return redirect()->back()->with('success', 'Coche agregado correctamente.');
     }
 
     public function getCar(int $id): JsonResponse {
 
         $car = Car::findWithImages($id);
-
-        // dd($car);
 
         $this->id = $car->id;
         $this->brand_id = $car->brand_id;
@@ -210,7 +208,7 @@ class CarController extends Controller
         $updated = Car::updateCar($this);
 
         if (!$updated) {
-            return redirect()->route('admin')->with('error', 'Coche no encontrado o error al actualizar.');
+            return redirect()->back()->with('error', 'Coche no encontrado o error al actualizar.');
         }
 
         if ($request->has('deleted_images')) {
@@ -228,6 +226,7 @@ class CarController extends Controller
         }
 
         if ($request->hasFile('secondary_images')) {
+
             foreach ($request->file('secondary_images') as $imageId => $image) {
 
                 $this->secondartImageId = $imageId;
@@ -249,10 +248,8 @@ class CarController extends Controller
             }
         }
 
-        return redirect()->route('admin')->with('success', 'Coche actualizado correctamente.');
+        return redirect()->back()->with('success', 'Coche actualizado correctamente.');
     }
-
-    // Getters and Setters
 
     public function getId(): ?int {
         return $this->id;

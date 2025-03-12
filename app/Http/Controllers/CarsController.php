@@ -3,15 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Http\Request;
 use App\Models\Car;
-use App\Models\Brand;
-use App\Models\Color;
-use App\Models\Type;
-use App\Models\CarImage;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Symfony\Component\Routing\Loader\Configurator\CollectionConfigurator;
 
 class CarsController extends Controller {
     
@@ -23,7 +16,7 @@ class CarsController extends Controller {
 
     }
 
-    public function checkType(){
+    public function checkType(): Collection{
 
         if ($this->type == 'listCars') {
             return $this->listCars();

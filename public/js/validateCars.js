@@ -1,53 +1,170 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("vehiculoForm");
-    const modelInput = document.getElementById("model");
-    const yearInput = document.getElementById("year-add");
-    const imageInput = document.getElementById("imagenInput");
-    const submitButton = form.querySelector("button[type='submit']");
-    const VALID_NAME_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/; // regex to allow letters, numbers, and spaces
-    const VALID_YEAR_REGEX = /^(19|20)\d{2}$/;
+export class VehicleFormValidator {
+    
+    constructor(formId) {
+        this.form = document.getElementById(formId);
+        if (!this.form) {
+            console.error(`No se encontró el formulario con ID: ${formId}`);
+            return;
+        }
 
-    submitButton.disabled = true;
+        this.brandSelect = this.form.querySelector("select[name='brand']");
+        this.colorSelect = this.form.querySelector("select[name='color']");
+        this.typeSelect = this.form.querySelector("select[name='type_id']");
+        this.modelInput = this.form.querySelector("input[name='model']");
+        this.yearInput = this.form.querySelector("input[name='year']");
+        this.imageInput = this.form.querySelector("input[type='file']");
+        this.cvInput = this.form.querySelector("input[name='cv']");
+        this.priceInput = this.form.querySelector("input[name='price']");
+        this.submitButton = this.form.querySelector("button[type='submit']");
+        
+        this.VALID_NAME_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
+        this.VALID_YEAR_REGEX = /^(19|20)\d{2}$/;
+        this.VALID_NUMBER_REGEX = /^[1-9]\d*$/;
 
-    function validateField(input, regex) {
-        if (!regex.test(input.value.trim())) {
+        if (this.submitButton) {
+            this.submitButton.disabled = true;
+        }
+
+        this.addErrorMessages();
+        this.addEventListeners();
+    }
+
+    addErrorMessages() {
+        this.brandError = this.createErrorElement(this.brandSelect);
+        this.colorError = this.createErrorElement(this.colorSelect);
+        this.typeError = this.createErrorElement(this.typeSelect);
+        this.modelError = this.createErrorElement(this.modelInput);
+        this.yearError = this.createErrorElement(this.yearInput);
+        this.cvError = this.createErrorElement(this.cvInput);
+        this.priceError = this.createErrorElement(this.priceInput);
+    }
+
+    createErrorElement(input) {
+
+        if (!input) return null; 
+
+        const errorElement = document.createElement("div");
+        errorElement.className = "invalid-feedback";
+        input.parentNode.appendChild(errorElement);
+        return errorElement;
+    }
+
+    addEventListeners() {
+        if (this.brandSelect) this.brandSelect.addEventListener("change", this.validateBrand.bind(this));
+        if (this.colorSelect) this.colorSelect.addEventListener("change", this.validateColor.bind(this));
+        if (this.typeSelect) this.typeSelect.addEventListener("change", this.validateType.bind(this));
+        if (this.modelInput) this.modelInput.addEventListener("input", this.validateModel.bind(this));
+        if (this.yearInput) this.yearInput.addEventListener("input", this.validateYear.bind(this));
+        if (this.cvInput) this.cvInput.addEventListener("input", this.validateCV.bind(this));
+        if (this.priceInput) this.priceInput.addEventListener("input", this.validatePrice.bind(this));
+        if (this.imageInput) this.imageInput.addEventListener("change", this.validateForm.bind(this));
+        if (this.form) this.form.addEventListener("submit", this.handleSubmit.bind(this));
+    }
+
+    validateField(input, isValid, errorMessageElement, errorMessage) {
+        if (!input || !errorMessageElement) return; 
+
+        if (!isValid) {
             input.classList.add("is-invalid");
-            return false;
+            input.classList.remove("is-valid");
+            errorMessageElement.textContent = errorMessage;
+            errorMessageElement.style.display = "block";
         } else {
             input.classList.remove("is-invalid");
-            return true;
+            input.classList.add("is-valid");
+            errorMessageElement.style.display = "none";
         }
     }
 
-    function validateModel() {
-        validateField(modelInput, VALID_NAME_REGEX);
-        validateForm();
+    validateBrand() {
+        if (!this.brandSelect) return;
+        const isValid = this.brandSelect.value !== "";
+        this.validateField(this.brandSelect, isValid, this.brandError, "Debe seleccionar una marca. 🚗");
+        this.validateForm();
     }
 
-    function validateYear() {
-        validateField(yearInput, VALID_YEAR_REGEX);
-        validateForm();
+    validateColor() {
+        if (!this.colorSelect) return;
+        const isValid = this.colorSelect.value !== "";
+        this.validateField(this.colorSelect, isValid, this.colorError, "Debe seleccionar un color. 🎨");
+        this.validateForm();
     }
 
-    function validateImage() {
-        return imageInput.files.length > 0;
+    validateType() {
+        if (!this.typeSelect) return;
+        const isValid = this.typeSelect.value !== "";
+        this.validateField(this.typeSelect, isValid, this.typeError, "Debe seleccionar un tipo. 🚙");
+        this.validateForm();
     }
 
-    function validateForm() {
-        const isModelValid = VALID_NAME_REGEX.test(modelInput.value.trim());
-        const isYearValid = VALID_YEAR_REGEX.test(yearInput.value.trim());
-        const isImageValid = validateImage();
-        
-        submitButton.disabled = !(isModelValid && isYearValid && isImageValid);
+    validateModel() {
+        if (!this.modelInput) return;
+        const isValid = this.VALID_NAME_REGEX.test(this.modelInput.value.trim());
+        this.validateField(this.modelInput, isValid, this.modelError, "¡Solo letras y espacios! ✋");
+        this.validateForm();
     }
 
-    modelInput.addEventListener("input", validateModel);
-    yearInput.addEventListener("input", validateYear);
-    imageInput.addEventListener("change", validateForm);
-    
-    form.addEventListener("submit", function (event) {
-        if (submitButton.disabled) {
+    validateYear() {
+        if (!this.yearInput) return;
+        const isValid = this.VALID_YEAR_REGEX.test(this.yearInput.value.trim());
+        this.validateField(this.yearInput, isValid, this.yearError, "Año inválido. 📅");
+        this.validateForm();
+    }
+
+    validateCV() {
+        if (!this.cvInput) return;
+        const isValid = this.VALID_NUMBER_REGEX.test(this.cvInput.value.trim());
+        this.validateField(this.cvInput, isValid, this.cvError, "CV debe ser un número positivo. 💨");
+        this.validateForm();
+    }
+
+    validatePrice() {
+        if (!this.priceInput) return;
+        const isValid = this.VALID_NUMBER_REGEX.test(this.priceInput.value.trim());
+        this.validateField(this.priceInput, isValid, this.priceError, "El precio debe ser un número positivo. 💰");
+        this.validateForm();
+    }
+
+    validateImage() {
+        if (!this.imageInput) return false;
+        return this.imageInput.files.length > 0;
+    }
+
+    validateForm() {
+        const isBrandValid = this.brandSelect ? this.brandSelect.value !== "" : true;
+        const isColorValid = this.colorSelect ? this.colorSelect.value !== "" : true;
+        const isTypeValid = this.typeSelect ? this.typeSelect.value !== "" : true;
+        const isModelValid = this.modelInput ? this.VALID_NAME_REGEX.test(this.modelInput.value.trim()) : true;
+        const isYearValid = this.yearInput ? this.VALID_YEAR_REGEX.test(this.yearInput.value.trim()) : true;
+        const isCVValid = this.cvInput ? this.VALID_NUMBER_REGEX.test(this.cvInput.value.trim()) : true;
+        const isPriceValid = this.priceInput ? this.VALID_NUMBER_REGEX.test(this.priceInput.value.trim()) : true;
+        const isImageValid = this.validateImage();
+
+        if (this.submitButton) {
+            this.submitButton.disabled = !(isBrandValid && isColorValid && isTypeValid && isModelValid && isYearValid && isCVValid && isPriceValid && isImageValid);
+        }
+    }
+
+    handleSubmit(event) {
+        if (this.submitButton && this.submitButton.disabled) {
             event.preventDefault();
         }
-    });
-});
+    }
+}
+
+export class AddCarFormValidator extends VehicleFormValidator {
+    constructor() {
+        super("vehiculoForm");
+    }
+}
+
+export class EditCarFormValidator extends VehicleFormValidator {
+    constructor() {
+        super("editVehiculoForm");
+    }
+
+    validateImage() {
+        if (!this.imageInput) return false;
+        return this.imageInput.files.length > 0 || document.getElementById("main_image_preview")?.src !== '';
+    }
+}

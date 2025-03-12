@@ -1,12 +1,12 @@
 @extends('admin_layout')
 
-@section('title', 'Admin Panel')
+@section('title', 'Cars')
 
 @section('admin_active', 'active')
 
 @section('content')
 <div class="container-fluid mt-4">
-    <h2 class="text-white bg-dark p-4">Vehículos</h2>
+    <h2 class="text-white bg-dark p-4 custom-bg">Vehículos</h2>
 
     <div class="mb-3 d-flex justify-content-between mt-4">
         <div>
@@ -21,7 +21,7 @@
             registros
         </div>
         <div>
-            <button class="btn bg-midnightBlue button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
+            <button class="btn custom-bg button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
         </div>
     </div>
 
@@ -92,6 +92,10 @@
 @push('js')
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script src="{{ asset('js/cars.js') }}"></script>
-    <script src="{{ asset('js/validateCars.js') }}"></script>
+    <script type="module" src="{{ asset('js/initValidationsCar.js') }}"></script>
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
+@endpush
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/cars.css') }}">
 @endpush

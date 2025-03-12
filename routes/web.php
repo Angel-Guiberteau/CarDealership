@@ -19,8 +19,12 @@ use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use Illuminate\Http\Client\Response as ClientResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
-Route::get('/', function () { 
+Route::get('/', function (): View { 
 
     $carController = new CarsController();
 
@@ -41,7 +45,7 @@ Route::get('/', function () {
 
 // ------------------CARS------------------
 
-Route::get('/admin', function () { 
+Route::get('/admin', function (): View { 
 
     $carController = new CarsController('listCars');
 
@@ -65,7 +69,7 @@ Route::get('/admin', function () {
 
 // ------------------CAR------------------
 
-Route::get('/deleteCar/{id}', function ($id) { 
+Route::get('/deleteCar/{id}', function ($id): RedirectResponse { 
 
     $controller = new CarController();
 
@@ -73,7 +77,7 @@ Route::get('/deleteCar/{id}', function ($id) {
 
 })->name('deleteCar');
 
-Route::post('/addCar', function (StoreCarRequest $request) { 
+Route::post('/addCar', function (StoreCarRequest $request): RedirectResponse { 
 
     $controller = new CarController();
 
@@ -82,7 +86,7 @@ Route::post('/addCar', function (StoreCarRequest $request) {
 })->name('addCar');
 
 
-Route::put('/updateCar', function (UpdateCarRequest $request) { 
+Route::put('/updateCar', function (UpdateCarRequest $request): RedirectResponse { 
 
     $controller = new CarController();
 
@@ -92,7 +96,7 @@ Route::put('/updateCar', function (UpdateCarRequest $request) {
 
 //Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
 
-Route::get('/tech-sheet/{id}', function ($id) { 
+Route::get('/tech-sheet/{id}', function ($id): View { 
 
     $controller = new CarController();
 
@@ -101,7 +105,7 @@ Route::get('/tech-sheet/{id}', function ($id) {
 })->name('tech_sheet');
 
 
-Route::get('/adminpanel/cars/{id}', function ($id) { 
+Route::get('/adminpanel/cars/{id}', function ($id): JsonResponse { 
 
     $controller = new CarController();
 
@@ -111,7 +115,7 @@ Route::get('/adminpanel/cars/{id}', function ($id) {
 
 // ------------------COLORS------------------
 
-Route::get('/colors', function () { 
+Route::get('/colors', function (): View { 
 
     $controller = new ColorController();
     $colors = $controller->index();
@@ -121,7 +125,7 @@ Route::get('/colors', function () {
     
 })->name('colors');
 
-Route::get('/deleteColor/{id}', function ($id) { 
+Route::get('/deleteColor/{id}', function ($id): RedirectResponse { 
 
     $controller = new ColorController();
 
@@ -129,7 +133,7 @@ Route::get('/deleteColor/{id}', function ($id) {
 
 })->name('colorDeleted');
 
-Route::post('/addColor', function (StoreColorRequest $request) { 
+Route::post('/addColor', function (StoreColorRequest $request): RedirectResponse { 
 
     $controller = new ColorController();
     return $controller->addColor($request);
@@ -140,7 +144,7 @@ Route::put('/updateColor/', [ColorController::class, 'updateColor'])->name('colo
 
 // ------------------BRAND------------------
 
-Route::get('/brand', function () { 
+Route::get('/brand', function (): View { 
 
     $controller = new BrandController();
     $brands = $controller->index();
@@ -148,21 +152,21 @@ Route::get('/brand', function () {
     
 })->name('brand');
 
-Route::get('/deleteBrand/{id}', function ($id) { 
+Route::get('/deleteBrand/{id}', function ($id): RedirectResponse { 
 
     $controller = new BrandController();
     return $controller->deleteBrand($id);
 
 })->name('brandDeleted');
 
-Route::post('/createBrand', function (StoreBrandRequest $request){ 
+Route::post('/createBrand', function (StoreBrandRequest $request): RedirectResponse{ 
     
     $controller = new BrandController();
     return $controller->createBrand($request);
 
 })->name('brandCreated');
 
-Route::put('/updateBrand/', function (UpdateBrandRequest $request) { 
+Route::put('/updateBrand/', function (UpdateBrandRequest $request): RedirectResponse { 
 
     $controller = new BrandController();
     return $controller->updateBrand($request);   
@@ -171,7 +175,7 @@ Route::put('/updateBrand/', function (UpdateBrandRequest $request) {
 
 // ------------------TYPES------------------
 
-Route::get('/types', function () { 
+Route::get('/types', function (): View { 
 
     $controller = new TypeController();
     $types = $controller->index();
@@ -179,14 +183,14 @@ Route::get('/types', function () {
     
 })->name('types');
 
-Route::post('/addType', function (StoreTypeRequest $request){ 
+Route::post('/addType', function (StoreTypeRequest $request): RedirectResponse{ 
     
     $controller = new TypeController();
     return $controller->addType($request);
 
 })->name('addType');
 
-Route::get('/deleteType/{id}', function ($id) { 
+Route::get('/deleteType/{id}', function ($id): RedirectResponse { 
 
     $controller = new TypeController();
     return $controller->deleteType($id);
@@ -194,7 +198,7 @@ Route::get('/deleteType/{id}', function ($id) {
 })->name('typeDeleted');
 
 
-Route::put('/updateType/', function (UpdateTypeRequest $request) { 
+Route::put('/updateType/', function (UpdateTypeRequest $request): RedirectResponse { 
 
     $controller = new TypeController();
     return $controller->updateType($request);   

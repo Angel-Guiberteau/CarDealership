@@ -15,7 +15,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="brand" class="form-label">Marca <span class="text-danger">*</span></label>
                         <select class="form-select" name="brand" id="brand" required>
-                            <option disabled>Seleccionar Marca</option>
+                            <option disabled hidden selected>Seleccionar Marca</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">
-                        <label for="model" class="form-label">Modelo <span class="text-danger">*</span></label>
+                        <label for="modelo" class="form-label">Modelo <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="model" id="modelo" required>
                     </div>
 
@@ -35,7 +35,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="color" class="form-label">Color <span class="text-danger">*</span></label>
                         <select class="form-select" name="color" id="color" required>
-                            <option disabled>Seleccionar Color</option>
+                            <option disabled hidden selected>Seleccionar Color</option>
                             @foreach($colors as $color)
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
                             @endforeach
@@ -45,7 +45,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="type_id" class="form-label">Tipo <span class="text-danger">*</span></label>
                         <select class="form-select" name="type_id" id="type_id" required>
-                            <option disabled>Seleccionar Tipo</option>
+                            <option disabled hidden selected>Seleccionar Tipo</option>
                             @foreach($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
@@ -54,7 +54,7 @@
 
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="year" class="form-label">Año <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="year" id="year" required>
+                        <input type="text" class="form-control edityear" name="year" id="year" required>
                     </div>
 
                     <div class="mb-3 bg-white p-3 rounded">

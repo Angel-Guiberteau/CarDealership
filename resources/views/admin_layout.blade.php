@@ -6,8 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @include('components.admin_css')
         @include('components.admin_js')
+        @stack('css')
         <title>@yield('title')</title>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     </head>
     <body id="admin-panel">
         @include('components.header')

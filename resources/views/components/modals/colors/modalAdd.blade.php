@@ -11,6 +11,7 @@
                         <div class="mb-3 mt-3">
                             <label for="input" class="form-label">Nombre del color <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" id="input" placeholder="Nombre del color *">
+                            <div id="errorInput" class="invalid-feedback" style="display: none;"></div>
                         </div>
                         <div class="mb-3">
                             <label for="colorHex" class="form-label">Selecciona un color <span class="text-danger">*</span></label>
