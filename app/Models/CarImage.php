@@ -15,14 +15,14 @@ class CarImage extends Model {
         return $this->belongsTo(Car::class, 'car_id');
     }
 
-    public static function updateImage(CarImage $request): bool {
-        return self::where('id', $request->id)->update(['image' => $request->image]);
+    public static function updateImage(CarImage $carImage): bool {
+        return self::where('id', $carImage->id)->update(['image' => $carImage->image]);
     }
 
-    public static function storeImage(CarImage $request): CarImage {
+    public static function storeImage(CarImage $carImage): CarImage {
         return self::create([
-            'car_id' => $request->car_id,  
-            'image' => $request->image, 
+            'car_id' => $carImage->car_id,
+            'image' => $carImage->image,
         ]);
     }
 
@@ -36,12 +36,16 @@ class CarImage extends Model {
         return self::whereIn('id', $request->secondaryImageDeleted)->get();
     }
 
+    public static function getImageById(CarImage $carImage): ?CarImage {
+        return self::where('id', $carImage->id)->first();
+    }
+
     public static function getSecondaryImagesByCarId(CarController $request) {
         return self::where('car_id', $request->id)->get();
     }
 
-    public static function imageExists(CarImage $request): bool {
-        return self::where('id', $request->car_id)->exists();
+    public static function imageExists(CarImage $carImage): bool {
+        return self::where('id', $carImage->id)->exists();
     }
 
 }

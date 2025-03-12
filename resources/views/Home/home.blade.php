@@ -5,7 +5,7 @@
 @section('filter')
     <div class="container-fluid p-3 d-flex justify-content-around filter sticky-top">
         <div class="d-flex p-2">
-            <!-- Brand -->
+
             <div class="d-flex align-items-center me-5">
                 <label for="brand" class="form-label mt-2 me-4">Marca</label>
                 <select id="brand" class="form-select">
@@ -16,13 +16,11 @@
                 </select>
             </div>
 
-            <!-- Model -->
             <div class="d-flex align-items-center me-5">
                 <label for="model" class="form-label mt-2 me-4">Modelo</label>
                 <input type="text" id="model" class="form-control" placeholder="Ej. Corolla">
             </div>
 
-            <!-- Color -->
             <div class="d-flex align-items-center me-5">
                 <label for="color" class="form-label mt-2 me-4">Color</label>
                 <select id="color" class="form-select">
@@ -33,7 +31,6 @@
                 </select>
             </div>
 
-            <!-- Price -->
             <div class="d-flex align-items-center me-5">
                 <label class="form-label mt-2 me-4">Precio</label>
                 <div class="range-container">
@@ -48,7 +45,6 @@
                 </div>
             </div>
 
-            <!-- HorsePower -->
             <div class="d-flex align-items-center me-5">
                 <label class="form-label mt-2 me-4">Potencia</label>
                 <div class="range-container">
