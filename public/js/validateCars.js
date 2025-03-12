@@ -21,10 +21,6 @@ export class VehicleFormValidator {
         this.VALID_YEAR_REGEX = /^(19|20)\d{2}$/;
         this.VALID_NUMBER_REGEX = /^[1-9]\d*$/;
 
-        if (this.submitButton) {
-            this.submitButton.disabled = true;
-        }
-
         this.addErrorMessages();
         this.addEventListeners();
     }
