@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container-fluid mt-4">
-        <h2 class="text-white bg-dark p-4">Marcas</h2>
+        <h2 class="text-white bg-dark p-4 custom-bg">Marcas</h2>
         
         <div class="mb-3 d-flex justify-content-between mt-4">
             <div>
@@ -21,7 +21,7 @@
                 registros
             </div>
             <div>
-                <button class="btn bg-midnightBlue button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
+                <button class="btn custom-bg button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
             </div>
         </div>
         
@@ -46,7 +46,7 @@
                         <td>{{ $brand->id }}</td>
                         <td>{{ $brand->name }}</td>
                         <td class="text-center">
-                            <button class="btn bg-midnightBlue button-pers btn-sm editBtn" 
+                            <button class="btn custom-bg button-pers btn-sm editBtn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $brand->id }}"
@@ -84,3 +84,4 @@
 <script type="module" src="{{ asset('js/initValidations.js') }}"></script>
     
 @endpush
+

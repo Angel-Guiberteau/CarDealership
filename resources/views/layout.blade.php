@@ -6,19 +6,15 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @include('components.home_css')
         @include('components.home_js')
+        @stack('css')
         <title>@yield('title')</title>
     </head>
     <body>
-
         @include('components.header')
-
         @yield('filter')
-
-        <div class="container">
+        <div class="container custom-container">
             @yield('content')
         </div>
-
         @stack('js')
-        
     </body>
 </html>

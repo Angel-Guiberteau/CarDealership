@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 :root {
-    --midnightBlue: #2C3E50;  
+    --midnightBlue: #202d3a;  
+    --midnightLighBlue: #90a4b6;
     --softIvory: #F4F4F4;  
     --slateGrey: #6C7A89;
     --softGold: #B89F7B;
@@ -26,133 +27,67 @@ hr {
     opacity: 0.8;
 }
 
-/*  My Styles  */
-
-/*  CLASS  */
-
-.filter {
-    background-color: var(--midnightBlue);
-    color: var(--softIvory);
-    padding: 1rem;
-}
-
-.resetFilter {
-    background-color: var(--softIvory);
-    color: var(--midnightBlue);
-    height: 40px;
-}
-
-.resetFilter:hover {
-    background-color: var(--slateGrey);
-    color: var(--softIvory);
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-/* Container for sliders */
-.range-container {
-    position: relative;
-    width: 200px;
-}
-
-/* Values at the top right */
-.range-values {
-    position: absolute;
-    top: -30px; 
-    right: 0; 
-    font-size: 13px;
-    color: var(--softIvory);
-    text-align: right;
-}
-
-/* Background bar */
-.slider-track {
-    position: absolute;
-    height: 5px;
-    background: var(--slateGrey); /* Cambiado a slateGrey */
-    border-radius: 5px;
-    width: 100%;
-    top: 0;
-}
-
-/* Overlapping sliders */
-.range-container input[type="range"] {
-    position: absolute;
-    width: 100%;
-    top: -7px;
-    appearance: none;
-    background: transparent;
-    pointer-events: none;
-}
-
-/* Visible bar */
-.range-container input[type="range"]::-webkit-slider-runnable-track {
-    background: transparent;
-    height: 5px;
-}
-
-/* Control points */
-.range-container input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: auto;
-    position: relative;
-    z-index: 2;
-    background: var(--softGold); /* Cambiado a softGold */
-}
-
-/* Firefox */
-.range-container input[type="range"]::-moz-range-thumb {
-    width: 14px;
-    height: 14px;
-    background: var(--softGold); /* Cambiado a softGold */
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: auto;
-}
-
-/* For Firefox browsers */
-.range-container input[type="range"]::-moz-range-track {
-    background: transparent;
-    height: 5px;
-}
-
-.ofer {
-    background-color: var(--softGold); /* Cambiado a softGold */
-    color: var(--midnightBlue);
-    border-radius: 10px;
-    padding: 5px 30px;
-    min-width: 80px;
-    height: 30px;
-    line-height: 20px;
-}
-
-.ofer:hover {
-    background-color: var(--slateGrey);
-    color: var(--softIvory);
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.bg-softGold {
-    background-color: var(--softGold); /* Cambiado a softGold */
-}
-
-.bg-midnightBlue {
-    background-color: var(--midnightBlue);
-}
 
 /*  BOOTSTRAP  */
 
 .card {
-    min-height: 432px; 
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.card img {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cars-all, .cars-offer {
+    display: flex;
+    justify-content: center;
+}
+
+.cars-all .card, .cars-offer .card {
+    width: 100%;
+    height: 100%;
+    max-width: 100%; 
+    min-height: 350px;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+
+/* LAYOUT */
+
+.custom-container {
+    max-width: 80%; 
+    margin: 0 auto;    
+    padding: 0 15px;   
 }
 
 /* ADMIN LAYOUT */
 
 #admin-panel{ 
-    background-color: var(--midnightBlue);
+    background-color: var(--midnightLighBlue);
 }
 
 .container-custom {
@@ -161,70 +96,13 @@ hr {
     margin: auto;
     padding: 0.5%;
 }
-.button-pers{
-    color: white !important;
-}
-.btn.button-pers:hover{
-    background-color: black !important;
-}
 
-/* DATATABLES */
 
-#infoTable tr th{
-    text-align: center;
-}
-
-.custom-table {
-    border-collapse: collapse;
-    border: 1px solid #dee2e688;
-}
-
-.custom-select{
-    background-color: #afb0b179;
-    color: var(--midnightBlue);
-    border-radius: 0px;
-    font-weight: bold;
-}
-
-.custom-table input {
-    background-color: #afb0b179;
-    border-radius: 0px;
-    width: 100%;
-}
-
-.custom-table th, .custom-table td {
-    border: 1px solid #dee2e600;
-}
-
-.custom-table thead tr {
-    background-color: #f8f9fa;
-}
-
-.custom-table input {
-    border: none;
-    outline: none;
-    width: 100%;
-}
-
-.active>.page-link, .page-link.active {
-    color: #fff;
-    background-color: var(--midnightBlue);
-    border-color: var(--midnightBlue);
-}
-
-.page-link {
-    color: var(--midnightBlue);
-}
-
-.page-link :hover {
-    color: #fff;
-    background-color: var(--midnightBlue);
-}
 
 /*  NAV  */
 
 .active {
-    background-color: var(--midnightBlue) !important; 
+    background-color: var(--midnightLighBlue) !important; 
     color: white !important;
     font-weight: bold;
 }
@@ -239,68 +117,28 @@ hr {
         text-align: center;
     }
 }
-
-/* Secondary Images */
-
-.secondaryImageContainer{
-    width: 150px; 
-    height: 100px; 
-    overflow: hidden; 
-    border-radius: 5px; 
-    margin: 0 auto;
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1.3rem;
 }
 
-.secondaryImageContainer img{
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
+.custom-bg{
+    background-color: var(--midnightBlue) !important;
 }
 
-.remove-image{
-    padding: 5px 10px; 
-    border-radius: 5px;
+/* header */
+
+.header-container{
+
+    font-size: 2rem !important;
+    font-weight: bold;
+
 }
 
-/* CARS ALL */
+/* buttons admin */
 
-.cars-all a{
-    display: block; 
-    text-decoration: none; 
-    color: inherit;
+.button-pers{
+    color: white !important;
 }
-
-.cars-all .card img{
-    max-width: 90%; 
-    min-height: 200px;
+.btn.button-pers:hover{
+    background-color: black !important;
 }
-
-.cars-offer a{
-    display: block; 
-    text-decoration: none; 
-    color: inherit;
-}
-
-.cars-offer .card img{
-    max-width: 90%; 
-    min-height: 200px;
-}
-
-/* TechSHEET */
-
-.card-techsheet{
-    max-width: 1000px; 
-    margin: auto;
-}
-
-.mySwiper{
-    width: 100%; 
-    height: 500px;
-}
-
-.swiper-slide img{
-    object-fit: cover; 
-    width: 100%; 
-    height: 100%;
-}
-
-

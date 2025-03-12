@@ -63,7 +63,6 @@
             </div>
         </div>
 
-        <!-- Reset Button -->
         <div class="d-flex">
             <button id="reset" class="btn resetFilter mt-2">Restablecer</button>
         </div>
@@ -74,7 +73,7 @@
     <div class="container-fluid p-0">
         <h4 class="text-center mt-5 bg-softGold text-white p-3">Oferta</h4>
     </div>
-    <div class="container">
+    <div class="container-fluid p-0">
         <div class="row mt-5">
             @foreach ($cars as $car)
                 @if ($car->sale)
@@ -142,4 +141,8 @@
 @push('js')
     <script src="{{ asset('js/sliderFilter.js') }}"></script>
     <script src="{{ asset('js/filter.js') }}"></script>
+@endpush
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endpush
