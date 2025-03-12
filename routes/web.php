@@ -94,8 +94,6 @@ Route::put('/updateCar', function (UpdateCarRequest $request): RedirectResponse 
 
 })->name('updateCar');
 
-//Route::get('/tech-sheet/{id}', [CarController::class, 'getTech'])->name('tech_sheet');
-
 Route::get('/tech-sheet/{id}', function ($id): View { 
 
     $controller = new CarController();
