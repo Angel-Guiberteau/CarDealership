@@ -1,4 +1,5 @@
 function confirmDeleteBrand(brandId,name) {
+    
     swal({
         title: "¿Estás seguro?",
         text: "Se eliminara "+name+". ¿Deseas continuar?",
@@ -7,6 +8,7 @@ function confirmDeleteBrand(brandId,name) {
         dangerMode: true,
     })
     .then((willDelete) => {
+
         if (willDelete) {
             window.location.href = '/deleteBrand/' + brandId;
         }
@@ -14,6 +16,7 @@ function confirmDeleteBrand(brandId,name) {
 }
 
 function confirmDeleteType(typeId,name) {
+
     swal({
         title: "¿Estás seguro?",
         text: "Se eliminara "+name+". ¿Deseas continuar?",
@@ -29,6 +32,7 @@ function confirmDeleteType(typeId,name) {
 }
 
 function confirmDeleteColor(colorId,name) {
+
     swal({
         title: "¿Estás seguro?",
         text: "Se eliminara el color "+name+". ¿Deseas continuar?",

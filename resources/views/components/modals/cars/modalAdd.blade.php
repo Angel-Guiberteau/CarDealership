@@ -11,7 +11,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label class="form-label">Marca <span class="text-danger">*</span></label>
                         <select class="form-select" name="brand" required>
-                            <option selected disabled>Seleccionar Marca</option>
+                            <option selected disabled hidden>Seleccionar Marca</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach
@@ -30,7 +30,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label class="form-label">Color <span class="text-danger">*</span></label>
                         <select class="form-select" name="color" required>
-                            <option selected disabled>Seleccionar Color</option>
+                            <option selected disabled hidden>Seleccionar Color</option>
                             @foreach($colors as $color)
                                 <option value="{{ $color->id }}">{{ $color->name }}</option>
                             @endforeach
@@ -39,7 +39,7 @@
                     <div class="mb-3 bg-white p-3 rounded">
                         <label class="form-label">Tipo <span class="text-danger">*</span></label>
                         <select class="form-select" name="type_id" required>
-                            <option selected disabled>Seleccionar Tipo</option>
+                            <option selected disabled hidden>Seleccionar Tipo</option>
                             @foreach($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
@@ -47,7 +47,7 @@
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <label for="year" class="form-label">Año del vehículo <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="year" id="year-add" placeholder="Seleccionar año" required>
+                        <input type="text" class="form-control" name="year" id="year" placeholder="Seleccionar año" required>
                     </div>
                     <div class="mb-3 bg-white p-3 rounded">
                         <div class="d-flex justify-content-between mb-3">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="submit" class="btn btn-primary" id="submitButton">Agregar</button>
                     </div>
                 </form>
             </div>

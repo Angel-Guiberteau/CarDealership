@@ -63,7 +63,6 @@
             </div>
         </div>
 
-        <!-- Reset Button -->
         <div class="d-flex">
             <button id="reset" class="btn resetFilter mt-2">Restablecer</button>
         </div>
@@ -74,19 +73,19 @@
     <div class="container-fluid p-0">
         <h4 class="text-center mt-5 bg-softGold text-white p-3">Oferta</h4>
     </div>
-    <div class="container">
+    <div class="container-fluid p-0">
         <div class="row mt-5">
             @foreach ($cars as $car)
                 @if ($car->sale)
                 <div class="col-md-3 mb-4 cars-offer">
-                    <a href="{{ route('tech_sheet', $car->id) }}" style="display: block; text-decoration: none; color: inherit;">
+                    <a href="{{ route('tech_sheet', $car->id) }}">
                         <div class="card"
                             data-card-id="{{ $car->id }}"
                             data-card-brand="{{ $car->brand->name }}"
                             data-card-color="{{ $car->color->name }}"
                             data-card-price="{{ $car->price }}"
                             data-card-horsepower="{{ $car->horse_power }}">
-                            <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
+                            <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3">
                             <div class="card-body mt-3">
                                 <h5 class="card-title">{{ $car->name }}</h5>
                                 <p class="card-text">Precio: {{ round($car->price) }}</p>
@@ -110,14 +109,14 @@
         <div class="row mt-5">
             @foreach ($cars as $car)
             <div class="col-md-3 mb-4 cars-all">
-                <a href="{{ route('tech_sheet', $car->id) }}" style="display: block; text-decoration: none; color: inherit;">
+                <a href="{{ route('tech_sheet', $car->id) }}">
                     <div class="card"
                         data-card-id="{{ $car->id }}"
                         data-card-brand="{{ $car->brand->name }}"
                         data-card-color="{{ $car->color->name }}"
                         data-card-price="{{ $car->price }}"
                         data-card-horsepower="{{ $car->horse_power }}">
-                        <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3" style="max-width: 90%; min-height: 200px;">
+                        <img src="{{ asset('img/'.$car->main_image) }}" class="mt-3 ms-3 me-3">
                         <div class="card-body mt-3">
                             <h5 class="card-title">{{ $car->name }}</h5>
                             <p class="card-text">Precio: {{ round($car->price) }}</p>
@@ -142,4 +141,8 @@
 @push('js')
     <script src="{{ asset('js/sliderFilter.js') }}"></script>
     <script src="{{ asset('js/filter.js') }}"></script>
+@endpush
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @endpush

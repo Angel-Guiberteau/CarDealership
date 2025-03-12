@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+
         const swiper = new Swiper(".mySwiper", {
+
             slidesPerView: 1,
             spaceBetween: 10,
             loop: true,
@@ -11,5 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 enabled: true,
                 onlyInViewport: false,
             },
+
         });
+        
     });

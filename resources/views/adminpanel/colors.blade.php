@@ -5,8 +5,9 @@
 @section('admin_active', 'active')
 
 @section('content')
+
     <div class="container-fluid mt-4">
-        <h2 class="text-white bg-dark p-4">Colores</h2>
+        <h2 class="text-white bg-dark p-4 custom-bg">Colores</h2>
         <div class="mb-3 d-flex justify-content-between mt-4">
             <div>
                 <label for="entries">Mostrar</label>
@@ -20,7 +21,7 @@
                 registros
             </div>
             <div>
-                <button class="btn bg-midnightBlue button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
+                <button class="btn custom-bg button-pers" data-bs-toggle="modal" data-bs-target="#modalAdd">Agregar</button>
             </div>
         </div>
         
@@ -48,7 +49,7 @@
                         <td>{{ $color->name }}</td>
                         <td>{{ $color->hex }}</td>
                         <td>
-                            <button class="btn bg-midnightBlue button-pers btn-sm editBtn" 
+                            <button class="btn custom-bg button-pers btn-sm editBtn" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#modalEdit"
                                 data-id="{{ $color->id }}"
@@ -76,11 +77,15 @@
     @include('components.modals.colors.modalAdd')
     @include('components.modals.colors.modalEdit')
     @include('components.validations.sweet_alert')
+
+   
+
 @endsection
 
 @push('js')
+
     <script src="{{ asset('js/sweetAlert.js') }}"></script>
     <script src="{{ asset('js/dataTable.js') }}"></script>
-    <script src="{{ asset('js/validateAddColor.js') }}"></script>
-    <script src="{{ asset('js/edit.js') }}"></script>
+    <script type="module" src="{{ asset('js/initValidations.js') }}"></script>
+       
 @endpush
