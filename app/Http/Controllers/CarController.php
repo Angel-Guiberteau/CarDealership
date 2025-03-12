@@ -43,7 +43,7 @@ class CarController extends Controller
 
     public ?Collection $collection = NULL;
 
-    public ?int $secondartImageId = NULL;
+    public ?int $secondaryImageId = NULL;
 
     public ?string $description = NULL;
 
@@ -227,26 +227,42 @@ class CarController extends Controller
 
         if ($request->hasFile('secondary_images')) {
 
-            foreach ($request->file('secondary_images') as $imageId => $image) {
-
-                $this->secondartImageId = $imageId;
-                $this->secondaryImage = time() . '_' . uniqid() . '.' . $image->extension();
-                $image->storeAs('img/', $this->secondaryImage, 'public');
+            $images = $request->file('secondary_images');
+        
+            if (!is_array($images)) {
+                $images = [$images];
+            }
+        
+            foreach ($images as $imageId => $image) {
 
                 $carImage = new CarImage();
                 $carImage->car_id = $this->id;
-                $carImage->image = $this->secondaryImage;
+                $carImage->image = time() . '_' . uniqid() . '.' . $image->extension();
+        
+                $image->storeAs('img/', $carImage->image, 'public');
+        
+                if (is_numeric($imageId)) {
+                    $carImage->id = $imageId;
+        
+                    if (CarImage::imageExists($carImage)) {
 
-                if (CarImage::imageExists($carImage)) {
-
-                    CarImage::updateImage($carImage);
-
+                        $existingImage = CarImage::getImageById($carImage);
+        
+                        if ($existingImage) {
+                            Storage::disk('public')->delete('img/' . $existingImage->image);
+                        }
+        
+                        CarImage::updateImage($carImage);
+                    } else {
+                        CarImage::storeImage($carImage);
+                    }
                 } else {
-
                     CarImage::storeImage($carImage);
                 }
             }
         }
+        
+        
 
         return redirect()->back()->with('success', 'Coche actualizado correctamente.');
     }

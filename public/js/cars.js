@@ -166,23 +166,21 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#addImageButton', function() {
+        console.log('Botón "+" clickeado.');
 
         var newInputGroup = $('<div class="col-6 mb-3">' +
             '<input type="file" class="form-control" accept="image/*" name="secondary_images[]">' +
             '<button type="button" class="btn btn-danger remove-image">Eliminar</button>' +
             '</div>');
         $('#secondary_images_container').append(newInputGroup);
-        
     });
 
     $(document).on('click', '.remove-image', function() {
-
         var imageId = $(this).data('image-id');
         if (imageId) {
             var deletedImages = $('#deleted_images').val();
             $('#deleted_images').val(deletedImages + (deletedImages ? ',' : '') + imageId);
         }
         $(this).closest('.col-6').remove();
-        
     });
 });

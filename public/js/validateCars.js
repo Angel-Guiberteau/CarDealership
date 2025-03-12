@@ -15,11 +15,20 @@ export class VehicleFormValidator {
         this.imageInput = this.form.querySelector("input[type='file']");
         this.cvInput = this.form.querySelector("input[name='cv']");
         this.priceInput = this.form.querySelector("input[name='price']");
-        this.submitButton = this.form.querySelector("button[type='submit']");
+        this.submitButtonAdd = this.form.querySelector(".add");
+        this.submitButtonEdit = this.form.querySelector(".edit");
         
         this.VALID_NAME_REGEX = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+$/;
         this.VALID_YEAR_REGEX = /^(19|20)\d{2}$/;
         this.VALID_NUMBER_REGEX = /^[1-9]\d*$/;
+
+        if (this.submitButtonAdd) {
+            this.submitButtonAdd.disabled = true;
+        }
+
+        if (this.submitButtonEdit) {
+            this.submitButtonEdit.disabled = false;
+        }
 
         this.addErrorMessages();
         this.addEventListeners();
@@ -64,7 +73,6 @@ export class VehicleFormValidator {
             input.classList.add("is-invalid");
             input.classList.remove("is-valid");
             errorMessageElement.textContent = errorMessage;
-            errorMessageElement.style.display = "block";
         } else {
             input.classList.remove("is-invalid");
             input.classList.add("is-valid");
@@ -136,13 +144,21 @@ export class VehicleFormValidator {
         const isPriceValid = this.priceInput ? this.VALID_NUMBER_REGEX.test(this.priceInput.value.trim()) : true;
         const isImageValid = this.validateImage();
 
-        if (this.submitButton) {
-            this.submitButton.disabled = !(isBrandValid && isColorValid && isTypeValid && isModelValid && isYearValid && isCVValid && isPriceValid && isImageValid);
+        if (this.submitButtonAdd) {
+            this.submitButtonAdd.disabled = !(isBrandValid && isColorValid && isTypeValid && isModelValid && isYearValid && isCVValid && isPriceValid && isImageValid);
         }
+
+        if (this.submitButtonEdit) {
+            this.submitButtonEdit.disabled = !(isBrandValid && isColorValid && isTypeValid && isModelValid && isYearValid && isCVValid && isPriceValid);
+        }
+
     }
 
     handleSubmit(event) {
-        if (this.submitButton && this.submitButton.disabled) {
+        if (this.submitButtonAdd && this.submitButtonAdd.disabled) {
+            event.preventDefault();
+        }
+        if (this.submitButtonEdit && this.submitButtonEdit.disabled) {
             event.preventDefault();
         }
     }
