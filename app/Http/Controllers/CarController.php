@@ -120,7 +120,7 @@ class CarController extends Controller
     public function addCar(StoreCarRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
-        
+
         $this->brand_id = $validatedData['brand'];
         $this->name = $validatedData['model'];
         $this->color_id = $validatedData['color'];
@@ -260,9 +260,7 @@ class CarController extends Controller
                     CarImage::storeImage($carImage);
                 }
             }
-        }
-        
-        
+        }  
 
         return redirect()->back()->with('success', 'Coche actualizado correctamente.');
     }

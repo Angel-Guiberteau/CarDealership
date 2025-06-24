@@ -132,6 +132,7 @@
             @endforeach
         </div>
     </div>
+    {{-- @include('tech-aksdaosd') --}}
 @endsection
 
 @push('js')
