@@ -217,15 +217,3 @@ Route::get('/img/{main_image}', function ($main_image) {
 
     return Response::make($file, 200)->header('Content-Type', $type);
 })->name('image');
-
-
-use App\Http\Controllers\MapaController;
-
-Route::get('/mapas', [MapaController::class, 'index'])->name('mapas.index');
-Route::get('/mapas/actualizar', [MapaController::class, 'actualizarDatos'])->name('mapas.actualizar');
-
-use App\Http\Controllers\ComidasController;
-
-Route::get('/comidas', [ComidasController::class, 'index'])->name('comidas.index');
-Route::post('/comidas/actualizar', [ComidasController::class, 'actualizarPreciosAjax'])->name('comidas.actualizar');
-
